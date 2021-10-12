@@ -1,1 +1,6 @@
-<p>pedido works!</p>
+<h3>Meu pedido</h3>
+
+<tr *ngFor="let produto of produtos">
+  <td> {{ produto.id }} &nbsp; </td>
+  <td> {{ produto.descricao }}</td>
+</tr>
