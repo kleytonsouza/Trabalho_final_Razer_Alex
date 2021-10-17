@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EditarClienteComponent } from './cliente/editar-cliente/editar-cliente.component';
+import { EditarClienteComponent } from './views/cliente/editar-cliente/editar-cliente.component';
 
-import { InserirClienteComponent } from './cliente/inserir-cliente/inserir-cliente.component';
-import { ListarClienteComponent } from './cliente/listar-cliente/listar-cliente.component';
-import { ListarPedidoComponent } from './pedido/listar-pedido/listar-pedido.component';
-import { EditarProdutoComponent } from './produto/editar-produto/editar-produto.component';
-import { InserirProdutoComponent } from './produto/inserir-produto/inserir-produto.component';
-import { ListarProdutoComponent } from './produto/listar-produto/listar-produto.component';
+import { InserirClienteComponent } from './views/cliente/inserir-cliente/inserir-cliente.component';
+import { ListarClienteComponent } from './views/cliente/listar-cliente/listar-cliente.component';
+import { HomeComponent } from './views/home/home.component';
+import { ListarPedidoComponent } from './views/pedido/listar-pedido/listar-pedido.component';
+import { EditarProdutoComponent } from './views/produto/editar-produto/editar-produto.component';
+import { InserirProdutoComponent } from './views/produto/inserir-produto/inserir-produto.component';
+import { ListarProdutoComponent } from './views/produto/listar-produto/listar-produto.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'clientes/listar',
-    pathMatch: 'full'
+    component: HomeComponent
   },
   {
     path: 'clientes',

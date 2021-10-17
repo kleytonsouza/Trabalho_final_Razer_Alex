@@ -9,7 +9,7 @@ imports: [
 ]
 
 import { Observable } from 'rxjs';
-import { Cliente } from "src/app/cliente/cliente";
+import { Cliente } from "src/app/shared/models/cliente";
 import { environment } from 'src/environments/environment';
 
 const LS_CHAVE: string = "clientes";

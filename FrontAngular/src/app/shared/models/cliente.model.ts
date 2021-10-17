@@ -9,7 +9,7 @@
     }  
 }*/
 
-import { Cliente } from "src/app/cliente/cliente";
+import { Cliente } from "src/app/shared/models/cliente";
 
 export class Pedido{
     

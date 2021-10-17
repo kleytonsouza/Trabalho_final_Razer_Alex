@@ -1,19 +1,52 @@
-<div class="conteiner-fluid">
-  <nav class="navbar navbar-expand-md n navbar-dark bg-dark">
-    <div class="navbar-collapse collapsed" id="navbarContent">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-            <a class="navbar-brand nav-link" href="#" routerLink="clientes/listar">
-                <i class="fa fa-home"></i>
-            </a>
-            </li>
-            <li class="nav-item">
-              <a class="navbar-brand nav-link" href="#" routerLink="produtos/listar">
-                  <i class="fas fa-shopping-bag"></i>
-              </a>
-              </li>
-        </ul>
-    </div>
-  </nav>
-  <router-outlet></router-outlet>
-</div>
+
+
+
+  <mat-toolbar color="primary">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="menuClientes">
+        <mat-icon>person</mat-icon>
+        <span>Clientes</span>
+      </button>
+      <button mat-menu-item [matMenuTriggerFor]="menuPedidos">
+        <mat-icon>shopping_cart</mat-icon>
+        <span>Pedidos</span>
+      </button>
+      <button mat-menu-item [matMenuTriggerFor]="menuProdutos">
+        <mat-icon>inventory_2</mat-icon>
+        <span>Produtos</span>
+      </button>
+    </mat-menu>
+
+
+    <span>DAS - Trabalho Desenvolvimento Web </span>
+    
+  </mat-toolbar>
+
+  <button mat-button [matMenuTriggerFor]="menuClientes" >Clientes</button>
+  <mat-menu #menuClientes="matMenu">
+    <button mat-menu-item>Incluir Cliente</button>
+    <button mat-menu-item>Atualizar Cliente</button>
+    <button mat-menu-item routerLink="clientes/listar">Listar Clientes</button>
+    <button mat-menu-item>Pesquisar Cliente</button>
+  </mat-menu>
+
+<button mat-button [matMenuTriggerFor]="menuPedidos">Pedidos</button>
+<mat-menu #menuPedidos="matMenu">
+  <button mat-menu-item>Incluir Pedido</button>
+    <button mat-menu-item>Atualizar Pedido</button>
+    <button mat-menu-item>Listar Pedidos</button>
+    <button mat-menu-item>Pesquisar Pedido</button>
+</mat-menu>
+
+<button mat-button [matMenuTriggerFor]="menuProdutos">Produtos</button>
+<mat-menu #menuProdutos="matMenu">
+  <button mat-menu-item>Incluir Produto</button>
+    <button mat-menu-item>Atualizar Produto</button>
+    <button mat-menu-item routerLink="produtos/listar">Listar Produtos</button>
+    <button mat-menu-item>Pesquisar Produto</button>
+</mat-menu>
+
+<router-outlet></router-outlet>

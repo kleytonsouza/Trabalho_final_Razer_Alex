@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClienteService } from '../services/cliente.service';
 import { NgForm } from '@angular/forms';
-import { Cliente } from '../cliente';
+import { Cliente } from '../../../shared/models/cliente';
 
 
 

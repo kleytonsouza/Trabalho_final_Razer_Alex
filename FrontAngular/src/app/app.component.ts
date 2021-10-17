@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ClienteService } from './cliente/services/cliente.service';
-import { Cliente } from "src/app/cliente/cliente";
+import { ClienteService } from './views/cliente/services/cliente.service';
+import { Cliente } from "src/app/shared/models/cliente";
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { Cliente } from "src/app/cliente/cliente";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent  implements OnInit{
-  title = 'Clientes_Pedidos';
+  title = 'Clientes Pedidos';
 
   public clientes: Cliente[] = [];
 

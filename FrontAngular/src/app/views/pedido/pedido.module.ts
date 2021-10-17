@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Pedido } from '../shared';
+import { Pedido } from '../../shared';
 import { ActivatedRoute } from '@angular/router';
 import { ClienteService } from '../cliente/services/cliente.service';
 import { ListarPedidoComponent } from './listar-pedido/listar-pedido.component';

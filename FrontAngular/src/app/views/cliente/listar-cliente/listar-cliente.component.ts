@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ClienteService } from '../services/cliente.service';
-import { Cliente } from "src/app/cliente/cliente";
+import { Cliente } from "src/app/shared/models/cliente";
 import { Observable } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 
