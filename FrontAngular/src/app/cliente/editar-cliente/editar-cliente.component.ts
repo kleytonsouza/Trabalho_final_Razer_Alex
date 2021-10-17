@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Cliente } from 'src/app/shared/models/cliente.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClienteService } from '../services/cliente.service';
 import { NgForm } from '@angular/forms';
+import { Cliente } from '../cliente';
 
 @Component({
   selector: 'app-edit-client',
@@ -25,12 +25,9 @@ export class EditarClienteComponent implements OnInit {
     let cpf = this.route.snapshot.params['cpf'];
     
   
-    const clienteToEdit = this.clienteService.buscarPorId(cpf);
+    const clienteToEdit = this.clienteService.getCliente(cpf);
 
-    if ( clienteToEdit !== undefined)
-      this.cliente = clienteToEdit;
-    else
-      throw new Error ("Cliente não encontrado: cpf = " + cpf);
+   
   }
 
   
@@ -38,7 +35,7 @@ export class EditarClienteComponent implements OnInit {
 
     let currentCpf = this.route.snapshot.params['cpf'];
     
-    const hasCpf = this.clienteService.buscarPorId(this.cliente.cpf);
+    const hasCpf = this.clienteService.getCliente(this.cliente.id);
 
     const isThisCpf  = this.cliente.cpf == currentCpf;
 
@@ -48,7 +45,7 @@ export class EditarClienteComponent implements OnInit {
     }
     
     if (this.formCliente.form.valid && hasCpf == undefined) {
-      this.clienteService.atualizar(this.cliente);
+      this.clienteService.atualizarCliente(this.cliente);
       this.router.navigate( ["/"] );
     }
   }

@@ -1,62 +1,49 @@
 import { Injectable } from '@angular/core';
 
-import { Cliente } from 'src/app/shared/models/cliente.model';
+
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+imports: [
+  HttpClientModule,
+  HttpClient
+]
+
+import { Observable } from 'rxjs';
+import { Cliente } from "src/app/cliente/cliente";
+import { environment } from 'src/environments/environment';
 
 const LS_CHAVE: string = "clientes";
 
 
-@Injectable({
-  providedIn: 'root'
-})
-
-
+@Injectable({providedIn: 'root'})
 export class ClienteService {
   
-  constructor() { }
+  private apiServerUrl = environment.apiBaseUrl;
 
-  listarTodos(): Cliente[]{
-    const clientes = localStorage[LS_CHAVE];
-    return clientes ? JSON.parse(clientes) : [];
+  constructor(private http: HttpClient) { }
+
+  public getClientes(): Observable<Cliente[]>{
+    return this.http.get<Cliente[]>(`${this.apiServerUrl}/v1/public/cliente//listar`);
   }
 
-   
-  inserir(cliente: Cliente): void{
-   
-    const clientes = this.listarTodos();
-    
-    clientes.push(cliente);
-    
-    localStorage[LS_CHAVE] = JSON.stringify(clientes);
+
+  public getCliente(clienteID: number): Observable<Cliente>{
+    return this.http.get<Cliente>(`${this.apiServerUrl}/v1/public/cliente/${clienteID}`);
   }
 
-  buscarPorId(cpf: string): Cliente{
-    
-    const clientes: Cliente[] = this.listarTodos();
-
-    return clientes.find(cliente => cliente.cpf === cpf)!;
-    
+  public adicionarCliente(cliente: Cliente): Observable<Cliente>{
+    return this.http.post<Cliente>(`${this.apiServerUrl}/v1/public/cliente/adicionar`, cliente);
   }
 
-  atualizar(cliente: Cliente): void{
-    
-    const clientes: Cliente[] = this.listarTodos();
-   
-    clientes.forEach( (obj, index, objs) => {
-      if(cliente.id === obj.id){
-        objs[index] = cliente
-      }
-    });
-    
-    localStorage[LS_CHAVE] = JSON.stringify(clientes);
+
+  public atualizarCliente(cliente: Cliente): Observable<Cliente>{
+    return this.http.put<Cliente>(`${this.apiServerUrl}/v1/public/cliente/atualizar`, cliente);
   }
 
-  remover(cpf: string): void{
-   
-    let clientes: Cliente[] = this.listarTodos();
-    
-    clientes = clientes.filter(cliente => cliente.cpf !== cpf);
-
-    localStorage[LS_CHAVE] = JSON.stringify(clientes)
+  public deletarCliente(clienteID: number): Observable<void>{
+    return this.http.delete<void>(`${this.apiServerUrl}/v1/public/cliente/deletar/${clienteID}`);
   }
+
+
 
 }

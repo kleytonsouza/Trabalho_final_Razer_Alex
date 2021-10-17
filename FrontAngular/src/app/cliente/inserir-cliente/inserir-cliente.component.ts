@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Cliente } from 'src/app/shared/models/cliente.model';
 import { ClienteService } from '../services/cliente.service';
 import { NgForm } from '@angular/forms';
+import { Cliente } from '../cliente';
 
 
 
@@ -22,12 +22,11 @@ export class InserirClienteComponent implements OnInit {
     
     ngOnInit(): void {
     
-    this.cliente = new Cliente("");
   }
 
     inserir(): void{
 
-      const result = this.clienteService.buscarPorId(this.cliente.cpf!);
+      const result = this.clienteService.getCliente(this.cliente.id!);
     
       if ( result !== undefined){
         confirm(`CPF já cadastrado ${this.cliente.cpf}`)
@@ -35,7 +34,7 @@ export class InserirClienteComponent implements OnInit {
       } 
      
       if (this.formCliente.form.valid){
-          this.clienteService.inserir(this.cliente);
+          this.clienteService.adicionarCliente(this.cliente);
           this.router.navigate( ["/"] );
       }
     }

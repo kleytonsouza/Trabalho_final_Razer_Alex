@@ -1,5 +1,5 @@
 
-export class Cliente {
+/*export class Cliente {
     static _id: number = 0;
     public id: number;  
 
@@ -7,7 +7,9 @@ export class Cliente {
     { 
         this.id = Cliente._id++
     }  
-}
+}*/
+
+import { Cliente } from "src/app/cliente/cliente";
 
 export class Pedido{
     

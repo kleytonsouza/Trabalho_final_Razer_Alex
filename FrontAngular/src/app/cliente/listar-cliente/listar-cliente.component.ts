@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ClienteService } from '../services/cliente.service';
-import { Cliente } from '../../shared/models/cliente.model'
+import { Cliente } from "src/app/cliente/cliente";
+import { Observable } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-listar-cliente',
@@ -9,28 +11,31 @@ import { Cliente } from '../../shared/models/cliente.model'
   styleUrls: ['./listar-cliente.component.css']
 })
 
-export class ListarClienteComponent implements OnInit {
+export class ListarClienteComponent  {
 
-  clientes: Cliente[] = [];
+ 
 
-  constructor(private clienteService : ClienteService) { }
 
+
+
+  public clientes: Cliente[] = [];
+
+  constructor(private clientesService: ClienteService){}
   ngOnInit(): void {
-    this.clientes = this.listarTodos();
+    this.getClientes();
   }
 
-  listarTodos(): Cliente[]{
-    return this.clienteService.listarTodos();
-    
+  public getClientes(): void{
+    this.clientesService.getClientes().subscribe(
+      (response: Cliente[]) =>{
+        this.clientes = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 
 
-  remover($event: any, cliente: Cliente): void{
-    $event.preventDefault();
-    if(confirm('Deseja realmente remover o cliente "'+ cliente.nome +'"?')){
-      this.clienteService.remover(cliente.cpf!);
-      this.clientes = this.listarTodos();
-    }
-  }
 
 }
