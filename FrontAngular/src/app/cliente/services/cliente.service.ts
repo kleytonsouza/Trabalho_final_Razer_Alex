@@ -23,7 +23,7 @@ export class ClienteService {
   constructor(private http: HttpClient) { }
 
   public getClientes(): Observable<Cliente[]>{
-    return this.http.get<Cliente[]>(`${this.apiServerUrl}/v1/public/cliente//listar`);
+    return this.http.get<Cliente[]>(`${this.apiServerUrl}/v1/public/cliente/listar`);
   }
 
 
