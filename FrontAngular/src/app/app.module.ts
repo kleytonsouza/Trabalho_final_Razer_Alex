@@ -19,6 +19,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
+import { ListarClienteComponent } from './views/cliente/listar-cliente/listar-cliente.component';
 
 
 
@@ -29,7 +30,8 @@ import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ListarClienteComponent
   ],
   imports: [
     BrowserModule,

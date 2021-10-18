@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClienteService } from '../services/cliente.service';
 import { Cliente } from "src/app/shared/models/cliente";
 import { HttpErrorResponse } from '@angular/common/http';
+import {MatTableDataSource} from '@angular/material/table';
 
 
 
@@ -16,13 +17,15 @@ export class ListarClienteComponent  {
 
  
 
-  dataSource!: Cliente[];
-  displayedColumns = ['id', 'cpf','nome', 'sobrenome'];
+  ELEMENT_DATA!: Cliente[];
+  displayedColumns = ['id', 'cpf','nome', 'sobrenome', 'op'];
+  dataSource = new MatTableDataSource<Cliente>(this.ELEMENT_DATA);
+  clientes!: Cliente[];
+
   
-
-   clientes!: Cliente[];
-
   constructor(private clientesService: ClienteService){}
+
+  
 
 
 
@@ -47,9 +50,16 @@ export class ListarClienteComponent  {
     this.clientesService.getClientes().subscribe(
     clientes => {
       this.clientes = clientes
+      this.dataSource.data = clientes
     }
-   );
+   );}
 
+
+ 
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 

@@ -9,13 +9,15 @@ import { FormsModule } from '@angular/forms';
 import { InserirClienteComponent } from './inserir-cliente/inserir-cliente.component';
 import { EditarClienteComponent } from './editar-cliente/editar-cliente.component';
 import { NumericoDirective } from '../../shared/directives';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
+import {MatButtonModule} from '@angular/material/button';
+
+
 
 
 
 @NgModule({
   declarations: [
-    ListarClienteComponent,
     InserirClienteComponent,
     EditarClienteComponent,
     NumericoDirective
@@ -24,7 +26,8 @@ import {MatTableModule} from '@angular/material/table';
     CommonModule,
     RouterModule,
     FormsModule,
-    MatTableModule
+    MatTableModule,
+    MatButtonModule
     
   ],
   providers: [
