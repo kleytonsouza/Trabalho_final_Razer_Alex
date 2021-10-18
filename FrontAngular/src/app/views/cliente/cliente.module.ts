@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { InserirClienteComponent } from './inserir-cliente/inserir-cliente.component';
 import { EditarClienteComponent } from './editar-cliente/editar-cliente.component';
 import { NumericoDirective } from '../../shared/directives';
+import {MatTableModule} from '@angular/material/table';
 
 
 
@@ -22,7 +23,8 @@ import { NumericoDirective } from '../../shared/directives';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    MatTableModule
     
   ],
   providers: [

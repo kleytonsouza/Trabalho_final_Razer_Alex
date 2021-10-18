@@ -12,6 +12,16 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import { FormsModule } from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
+
+
+
 
 
 
@@ -19,7 +29,7 @@ import {MatCardModule} from '@angular/material/card';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +42,15 @@ import {MatCardModule} from '@angular/material/card';
     MatIconModule,
     MatMenuModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule, 
+    FormsModule,
+    MatSortModule,
+    MatFormFieldModule, 
+    MatDialogModule, 
+    MatSelectModule, 
+    MatPaginatorModule,
+    MatTableModule
+    
 
   ],
   providers: [],

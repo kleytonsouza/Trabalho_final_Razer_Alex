@@ -27,17 +27,17 @@
 
   <button mat-button [matMenuTriggerFor]="menuClientes" >Clientes</button>
   <mat-menu #menuClientes="matMenu">
-    <button mat-menu-item>Incluir Cliente</button>
-    <button mat-menu-item>Atualizar Cliente</button>
+    <button mat-menu-item routerLink="clientes/novo">Incluir Cliente</button>
+    <button mat-menu-item routerLink="clientes/editar">Atualizar Cliente</button>
     <button mat-menu-item routerLink="clientes/listar">Listar Clientes</button>
-    <button mat-menu-item>Pesquisar Cliente</button>
+    <button mat-menu-item routerLink="clientes/pesquisar">Pesquisar Cliente</button>
   </mat-menu>
 
 <button mat-button [matMenuTriggerFor]="menuPedidos">Pedidos</button>
 <mat-menu #menuPedidos="matMenu">
   <button mat-menu-item>Incluir Pedido</button>
     <button mat-menu-item>Atualizar Pedido</button>
-    <button mat-menu-item>Listar Pedidos</button>
+    <button mat-menu-item routerLink="pedidos/listar">Listar Pedidos</button>
     <button mat-menu-item>Pesquisar Pedido</button>
 </mat-menu>
 

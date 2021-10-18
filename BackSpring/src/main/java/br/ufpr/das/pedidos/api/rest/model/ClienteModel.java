@@ -10,6 +10,7 @@ public class ClienteModel {
 
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
     @Column(length = 11)

@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { ClienteService } from '../services/cliente.service';
 import { Cliente } from "src/app/shared/models/cliente";
-import { Observable } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+
+
 
 @Component({
   selector: 'app-listar-cliente',
@@ -15,14 +16,20 @@ export class ListarClienteComponent  {
 
  
 
+  dataSource!: Cliente[];
+  displayedColumns = ['id', 'cpf','nome', 'sobrenome'];
+  
 
-
-
-  public clientes: Cliente[] = [];
+   clientes!: Cliente[];
 
   constructor(private clientesService: ClienteService){}
+
+
+
+
   ngOnInit(): void {
-    this.getClientes();
+   // this.getClientes();
+    this.getAllClientes();
   }
 
   public getClientes(): void{
@@ -34,6 +41,15 @@ export class ListarClienteComponent  {
         alert(error.message);
       }
     );
+  }
+
+  public getAllClientes(){
+    this.clientesService.getClientes().subscribe(
+    clientes => {
+      this.clientes = clientes
+    }
+   );
+
   }
 
 
