@@ -4,7 +4,7 @@ import { ClienteService } from '../services/cliente.service';
 import { NgForm } from '@angular/forms';
 import { Cliente } from '../../../shared/models/cliente';
 import { HttpErrorResponse } from '@angular/common/http';
-
+import { MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -14,7 +14,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 
 export class InserirClienteComponent implements OnInit {
-  constructor(private clienteService: ClienteService,
+  constructor(public dialogRef: MatDialogRef<InserirClienteComponent>, private clienteService: ClienteService,
     private router: Router) { }
     
     @ViewChild('formCliente')formCliente! : NgForm;

@@ -2,7 +2,9 @@ package br.ufpr.das.pedidos.api.rest.controller;
 
 
 import br.ufpr.das.pedidos.api.rest.model.ClienteModel;
+import br.ufpr.das.pedidos.api.rest.model.PedidoModel;
 import br.ufpr.das.pedidos.api.rest.repository.ClienteRepository;
+import br.ufpr.das.pedidos.api.rest.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +21,23 @@ public class ClienteController {
     private ClienteRepository repository;
 
 
+    @Autowired
+    private PedidoRepository repositoryPedidos;
+
     @GetMapping(path = "/v1/public/cliente/{clienteId}")
     public ResponseEntity<Optional<ClienteModel>> consultar(@PathVariable Integer clienteId) {
 
         Optional<ClienteModel> cliente = repository.findById(clienteId);
         return new ResponseEntity<>(cliente, HttpStatus.OK);
     }
+
+
+    @GetMapping(path = "/v1/public/cliente/{clienteId}/pedidos")
+    public ResponseEntity<Optional<PedidoModel>> consultarPedidos(@PathVariable Integer clienteId) {
+        Optional<PedidoModel> cliente = repositoryPedidos.findAllByCliente(clienteId);
+        return new ResponseEntity<>(cliente, HttpStatus.OK);
+    }
+
 
 
     @DeleteMapping(path = "/v1/public/cliente/delete/{clienteId}")

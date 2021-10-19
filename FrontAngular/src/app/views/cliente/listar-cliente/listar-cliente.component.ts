@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { ClienteService } from '../services/cliente.service';
 import { Cliente } from "src/app/shared/models/cliente";
 import { HttpErrorResponse } from '@angular/common/http';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { InserirClienteComponent } from '../inserir-cliente/inserir-cliente.component';
 
 
 
@@ -23,16 +25,21 @@ export class ListarClienteComponent  {
   clientes!: Cliente[];
 
   
-  constructor(private clientesService: ClienteService){}
-
-  
-
-
+  constructor(private clientesService: ClienteService, public dialog: MatDialog){}
 
 
   ngOnInit(): void {
    // this.getClientes();
     this.getAllClientes();
+  }
+
+
+  editarUsuario() {
+    const dialogRef = this.dialog.open(InserirClienteComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   public getClientes(): void{

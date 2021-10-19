@@ -51,7 +51,8 @@ import { ListarClienteComponent } from './views/cliente/listar-cliente/listar-cl
     MatDialogModule, 
     MatSelectModule, 
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    
     
 
   ],

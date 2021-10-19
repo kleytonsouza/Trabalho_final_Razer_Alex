@@ -1,5 +1,7 @@
+
+<!--
 <div class="container container-fluid">
-    <h1>Clientes</h1>
+    
 
     <table class="table table-striped table-bordered table-hover">
         <tbody>
@@ -36,17 +38,24 @@
             </tr>
         </tbody>
     </table>
-
-
-   
-   
-
-   
-        Pesquisar
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. André" #input>
-   
     
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+ -->
+
+   
+   
+
+ <div class="container container-fluid">
+       
+   
+        
+
+    <h1>Clientes</h1>
+
+        
+          <mat-label>Pesquisar</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. André" #input>
+    
+       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
      
         <ng-container matColumnDef="id">
@@ -78,7 +87,7 @@
                 <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon" >
                     <mat-icon>delete</mat-icon>
                 </button>
-                <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon">
+                <button  mat-mini-fab  (click)="editarUsuario()" color="primary" aria-label="Example icon button with a delete icon">
                     <mat-icon>edit</mat-icon>
                 </button>
 
