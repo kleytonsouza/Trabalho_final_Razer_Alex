@@ -1,3 +1,4 @@
+<!-- 
 <div class="container container-fluid">
     <h1>Novo Cliente</h1>
     <div class="well">
@@ -48,5 +49,43 @@
             </button>
         </form>
     </div>
+</div>
+-->
+
+<h1 mat-dialog-title>Novo Cliente</h1>
+
+<div mat-dialog-content> 
+    <form class="example-form" [formGroup]="formCliente">
+
+
+        
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>C.P.F</mat-label>
+            <input matInput formControlName="cpf" name="cpf">
+          </mat-form-field>
+          <br>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome" name="nome">
+          </mat-form-field>
+          <br>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Sobrenome</mat-label>
+            <input matInput formControlName="sobrenome" name="sobrenome">
+          </mat-form-field>
+
+
+    </form>
 
 </div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="inserir()">Salvar</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button mat-button (click)="cancel()">Cancelar</button>
+</div>
+
+
+
+

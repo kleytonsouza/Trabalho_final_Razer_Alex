@@ -47,6 +47,17 @@ public class ClienteController {
     }
 
 
+
+
+     @PostMapping(path = "/v1/public/cliente/remover")
+    public ResponseEntity<?> deletarPost(@RequestBody ClienteModel clienteModel) {
+        //repository.deleteById(clienteId);
+        repository.delete(clienteModel);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
+
     @GetMapping(path = "/v1/public/cliente/listar")
     public ResponseEntity<Iterable<ClienteModel>> listar() {
 
@@ -63,10 +74,10 @@ public class ClienteController {
 
 
 
-    @PutMapping(path = "/v1/public/cliente/atualizar")
+    @PostMapping(path = "/v1/public/cliente/atualizar")
     public ResponseEntity<ClienteModel> atualizar(@RequestBody ClienteModel clienteModel) {
         ClienteModel novoCliente = repository.save(clienteModel);
-        return new ResponseEntity<>(novoCliente, HttpStatus.CREATED);
+        return new ResponseEntity<>(novoCliente, HttpStatus.OK);
     }
 
 

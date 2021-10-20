@@ -47,13 +47,14 @@
  <div class="container container-fluid">
        
    
-        
 
-    <h1>Clientes</h1>
+   
+  <br>
 
-        
-          <mat-label>Pesquisar</mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. André" #input>
+    <button mat-raised-button color="primary" (click)="inserirUsuario()">Incluir Cliente </button><br><br>
+    <h1>Lista de Clientes</h1>
+      <mat-label>Pesquisar</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. André" #input>
     
        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -84,12 +85,17 @@
             <th mat-header-cell *matHeaderCellDef> Opções </th>
             <td mat-cell *matCellDef="let row">
                 
-                <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon" >
+                <button mat-mini-fab (click)="deletarUsuario(row)" color="primary" aria-label="Example icon button with a delete icon" >
                     <mat-icon>delete</mat-icon>
                 </button>
-                <button  mat-mini-fab  (click)="editarUsuario()" color="primary" aria-label="Example icon button with a delete icon">
+                &nbsp;
+                <button  mat-mini-fab  (click)="editarUsuario(row)" color="primary" aria-label="Example icon button with a delete icon">
                     <mat-icon>edit</mat-icon>
                 </button>
+                &nbsp;
+                <button  mat-mini-fab  (click)="editarUsuario(row)" color="primary" aria-label="Example icon button with a delete icon">
+                  <mat-icon>list</mat-icon>
+              </button>
 
 
             </td>
