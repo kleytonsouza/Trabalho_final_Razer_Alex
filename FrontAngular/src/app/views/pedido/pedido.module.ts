@@ -1,15 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Pedido } from '../../shared';
-import { ActivatedRoute } from '@angular/router';
-import { ClienteService } from '../cliente/services/cliente.service';
+import { RouterModule } from '@angular/router';
 import { ListarPedidoComponent } from './listar-pedido/listar-pedido.component';
 import { InserirPedidoComponent } from './inserir-pedido/inserir-pedido.component';
 import { EditarPedidoComponent } from './editar-pedido/editar-pedido.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { PedidoService } from './services/pedido.service';
 
 
-
-const LS_CHAVE: string = "pedidos";
 
 @NgModule({
   declarations: [
@@ -18,42 +22,21 @@ const LS_CHAVE: string = "pedidos";
     EditarPedidoComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    MatTableModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    MatNativeDateModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  providers: [
+    PedidoService
   ]
 })
 
-export class ListarPedidoModule {
-
-
-  constructor(private route: ActivatedRoute, private clienteService: ClienteService){}
-
-  ngOnInit(): void {
-  
-    let cpf = this.route.snapshot.params['cpf'];
-  
-    const clienteOrdens = this.clienteService.buscarPorId(cpf);
-
-    if ( clienteOrdens !== undefined)
-      this.listarTodos();
-    else
-      throw new Error ("Cliente não encontrado: cpf = " + cpf);
-  }
-
-  listarTodos(): Pedido[]{
-    const pedidos = localStorage[LS_CHAVE];
-    return pedidos ? JSON.parse(pedidos) : [];
-  }
-
-  inserir(pedido: Pedido): void{
-
-      const pedidos = this.listarTodos();
-      
-      pedidos.push(pedido);
-      
-      localStorage[LS_CHAVE] = JSON.stringify(pedidos);
-  
-
-  }
-
-
- }
+export class ListarPedidoModule { }
