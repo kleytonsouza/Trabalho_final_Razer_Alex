@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClienteService } from '../services/cliente.service';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Cliente } from '../../../shared/models/cliente';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -14,29 +14,46 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 
 export class InserirClienteComponent implements OnInit {
-  constructor(public dialogRef: MatDialogRef<InserirClienteComponent>, private clienteService: ClienteService,
+  public formCliente! : FormGroup;
+  public cliente!: Cliente;
+  constructor(
+    private fb: FormBuilder,
+    public dialogRef: MatDialogRef<InserirClienteComponent>, 
+    private clienteService: ClienteService,
     private router: Router) { }
-    
-    @ViewChild('formCliente')formCliente! : NgForm;
+  
+   
 
-    cliente! : Cliente;
     ngOnInit(): void {
+      this.formCliente = this.fb.group({
+        id: ['', ],
+        cpf: ['', [Validators.required]],
+        nome: ['', [Validators.required]],
+        sobrenome: ['', [Validators.required]]
+      })
     
   }
 
-    inserir(): void{
+  cancel(): void{
+    this.dialogRef.close();
+    this.formCliente.reset();
+  }
 
-      if (this.formCliente.form.valid){
-          this.clienteService.adicionarCliente(this.cliente);
-          this.router.navigate( ["/"] );
-      }
+    inserir(): void{
+      if (this.formCliente.valid){
+         this.clienteService.adicionarCliente(this.formCliente.value).subscribe(
+          result => {});
+          this.dialogRef.close();
+          this.formCliente.reset();
+         // window.location.reload();      
+       }  
     }
+      
+    
 
 
     public onAddCliente(addForm: NgForm): void{
-
       document.getElementById('formCliente')?.click();
-
         this.clienteService.adicionarCliente(addForm.value).subscribe(
           (response: Cliente) =>{
             console.log(response);
@@ -46,8 +63,6 @@ export class InserirClienteComponent implements OnInit {
              alert(error.message);
           }
         );
-
-
     }
 
 

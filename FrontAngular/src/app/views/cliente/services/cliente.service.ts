@@ -32,13 +32,19 @@ export class ClienteService {
   }
 
   public adicionarCliente(cliente: Cliente): Observable<Cliente>{
-    return this.http.post<Cliente>(`${this.apiServerUrl}/v1/public/cliente/adicionar`, cliente);
+    return this.http.post<Cliente>(`${this.apiServerUrl}/v1/public/cliente/salvar`, cliente);
   }
 
 
   public atualizarCliente(cliente: Cliente): Observable<Cliente>{
-    return this.http.put<Cliente>(`${this.apiServerUrl}/v1/public/cliente/atualizar`, cliente);
+    return this.http.post<Cliente>(`${this.apiServerUrl}/v1/public/cliente/atualizar`, cliente);
   }
+
+
+  public removerCliente(cliente: Cliente): Observable<Cliente>{
+    return this.http.post<Cliente>(`${this.apiServerUrl}/v1/public/cliente/remover`, cliente);
+  }
+
 
   public deletarCliente(clienteID: number): Observable<void>{
     return this.http.delete<void>(`${this.apiServerUrl}/v1/public/cliente/deletar/${clienteID}`);

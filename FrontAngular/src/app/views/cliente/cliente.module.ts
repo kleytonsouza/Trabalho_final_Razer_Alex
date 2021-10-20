@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClienteService } from './services/cliente.service';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InserirClienteComponent } from './inserir-cliente/inserir-cliente.component';
 import { EditarClienteComponent } from './editar-cliente/editar-cliente.component';
 import { NumericoDirective } from '../../shared/directives';
@@ -11,6 +11,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import {MatDialogModule} from '@angular/material/dialog';
+import { RemoverClienteComponent } from './remover-cliente/remover-cliente.component';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -20,7 +22,8 @@ import {MatDialogModule} from '@angular/material/dialog';
   declarations: [
     InserirClienteComponent,
     EditarClienteComponent,
-    NumericoDirective
+    NumericoDirective,
+    RemoverClienteComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +33,10 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    MatNativeDateModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     ClienteService
