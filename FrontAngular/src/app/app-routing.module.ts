@@ -5,6 +5,8 @@ import { EditarClienteComponent } from './views/cliente/editar-cliente/editar-cl
 import { InserirClienteComponent } from './views/cliente/inserir-cliente/inserir-cliente.component';
 import { ListarClienteComponent } from './views/cliente/listar-cliente/listar-cliente.component';
 import { HomeComponent } from './views/home/home.component';
+import { EditarPedidoComponent } from './views/pedido/editar-pedido/editar-pedido.component';
+import { InserirPedidoComponent } from './views/pedido/inserir-pedido/inserir-pedido.component';
 import { ListarPedidoComponent } from './views/pedido/listar-pedido/listar-pedido.component';
 import { EditarProdutoComponent } from './views/produto/editar-produto/editar-produto.component';
 import { InserirProdutoComponent } from './views/produto/inserir-produto/inserir-produto.component';
@@ -50,6 +52,22 @@ const routes: Routes = [
   {
     path: 'produtos/editar/:id',
     component: EditarProdutoComponent
+  },
+  {
+    path: 'pedidos',
+    redirectTo: 'pedidos/listar'
+  },
+  {
+    path: 'pedidos/listar',
+    component: ListarPedidoComponent
+  },
+  {
+    path: 'pedidos/novo',
+    component: InserirPedidoComponent
+  },
+  {
+    path: 'pedidos/editar/:id',
+    component: EditarPedidoComponent
   }
 ];
 
