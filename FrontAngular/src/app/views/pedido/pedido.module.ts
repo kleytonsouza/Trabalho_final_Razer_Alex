@@ -39,4 +39,4 @@ import { PedidoService } from './services/pedido.service';
   ]
 })
 
-export class ListarPedidoModule { }
+export class PedidoModule { }

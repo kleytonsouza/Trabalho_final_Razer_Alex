@@ -13,7 +13,7 @@ import { Cliente } from "src/app/shared/models/cliente";
 
 export class Pedido{
     
-    constructor(public cliente: Cliente, public itemsPedido: [itemDoPedido]){
+    constructor(public cliente: Cliente, public itemsPedido: itemDoPedido[]){
         this.cliente = cliente;
         this.itemsPedido = itemsPedido;      
     }
@@ -30,8 +30,8 @@ export class Produto{
 
 export class itemDoPedido{
     
-    constructor(public pedido: Pedido, public produto: Produto, public quantidade: number){
-        this.pedido = pedido;
+    constructor( public produto: any, public quantidade: number){
+
         this.produto = produto;
         this.quantidade = quantidade;
     }

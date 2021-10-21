@@ -1,1 +1,42 @@
 <h3>Meu pedido</h3>
+<div class="container container-fluid">
+       
+   
+
+   
+    <br>
+  
+    <button mat-raised-button color="primary" (click)="inserirPedido()">Incluir Pedido </button><br><br>
+      <h1>Lista de Pedido de {{cliente.nome}}</h1>
+        <mat-label>Pesquisar</mat-label>
+      
+         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+       
+          <ng-container matColumnDef="produto">
+            <th mat-header-cell *matHeaderCellDef> Produto </th>
+            <td mat-cell *matCellDef="let row"> {{row.produto.descricao || ""}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="quantidade">
+            <th mat-header-cell *matHeaderCellDef> Quantidade </th>
+            <td mat-cell *matCellDef="let row"> {{row.quantidade}} </td>
+          </ng-container>
+        
+      
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+  
+      </table>
+  
+    
+  
+  
+       
+        
+  
+  
+  
+  </div>

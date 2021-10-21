@@ -20,6 +20,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { ListarClienteComponent } from './views/cliente/listar-cliente/listar-cliente.component';
+import { PedidoModule } from './views/pedido/pedido.module';
 
 
 
@@ -38,6 +39,7 @@ import { ListarClienteComponent } from './views/cliente/listar-cliente/listar-cl
     AppRoutingModule,
     ClienteModule,
     ProdutoModule,
+    PedidoModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
@@ -52,9 +54,6 @@ import { ListarClienteComponent } from './views/cliente/listar-cliente/listar-cl
     MatSelectModule, 
     MatPaginatorModule,
     MatTableModule,
-    
-    
-
   ],
   providers: [],
   bootstrap: [AppComponent]
