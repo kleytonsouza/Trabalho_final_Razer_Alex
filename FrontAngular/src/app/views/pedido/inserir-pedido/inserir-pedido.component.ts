@@ -15,7 +15,7 @@ import { PedidoService } from '../services/pedido.service';
 })
 export class InserirPedidoComponent implements OnInit {
   public formPedido! : FormGroup;
-  produto = new Produto (1,"Produto 12345")
+  produto = new Produto ("Produto 12345", "Descrição do protudot")
   cliente = new Cliente(1,'12345678910','douglas','novaki')
   items: itemDoPedido[] = [new itemDoPedido(this.produto,2),new itemDoPedido(this.produto,1)];
   pedido = new Pedido(this.cliente,this.items)
@@ -29,7 +29,7 @@ export class InserirPedidoComponent implements OnInit {
   ngOnInit(): void {
     
     this.formPedido = this.fb.group({
-      id: [1,],
+      //id: [1,],
       data:[Date.now(),],
       cliente: [this.cliente,],
       itens:[this.items,],

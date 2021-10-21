@@ -2,7 +2,6 @@ package br.ufpr.das.pedidos.api.rest.model;
 
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "cliente", uniqueConstraints=@UniqueConstraint(name = "unic_cpf", columnNames = {"cpf"}))

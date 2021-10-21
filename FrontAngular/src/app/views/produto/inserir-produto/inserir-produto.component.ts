@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Produto } from 'src/app/shared/models/cliente.model';
 import { ProdutoService } from '../services/produto.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-inserir-produto',
@@ -10,33 +11,35 @@ import { ProdutoService } from '../services/produto.service';
   styleUrls: ['./inserir-produto.component.css']
 })
 export class InserirProdutoComponent implements OnInit {
+  public formProduto! : FormGroup;
+  public produto! : Produto;
   
-  
-  constructor(private produtoService: ProdutoService,
+  constructor(
+    private fb: FormBuilder,
+    public dialogRef: MatDialogRef<InserirProdutoComponent>,
+    private produtoService: ProdutoService,
     private router: Router) { }
-    
-    @ViewChild('formProduto')formProduto! : NgForm;
 
-    produto! : Produto;
-    
     ngOnInit(): void {
-    
-    this.produto = new Produto(0,"");
+    this.formProduto = this.fb.group({
+      id: ['',],
+      nome: ['', [Validators.required]],
+      describe: ['', [Validators.required]]
+    })
   }
 
-    inserir(): void{
+    cancel(): void{
+      this.dialogRef.close();
+      this.formProduto.reset();
+    }
 
-      const result = this.produtoService.buscarPorId(this.produto.id_produto!);
-    
-      if ( result !== undefined){
-        confirm(`ID já cadastrado ${this.produto.id_produto}`)
-        throw new Error ("ID já cadastrado = " + this.produto.id_produto);
-      } 
-     
-      if (this.formProduto.form.valid){
-          this.produtoService.inserir(this.produto);
-          this.router.navigate( ["/produtos"] );
-      }
+    inserir(): void{
+      if (this.formProduto.valid){
+        this.produtoService.inserir(this.formProduto.value).subscribe(result => {});
+         this.dialogRef.close();
+         this.formProduto.reset();
+        // window.location.reload();      
+      }  
     }
 
 }
