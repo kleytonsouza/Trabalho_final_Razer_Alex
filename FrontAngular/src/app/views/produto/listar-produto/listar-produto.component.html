@@ -1,38 +1,48 @@
 <div class="container container-fluid">
-    <h1>Produtos</h1>
+  <br>
+  <button mat-raised-button color="primary" (click)="inserir()">Incluir Produto </button><br><br>
+  <h1>Lista de Produtos</h1>
+  <mat-label>Pesquisar</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. André" #input>
+  
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+    </ng-container>
 
-    <table class="table table-striped table-bordered table-hover">
-        <tbody>
-            <tr>
-                <th>Descrição</th>
-                <th>Id</th>
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let row"> {{row.nome}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="descricao">
+      <th mat-header-cell *matHeaderCellDef> Descrição </th>
+      <td mat-cell *matCellDef="let row"> {{row.descricao}} </td>
+    </ng-container>
 
-                <th class="text-center">
-                    <a  
-                    (click)="onRedirectNew()" title="Novo" alt="Novo" class="btn btn-xs btn-success">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        Novo
-                    </a>
-                </th>
-            </tr>
-            <tr *ngFor="let produto of produtos">
-                <td>{{ produto.descricao }}</td>
-                <td>{{ produto.id }}</td>
-                <td class="text-center" style="width: 300px;">
-                    <a (click)="onRedirectEdit(produto.id)" style="margin-right: 10px;" title="atualizar" alt="atualizar" class="btn btn-xs btn-primary">
-                        <i class="fa fa-pen" aria-hidden="true"></i>
-                        Atualizar
-                    </a>
-                    <a style="margin-right: 10px;" title="Remover" alt="Remover" class="btn btn-xs btn-danger"
-                    (click)="remover($event, produto)">
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                        Remover
-                    </a>
-                </td>
-            </tr>
-            
-        </tbody>
-    </table>
-    <p style="color: red;" *ngIf="produtos.length==0">Nenhum Cliente cadastrado!</p>
+    <ng-container matColumnDef="op">
+        <th mat-header-cell *matHeaderCellDef> Opções </th>
+        <td mat-cell *matCellDef="let row">
+            <button mat-mini-fab (click)="remover(row)" color="primary" aria-label="Example icon button with a delete icon" >
+                <mat-icon>delete</mat-icon>
+            </button>
+            &nbsp;
+            <button  mat-mini-fab  (click)="editar(row)" color="primary" aria-label="Example icon button with a delete icon">
+                <mat-icon>edit</mat-icon>
+            </button>
+            &nbsp;
+            <button  mat-mini-fab  (click)="editar(row)" color="primary" aria-label="Example icon button with a delete icon">
+              <mat-icon>list</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
 </div>

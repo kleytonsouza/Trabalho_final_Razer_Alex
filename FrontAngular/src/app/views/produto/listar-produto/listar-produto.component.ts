@@ -1,45 +1,99 @@
 import { Component, OnInit } from '@angular/core';
-import { Produto } from 'src/app/shared/models/cliente.model';
+import { Produto } from 'src/app/shared/models/produto.model';
 import { ProdutoService } from '../services/produto.service';
-import {Router} from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { EditarProdutoComponent } from '../editar-produto/editar-produto.component';
+import { RemoverProdutoComponent } from '../remover-produto/remover-produto.component';
+import { InserirProdutoComponent } from '../inserir-produto/inserir-produto.component';
+
+
+
 
 @Component({
   selector: 'app-listar-produto',
   templateUrl: './listar-produto.component.html',
   styleUrls: ['./listar-produto.component.css']
 })
-export class ListarProdutoComponent implements OnInit {
 
 
+export class ListarProdutoComponent  {
 
-  produtos: Produto[] = [];
+  ELEMENT_DATA!: Produto[];
+  displayedColumns = ['id', 'nome', 'descricao', 'op'];
+  dataSource = new MatTableDataSource<Produto>(this.ELEMENT_DATA);
+  produtos!: Produto[];
 
-  constructor(private produtoService : ProdutoService,private router:Router) { }
+  constructor(private produtoService : ProdutoService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.produtos = this.listarTodos();
+    this.getAllProdutos();
   }
 
-  listarTodos(): Produto[]{
-    return this.produtoService.listarTodos();
+
+  editar(produto : Produto) {
+    const dialogRef = this.dialog.open(EditarProdutoComponent,{
+      minWidth: '300px',
+      minHeight: '300px',
+      data: produto }
+      );
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.getAllProdutos();
+    });
+  }
+
+  inserir() {
+    const dialogRef = this.dialog.open(InserirProdutoComponent,{
+      minWidth: '300px',
+      minHeight: '300px' }
+      );
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.getAllProdutos();
+
+    });
+  }
+
+  remover(produto: Produto){
+    const dialogRef = this.dialog.open(RemoverProdutoComponent, {
+      minWidth: '300px',
+      minHeight: '300px',
+      data: produto});
+
+    dialogRef.afterClosed().subscribe(result =>{
+      console.log('Dialog result: ${result}');
+      this.getAllProdutos();
+    })  
+  }
+
+  listarTodos(){
+    this.produtoService.listarTodos().subscribe(
+      (response: Produto[]) =>{
+        this.produtos = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
     
   }
 
-
-  remover($event: any, produto: Produto): void{
-    $event.preventDefault();
-    if(confirm('Deseja realmente remover o produto "'+ produto.descricao +'"?')){
-      this.produtoService.remover(produto.id!);
-      this.produtos = this.listarTodos();
+  public getAllProdutos(){
+    this.produtoService.listarTodos().subscribe(
+    produtos => {
+      this.produtos = produtos
+      this.dataSource.data = produtos
     }
+   );}
+ 
+
+   applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
-  onRedirectNew(){
-    this.router.navigate(['/produtos/novo']);
-}
-
-onRedirectEdit(id: any){
-  this.router.navigate(['/produtos/editar', id]);
-}
 
 }

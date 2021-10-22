@@ -22,9 +22,11 @@ export class Pedido{
 }
 
 export class Produto{
+    public  id!: number;
 
-    constructor(public id: number, public descricao: string){
-        this.id = id;
+  //  constructor(public id: number, public descricao: string){this.id = id;}
+    constructor(public nome: string, public descricao: string){
+        this.nome = nome;
         this.descricao = descricao;
     }
 }

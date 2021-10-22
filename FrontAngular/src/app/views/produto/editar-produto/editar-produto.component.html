@@ -24,15 +24,10 @@
             </div>    
             <div *ngIf="descricao.errors && (descricao.dirty || descricao.touched)" class="alert alert-danger">
                 <div [hidden]="!descricao.errors?.required">
-                    Digite a descricao do cliente
+                    Digite a descricao do produto
                 </div>
                 <div [hidden]="!descricao.errors?.minlength">
                     A descricao deve conter ao menos 2 caracteres.
-                </div>
-            </div>
-            <div *ngIf="id.errors && (id.dirty || id.touched)" class="alert alert-danger">
-                <div [hidden]="!id.errors?.required">
-                    Digite o id do produto
                 </div>
             </div>
         </form>

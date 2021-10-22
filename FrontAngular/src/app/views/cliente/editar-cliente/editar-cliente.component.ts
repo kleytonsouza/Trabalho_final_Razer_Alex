@@ -1,15 +1,16 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClienteService } from '../services/cliente.service';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Cliente } from '../../../shared/models/cliente';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-client',
   templateUrl: './editar-cliente.component.html',
   styleUrls: ['./editar-cliente.component.css']
 })
+
 export class EditarClienteComponent implements OnInit {
 
   public formCliente! : FormGroup;

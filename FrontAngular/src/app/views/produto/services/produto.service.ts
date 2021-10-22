@@ -1,59 +1,57 @@
 import { Injectable } from '@angular/core';
-import { Produto } from 'src/app/shared';
-const LS_CHAVE: string = "produtos";
+
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+imports: [
+  HttpClientModule,
+  HttpClient
+]
+
+import { Observable } from 'rxjs';
+import { Produto } from "src/app/shared/models/produto.model";
+import { environment } from 'src/environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
+
+
+@Injectable({providedIn: 'root'})
 export class ProdutoService {
 
+  private apiServerUrl = environment.apiBaseUrl;
   
+  constructor(private http: HttpClient) { }
+
   
-  constructor() { }
-
-  listarTodos(): Produto[]{
-    const produtos = localStorage[LS_CHAVE];
-    return produtos ? JSON.parse(produtos) : [];
+  public listarTodos(): Observable<Produto[]>{
+    return this.http.get<Produto[]>(`${this.apiServerUrl}/v1/public/produto/listar`);
   }
 
    
-  inserir(produto: Produto): void{
-   
-    const produtos = this.listarTodos();
-    
-    produtos.push(produto);
-    
-    localStorage[LS_CHAVE] = JSON.stringify(produtos);
+  public inserir(produto: Produto): Observable<Produto>{
+    return this.http.post<Produto>(`${this.apiServerUrl}/v1/public/produto/salvar`, produto);
   }
 
-  buscarPorId(id: number): Produto{
-    
-    const produtos: Produto[] = this.listarTodos();
+  public buscarPorNome(nome: String): Observable<Produto>{
+    return this.http.get<Produto>(`${this.apiServerUrl}/v1/public/produto/${nome}`);
+  }
 
-    return produtos.find(produto => produto.id === id)!;
+  public buscarPorId(id: number): Observable<Produto>{
+    return this.http.get<Produto>(`${this.apiServerUrl}/v1/public/produto/${id}`);
     
   }
 
-  atualizar(produto: Produto): void{
-    
-    const produtos: Produto[] = this.listarTodos();
-    console.log(produto)
-   
-    produtos.forEach( (obj, index, objs) => {
-      if(produto.id === obj.id){
-        objs[index] = produto
-      }
-    });
-    
-    localStorage[LS_CHAVE] = JSON.stringify(produtos);
+  public atualizar(produto: Produto): Observable<Produto>{
+    return this.http.post<Produto>(`${this.apiServerUrl}/v1/public/produto/atualizar`, produto);
   }
 
-  remover(id: number): void{
-   
-    let produtos: Produto[] = this.listarTodos();
-    
-    produtos = produtos.filter(produto => produto.id !== id);
+  public delete(id: number): Observable<void>{
+    return this.http.delete<void>(`${this.apiServerUrl}/v1/public/produto/deletar/${id}`);
+  }
 
-    localStorage[LS_CHAVE] = JSON.stringify(produtos)
+  public remover(produto: Produto): Observable<Produto>{
+    return this.http.post<Produto>(`${this.apiServerUrl}/v1/public/produto/remover`, produto);
   }
 
 
