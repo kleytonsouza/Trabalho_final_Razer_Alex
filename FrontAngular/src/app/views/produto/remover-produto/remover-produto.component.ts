@@ -30,7 +30,7 @@ export class RemoverProdutoComponent implements OnInit {
       this.formProduto = this.fb.group({
         id: [this.data.id, [Validators.required]],
         nome: [this.data.nome, [Validators.required]],
-        describe: [this.data.descricao, [Validators.required]],
+        descricao: [this.data.descricao, [Validators.required]],
       })
     }
 
