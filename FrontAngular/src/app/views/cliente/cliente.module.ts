@@ -7,14 +7,12 @@ import { InserirClienteComponent } from './inserir-cliente/inserir-cliente.compo
 import { EditarClienteComponent } from './editar-cliente/editar-cliente.component';
 import { NumericoDirective } from '../../shared/directives';
 import { MatTableModule } from '@angular/material/table';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { RemoverClienteComponent } from './remover-cliente/remover-cliente.component';
 import { MatNativeDateModule } from '@angular/material/core';
-
-
 
 
 

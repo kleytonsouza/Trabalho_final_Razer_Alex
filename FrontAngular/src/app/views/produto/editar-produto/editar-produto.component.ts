@@ -1,59 +1,55 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
+import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Produto } from 'src/app/shared/models/cliente.model';
 import { ProdutoService } from '../services/produto.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-editar-produto',
   templateUrl: './editar-produto.component.html',
   styleUrls: ['./editar-produto.component.css']
 })
+
 export class EditarProdutoComponent implements OnInit {
+  
+  public formProduto! : FormGroup;
+  public produto!: Produto;
 
 
-
-  constructor(private produtoService: ProdutoService,
+  constructor(private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) 
+    public data: Produto,
+    public dialogRef: MatDialogRef<EditarProdutoComponent>,
+ 
+    private produtoService: ProdutoService,
     private router: Router,
     private route: ActivatedRoute) { }
 
     
-@ViewChild('formProduto')formProduto! : NgForm;
-
-produto!: Produto;
-
 ngOnInit(): void {
-
-let id = this.route.snapshot.params['id'];
-
-
-const prodiutoToEdit = this.produtoService.buscarPorId(id);
-
-if ( prodiutoToEdit !== undefined)
-this.produto = prodiutoToEdit;
-else
-throw new Error ("Produto não encontrado: id = " + id);
+  
+  this.formProduto = this.fb.group({
+    id: [this.data.id, [Validators.required]],
+    nome: [this.data.nome, [Validators.required]],
+    descricao: [this.data.descricao, [Validators.required]]
+  })
 }
 
 
 atualizar(): void{
 
-let currentId = this.route.snapshot.params['id'];
-
-const hasId = this.produtoService.buscarPorId(this.produto.id_produto);
-
-const isThisId  = this.produto.id_produto == currentId
-
-
-if (!isThisId && hasId !== undefined){
-confirm(`id já cadastrado ${this.produto.id_produto}`)
-throw new Error ("id já cadastrado = " + this.produto.id_produto);
+  if (this.formProduto.valid){
+      this.produtoService.atualizar(this.formProduto.value).subscribe(
+      result => {});
+      this.dialogRef.close();
+      this.formProduto.reset();      
+   }  
 }
 
-if (this.formProduto.form.valid && hasId == undefined) {
-this.produtoService.atualizar(this.produto);
-this.router.navigate( ["/produtos"] );
-}
+cancel(): void{
+  this.dialogRef.close();
+  this.formProduto.reset();
 }
 
 }
