@@ -73,10 +73,12 @@ export class ListarProdutoComponent  {
 
   listarTodos(){
     this.produtoService.listarTodos().subscribe(
-    produtos => {
-      this.produtos = produtos
-      this.dataSource.data = produtos
-    }
+      (response: Produto[]) =>{
+        this.produtos = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
     );
     
   }

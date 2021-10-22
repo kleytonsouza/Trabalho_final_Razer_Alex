@@ -33,17 +33,17 @@ public class ProdutosController {
 	@GetMapping(path = "/v1/public/produto/listar")
     public ResponseEntity<Iterable<ProdutoModel>> listar() {
 
-        Iterable<ProdutoModel> clientes = repository.findAll();
-        return new ResponseEntity<>(clientes, HttpStatus.OK);
+        Iterable<ProdutoModel> produtos = repository.findAll();
+        return new ResponseEntity<>(produtos, HttpStatus.OK);
     }
 
-    @PostMapping(path = "/v1/public/cliente/salvar")
+    @PostMapping(path = "/v1/public/produto/salvar")
     public ResponseEntity<ProdutoModel> salvar(@RequestBody ProdutoModel produtoModel) {
     	ProdutoModel novoProduto = repository.save(produtoModel);
         return new ResponseEntity<>(novoProduto, HttpStatus.CREATED);
     }
 
-    @PostMapping(path = "/v1/public/cliente/atualizar")
+    @PostMapping(path = "/v1/public/produto/atualizar")
     public ResponseEntity<ProdutoModel> atualizar(@RequestBody ProdutoModel produtoModel) {
     	ProdutoModel novoProduto = repository.save(produtoModel);
         return new ResponseEntity<>(novoProduto, HttpStatus.OK);

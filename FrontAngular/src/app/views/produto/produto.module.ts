@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProdutoService } from './services/produto.service';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListarProdutoComponent } from './listar-produto/listar-produto.component';
 import { EditarProdutoComponent } from './editar-produto/editar-produto.component';
 import { InserirProdutoComponent } from './inserir-produto/inserir-produto.component';
 import { RemoverProdutoComponent } from './remover-produto/remover-produto.component';
@@ -12,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -19,7 +21,9 @@ import { MatNativeDateModule } from '@angular/material/core';
   declarations: [
     EditarProdutoComponent,
     InserirProdutoComponent,
-    RemoverProdutoComponent 
+    RemoverProdutoComponent,
+    ListarProdutoComponent
+
   ],
   imports: [
     CommonModule,
@@ -32,7 +36,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDialogModule,
     MatNativeDateModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule
   ],
   providers: [
     ProdutoService

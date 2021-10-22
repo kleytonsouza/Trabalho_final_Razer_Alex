@@ -21,11 +21,11 @@ export class Pedido{
 }
 
 export class Produto{
-    public  id_produto!: number;
+    public  id!: number;
 
-    constructor(public nome: string, public description: string){
+    constructor(public nome: string, public descricao: string){
         this.nome = nome;
-        this.description = description;
+        this.descricao = descricao;
     }
 }
 

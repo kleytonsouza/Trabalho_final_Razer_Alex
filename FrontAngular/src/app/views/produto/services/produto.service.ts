@@ -42,7 +42,6 @@ export class ProdutoService {
     
   }
 
-
   public atualizar(produto: Produto): Observable<Produto>{
     return this.http.post<Produto>(`${this.apiServerUrl}/v1/public/produto/atualizar`, produto);
   }
