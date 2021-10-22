@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -39,14 +38,11 @@ public class ClienteController {
     }
 
 
-
     @DeleteMapping(path = "/v1/public/cliente/delete/{clienteId}")
     public ResponseEntity<?> deletar(@PathVariable Integer clienteId) {
         repository.deleteById(clienteId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
 
 
      @PostMapping(path = "/v1/public/cliente/remover")
@@ -60,7 +56,7 @@ public class ClienteController {
 
     @GetMapping(path = "/v1/public/cliente/listar")
     public ResponseEntity<Iterable<ClienteModel>> listar() {
-
+    	    	
         Iterable<ClienteModel> clientes = repository.findAll();
         return new ResponseEntity<>(clientes, HttpStatus.OK);
     }

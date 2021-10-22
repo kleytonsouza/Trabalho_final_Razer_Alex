@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Produto } from 'src/app/shared/models/produto.model';
 import { ProdutoService } from '../services/produto.service';
-import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
@@ -26,7 +25,7 @@ export class ListarProdutoComponent  {
   dataSource = new MatTableDataSource<Produto>(this.ELEMENT_DATA);
   produtos!: Produto[];
 
-  constructor(private produtoService : ProdutoService, public dialog: MatDialog, private router:Router) { }
+  constructor(private produtoService : ProdutoService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getAllProdutos();

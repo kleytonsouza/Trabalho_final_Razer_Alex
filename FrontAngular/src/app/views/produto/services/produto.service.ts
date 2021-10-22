@@ -30,7 +30,7 @@ export class ProdutoService {
 
    
   public inserir(produto: Produto): Observable<Produto>{
-    return this.http.post<Produto>(`${this.apiServerUrl}/v1/public/cliente/produto`, produto);
+    return this.http.post<Produto>(`${this.apiServerUrl}/v1/public/produto/salvar`, produto);
   }
 
   public buscarPorNome(nome: String): Observable<Produto>{

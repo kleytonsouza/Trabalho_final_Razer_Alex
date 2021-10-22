@@ -1,15 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { Produto } from 'src/app/shared/models/cliente.model';
+import { Produto } from 'src/app/shared/models/produto.model';
 import { ProdutoService } from '../services/produto.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-inserir-produto',
   templateUrl: './inserir-produto.component.html',
   styleUrls: ['./inserir-produto.component.css']
 })
+
 export class InserirProdutoComponent implements OnInit {
   public formProduto! : FormGroup;
   public produto! : Produto;
@@ -24,7 +26,7 @@ export class InserirProdutoComponent implements OnInit {
     this.formProduto = this.fb.group({
       id: ['',],
       nome: ['', [Validators.required]],
-      describe: ['', [Validators.required]]
+      descricao: ['', [Validators.required]]
     })
   }
 
@@ -40,6 +42,19 @@ export class InserirProdutoComponent implements OnInit {
          this.formProduto.reset();
         // window.location.reload();      
       }  
+    }
+
+    public onAddProduto(addForm: NgForm): void{
+      document.getElementById('formProduto')?.click();
+        this.produtoService.inserir(addForm.value).subscribe(
+          (response: Produto) =>{
+            console.log(response);
+            this.produtoService.listarTodos();
+          },
+          (error: HttpErrorResponse) =>{
+             alert(error.message);
+          }
+        );
     }
 
 }
