@@ -5,12 +5,12 @@
             <div class="form-group col-md-6">
                 <label for="descricao">Descricao</label>
                 <input type="text" class="form-control" id="descricao" name="descricao" minlength="2" required
-                [(ngModel)]="produto.description" #descricao="ngModel">
+                [(ngModel)]="produto.descricao" #descricao="ngModel">
             </div>
             <div class="form-group col-md-6">
                 <label for="id">Id</label>
                 <input type="text" class="form-control" id="id" name="id"  required
-                [(ngModel)]="produto.id_produto" #id="ngModel" numerico>
+                [(ngModel)]="produto.id" #id="ngModel" numerico>
             </div>
             <div class="form-group">
                 <button style="margin-right: 20px;" type="button" class="btn btn-primary" (click)="atualizar()" [disabled]="!formProduto.form.valid">

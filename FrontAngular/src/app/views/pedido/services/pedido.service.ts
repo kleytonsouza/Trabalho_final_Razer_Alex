@@ -10,7 +10,7 @@ imports: [
 
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Pedido } from 'src/app/shared';
+import { itemDoPedido, Pedido, Produto } from 'src/app/shared';
 
 
 @Injectable({
@@ -34,6 +34,9 @@ export class PedidoService {
   public adicionarPedido(pedido: Pedido): Observable<Pedido>{
     return this.http.post<Pedido>(`${this.apiServerUrl}/v1/public/pedido/salvar`, pedido);
   }
+  public adicionarItemDoPedido(item: itemDoPedido): Observable<itemDoPedido>{
+    return this.http.post<itemDoPedido>(`${this.apiServerUrl}/v1/public/itemDoPedido/salvar`, item);
+  }
 
 
   public atualizarPedido(pedido: Pedido): Observable<Pedido>{
@@ -48,6 +51,10 @@ export class PedidoService {
 
   public deletarPedido(pedidoID: number): Observable<void>{
     return this.http.delete<void>(`${this.apiServerUrl}/v1/public/pedido/deletar/${pedidoID}`);
+  }
+
+  public getProdutos(): Observable<Produto[]>{
+    return this.http.get<Produto[]>(`${this.apiServerUrl}/v1/public/produto/listar`);
   }
 
 }

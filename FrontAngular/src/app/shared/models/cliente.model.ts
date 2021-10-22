@@ -13,7 +13,8 @@ import { Cliente } from "src/app/shared/models/cliente";
 
 export class Pedido{
     
-    constructor(public cliente: Cliente, public itemsPedido: itemDoPedido[]){
+    constructor(public date: Date,public cliente: Cliente, public itemsPedido: itemDoPedido[]){
+        this.date = date
         this.cliente = cliente;
         this.itemsPedido = itemsPedido;      
     }
@@ -22,18 +23,19 @@ export class Pedido{
 
 export class Produto{
 
-    constructor(public id_produto: number, public description: string){
-        this.id_produto = id_produto;
-        this.description = description;
+    constructor(public id: number, public descricao: string){
+        this.id = id;
+        this.descricao = descricao;
     }
 }
 
 export class itemDoPedido{
     
-    constructor( public produto: any, public quantidade: number){
-
+    constructor(public id: number, public quantidade: number, public produto: any,){
+        this.id = id;
+                this.quantidade = quantidade;
         this.produto = produto;
-        this.quantidade = quantidade;
+
     }
 
 }

@@ -29,7 +29,7 @@ export class ProdutoService {
     
     const produtos: Produto[] = this.listarTodos();
 
-    return produtos.find(produto => produto.id_produto === id)!;
+    return produtos.find(produto => produto.id === id)!;
     
   }
 
@@ -39,7 +39,7 @@ export class ProdutoService {
     console.log(produto)
    
     produtos.forEach( (obj, index, objs) => {
-      if(produto.id_produto === obj.id_produto){
+      if(produto.id === obj.id){
         objs[index] = produto
       }
     });
@@ -51,7 +51,7 @@ export class ProdutoService {
    
     let produtos: Produto[] = this.listarTodos();
     
-    produtos = produtos.filter(produto => produto.id_produto !== id);
+    produtos = produtos.filter(produto => produto.id !== id);
 
     localStorage[LS_CHAVE] = JSON.stringify(produtos)
   }

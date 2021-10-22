@@ -26,11 +26,11 @@ export class InserirProdutoComponent implements OnInit {
 
     inserir(): void{
 
-      const result = this.produtoService.buscarPorId(this.produto.id_produto!);
+      const result = this.produtoService.buscarPorId(this.produto.id!);
     
       if ( result !== undefined){
-        confirm(`ID já cadastrado ${this.produto.id_produto}`)
-        throw new Error ("ID já cadastrado = " + this.produto.id_produto);
+        confirm(`ID já cadastrado ${this.produto.id}`)
+        throw new Error ("ID já cadastrado = " + this.produto.id);
       } 
      
       if (this.formProduto.form.valid){

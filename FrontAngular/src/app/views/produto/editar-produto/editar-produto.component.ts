@@ -40,14 +40,14 @@ atualizar(): void{
 
 let currentId = this.route.snapshot.params['id'];
 
-const hasId = this.produtoService.buscarPorId(this.produto.id_produto);
+const hasId = this.produtoService.buscarPorId(this.produto.id);
 
-const isThisId  = this.produto.id_produto == currentId
+const isThisId  = this.produto.id == currentId
 
 
 if (!isThisId && hasId !== undefined){
-confirm(`id já cadastrado ${this.produto.id_produto}`)
-throw new Error ("id já cadastrado = " + this.produto.id_produto);
+confirm(`id já cadastrado ${this.produto.id}`)
+throw new Error ("id já cadastrado = " + this.produto.id);
 }
 
 if (this.formProduto.form.valid && hasId == undefined) {

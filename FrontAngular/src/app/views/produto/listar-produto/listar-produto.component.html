@@ -16,10 +16,10 @@
                 </th>
             </tr>
             <tr *ngFor="let produto of produtos">
-                <td>{{ produto.description }}</td>
-                <td>{{ produto.id_produto }}</td>
+                <td>{{ produto.descricao }}</td>
+                <td>{{ produto.id }}</td>
                 <td class="text-center" style="width: 300px;">
-                    <a (click)="onRedirectEdit(produto.id_produto)" style="margin-right: 10px;" title="atualizar" alt="atualizar" class="btn btn-xs btn-primary">
+                    <a (click)="onRedirectEdit(produto.id)" style="margin-right: 10px;" title="atualizar" alt="atualizar" class="btn btn-xs btn-primary">
                         <i class="fa fa-pen" aria-hidden="true"></i>
                         Atualizar
                     </a>

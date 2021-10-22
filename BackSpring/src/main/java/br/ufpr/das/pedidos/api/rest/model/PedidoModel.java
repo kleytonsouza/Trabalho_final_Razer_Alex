@@ -1,6 +1,13 @@
 package br.ufpr.das.pedidos.api.rest.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.hibernate.annotations.OnDelete;
+
+import org.hibernate.annotations.OnDeleteAction;
+
 import java.util.Date;
 import java.util.List;
 
@@ -15,9 +22,11 @@ public class PedidoModel {
     private Date data;
 
     @OneToOne
-    private ClienteModel cliente;
+    @JoinColumn(name="id_cliente")
+    private ClienteModel cliente ;
 
     @OneToMany
+    @JoinColumn(name="id_itemDoPedido")
     private List<ItemDoPedidoModel> itens;
 
 
@@ -29,9 +38,6 @@ public class PedidoModel {
     public void setItens(List<ItemDoPedidoModel> itens) {
         this.itens = itens;
     }
-
-
-
 
     public int getId() {
         return id;
