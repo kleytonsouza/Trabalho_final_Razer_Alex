@@ -41,9 +41,6 @@ export class PedidoService {
     
     return this.http.post<ItemDoPedido>(`${this.apiServerUrl}/v1/public/itemDoPedido/salvar`, item);
   }
-  public getAllItemDoPedido(): Observable<ItemDoPedido[]>{
-    return this.http.get<ItemDoPedido[]>(`${this.apiServerUrl}/v1/public/itemDoPedido/listar`);
-  }
 
 
   public atualizarPedido(pedido: Pedido): Observable<Pedido>{

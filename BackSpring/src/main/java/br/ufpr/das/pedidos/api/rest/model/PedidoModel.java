@@ -1,6 +1,13 @@
 package br.ufpr.das.pedidos.api.rest.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.hibernate.annotations.OnDelete;
+
+import org.hibernate.annotations.OnDeleteAction;
+
 import java.util.Date;
 import java.util.List;
 
@@ -17,11 +24,11 @@ public class PedidoModel {
     @Temporal(TemporalType.DATE)
     private Date data;
 
-
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private ClienteModel cliente;
 
-    
+<<<<<<< HEAD
+    /*
     @OneToMany
     private List<ItemDoPedidoModel> itens;
 
@@ -33,9 +40,11 @@ public class PedidoModel {
 
     public void setItens(List<ItemDoPedidoModel> itens) {
         this.itens = itens;
-    }
+    }*/
 
 
+=======
+>>>>>>> parent of 349d46d (Merge branch 'master' of https://github.com/kleytonsouza/Trabalho_final_Razer_Alex)
 
     @OneToMany(cascade = {CascadeType.ALL})
     private List<ItemDoPedidoModel> itensDoPedido;

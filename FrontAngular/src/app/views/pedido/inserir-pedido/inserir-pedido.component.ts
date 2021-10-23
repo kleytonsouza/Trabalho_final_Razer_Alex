@@ -13,51 +13,73 @@ import { PedidoService } from '../services/pedido.service';
 @Component({
   selector: 'app-inserir-pedido',
   templateUrl: './inserir-pedido.component.html',
-  styleUrls: ['./inserir-pedido.component.css'],
+  styleUrls: ['./inserir-pedido.component.css']
 })
 export class InserirPedidoComponent implements OnInit {
   cpf: number = 0;
-  public formPedido!: FormGroup;
-  public formItemPedido!: FormGroup;
-  produto!: Produto;
+  public formPedido! : FormGroup;
+  public formItemPedido! : FormGroup;
+  produto!:  Produto;
   quantidade: number = 0;
+<<<<<<< HEAD
   cliente: Cliente = new Cliente(0, '', '', '');
   produtos: Produto[] = [];
   prodAux: Produto[] = [];
   items: ItemDoPedido[] = [];
-  pedido = new Pedido(new Date(), this.cliente,this.items);
+  pedido = new Pedido(new Date(), this.cliente);
+=======
+  cliente: Cliente = new Cliente(1,'11111111111', 'teste','novaki');
+  produtos: Produto[]=  [];
+  prodAux: Produto[]=  [];
+  items: ItemDoPedido[] =  [];
+  pedido = new Pedido(new Date,this.cliente)
+  
+>>>>>>> parent of 349d46d (Merge branch 'master' of https://github.com/kleytonsouza/Trabalho_final_Razer_Alex)
 
-  constructor(
-    private fb: FormBuilder,
-    public dialogRef: MatDialogRef<InserirClienteComponent>,
+  constructor(private fb: FormBuilder,
+    public dialogRef: MatDialogRef<InserirClienteComponent>, 
     private pedidoService: PedidoService,
     private router: Router,
-    private clientesService: ClienteService
-  ) {}
+    private clientesService: ClienteService) { }
 
   ngOnInit(): void {
-    this.getAllProdutos();
+    this.getAllProdutos()
     this.formPedido = this.fb.group({
+<<<<<<< HEAD
       id: [''],
       data: [''],
       cliente: [this.cliente],
-      itens: [this.items,],
+      itens: [JSON.stringify(this.items)],
+=======
+      id:[''],
+      data:['',],
+      cliente: [this.cliente,],
+      itens: [JSON.stringify(this.items),],
+>>>>>>> parent of 349d46d (Merge branch 'master' of https://github.com/kleytonsouza/Trabalho_final_Razer_Alex)
     });
   }
 
-  cancel(): void {
+  cancel(): void{
     this.dialogRef.close();
     this.formPedido.reset();
   }
 
-  inserir(): void {
-    if (this.formPedido.valid) {
-      this.prodAux.forEach((element) => {
+  inserir(): void{
+    
+    if (this.formPedido.valid){
+      this.formPedido = this.fb.group({
+        id:[''],
+        data:['',],
+        cliente: [this.cliente,],
+      });
+       this.pedidoService.adicionarPedido(this.formPedido.value).subscribe(result => {});
+ this.prodAux.forEach(element => {
         this.formItemPedido = this.fb.group({
-          quantidade: [this.quantidade],
-          produto: [new Produto(element.id, element.descricao)],
-          cliente: [this.cliente,]
+          pedido: [new Pedido(new Date().toISOString().slice(0, 19).replace('T', ' '),this.cliente),],
+          quantidade: [this.quantidade,],
+          produto:[new Produto(element.id,element.descricao),],
         });
+<<<<<<< HEAD
         this.pedidoService
           .adicionarItemDoPedido(this.formItemPedido.value)
           .subscribe();
@@ -66,54 +88,60 @@ export class InserirPedidoComponent implements OnInit {
         id: [''],
         data: [''],
         cliente: [this.cliente],
-        itens: [this.items,],
+=======
+        console.log(this.formItemPedido.value)
+        this.pedidoService.adicionarItemDoPedido(this.formItemPedido.value).subscribe();
+>>>>>>> parent of 349d46d (Merge branch 'master' of https://github.com/kleytonsouza/Trabalho_final_Razer_Alex)
       });
-      this.pedidoService
-        .adicionarPedido(this.formPedido.value)
-        .subscribe((result) => {});
-
-
-      this.dialogRef.close();
-      this.formPedido.reset();
-      window.location.reload();
-    }
+       
+        //this.dialogRef.close();
+       // this.formPedido.reset();
+       // window.location.reload();      
+     }  
   }
 
-  public onAddPedido(addForm: NgForm): void {
+  public onAddPedido(addForm: NgForm): void{
     document.getElementById('formPedido')?.click();
-    this.pedidoService.adicionarPedido(addForm.value).subscribe(
-      (response: Pedido) => {
-        this.pedidoService.getPedidos();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
+      this.pedidoService.adicionarPedido(addForm.value).subscribe(
+        (response: Pedido) =>{
+          this.pedidoService.getPedidos();
+        },
+        (error: HttpErrorResponse) =>{
+           alert(error.message);
+        }
+      );
   }
 
-  public getOneClientes(id: number) {
+  public getOneClientes(id: number){
     // passar id do cliente
-    this.clientesService.getCliente(id).subscribe((cliente) => {
-      this.cliente = cliente;
-    });
+    this.clientesService.getCliente(id).subscribe(
+    cliente => {
+      this.cliente = cliente
+    }
+   );
   }
-  public getAllProdutos() {
-    this.pedidoService.getProdutos().subscribe((prod) => {
-      this.produtos = prod;
-    });
+  public getAllProdutos(){
+    this.pedidoService.getProdutos().subscribe(
+      prod => {
+        this.produtos = prod;
+      }
+     );
   }
+
 
   changeProduto(value: any) {
     this.produto = value;
   }
-  changeValue(event: any) {
+  changeValue(event: any){
     this.quantidade = event.target.value;
   }
-  changeCPF(event: any) {
+  changeCPF(event: any){
     this.cpf = event.target.value;
   }
-  addItem() {
-    this.items.push(new ItemDoPedido(this.quantidade, this.produto,this.cliente));
-    this.prodAux.push(this.produto);
+  addItem(){
+    this.items.push(new ItemDoPedido(this.quantidade,this.produto,new Pedido(new Date(),this.cliente),))
+    this.prodAux.push(this.produto)
   }
+  
+
 }
