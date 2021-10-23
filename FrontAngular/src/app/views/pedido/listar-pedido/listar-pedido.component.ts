@@ -5,6 +5,7 @@ import { Cliente, Pedido } from 'src/app/shared/models/cliente.model';
 import { ItemDoPedido } from 'src/app/shared/models/itemdopedido.model';
 import { Produto } from 'src/app/shared/models/produto.model';
 import { InserirPedidoComponent } from '../inserir-pedido/inserir-pedido.component';
+import { PedidoService } from '../services/pedido.service';
 
 
 @Component({
@@ -23,9 +24,9 @@ export class ListarPedidoComponent implements OnInit {
     new Produto (12347,"Produto 12347")]
 
     produto = new Produto (1,"Produto 12345")
-    cliente = new Cliente(1,'12345678910','douglas','novaki')
+    cliente = new Cliente(1,'11111111111','douglas','novaki')
     items: ItemDoPedido[] = [];
-    pedido = new Pedido(new Date(),this.cliente,this.items)
+    pedido = new Pedido(new Date(),this.cliente)
     
 
 
@@ -33,15 +34,26 @@ export class ListarPedidoComponent implements OnInit {
     dataSource = new MatTableDataSource<ItemDoPedido>(this.ELEMENT_DATA);
     
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private pedidoService: PedidoService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    console.log(this.pedido)
       this.getAllPedidos();
   }
 
   public getAllPedidos(){
-      this.dataSource.data = this.items;
+
+    this.pedidoService.getAllItemDoPedido().subscribe(
+      ite => {
+        this.items = ite
+        this.items.forEach(element => {
+          console.log(element)
+          if(element.cliente.id == this.cliente.id){
+          this.dataSource.data.push(element)
+          }
+        });
+      }
+     );
+
     }
     inserirPedido() {
       const dialogRef = this.dialog.open(InserirPedidoComponent,{

@@ -17,6 +17,9 @@ public class ItemDoPedidoModel {
     @OneToOne
     private ProdutoModel produto;
 
+    @OneToOne
+    private ClienteModel cliente;
+
     public int getId() {
         return id;
     }
@@ -39,5 +42,13 @@ public class ItemDoPedidoModel {
 
     public void setProduto(ProdutoModel produto) {
         this.produto = produto;
+    }
+
+    public ClienteModel getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteModel cliente) {
+        this.cliente = cliente;
     }
 }
