@@ -13,31 +13,21 @@ import java.util.List;
 
 
 @Entity(name = "pedido")
+@Embeddable
 public class PedidoModel {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
     @Column
     private Date data;
 
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="id_cliente")
     private ClienteModel cliente ;
 
-    @OneToMany
-    @JoinColumn(name="id_itemDoPedido")
-    private List<ItemDoPedidoModel> itens;
 
-
-
-    public List<ItemDoPedidoModel> getItens() {
-        return itens;
-    }
-
-    public void setItens(List<ItemDoPedidoModel> itens) {
-        this.itens = itens;
-    }
 
     public int getId() {
         return id;

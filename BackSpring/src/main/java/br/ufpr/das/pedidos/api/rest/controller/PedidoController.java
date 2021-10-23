@@ -4,7 +4,9 @@ import br.ufpr.das.pedidos.api.rest.model.PedidoModel;
 import br.ufpr.das.pedidos.api.rest.model.ProdutoModel;
 import br.ufpr.das.pedidos.api.rest.repository.PedidoRepository;
 import br.ufpr.das.pedidos.api.rest.repository.ProdutoRepository;
+import br.ufpr.das.pedidos.api.rest.model.ClienteModel;
 
+import org.hibernate.annotations.Any;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +23,6 @@ public class PedidoController {
 
     @Autowired
     private PedidoRepository repository;
-    @Autowired
-    private ProdutoRepository repProd;
 
 
     @GetMapping(path = "/v1/public/pedido/{pedidoId}")
@@ -60,12 +60,7 @@ public class PedidoController {
         return new ResponseEntity<>(pedidos, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/v1/public/produto/listar")
-    public ResponseEntity<Iterable<ProdutoModel>> listarProduto() {
 
-        Iterable<ProdutoModel> produtos = repProd.findAll();
-        return new ResponseEntity<>(produtos, HttpStatus.OK);
-    }
 
 
     @PostMapping(path = "/v1/public/pedido/salvar")

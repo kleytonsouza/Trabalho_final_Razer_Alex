@@ -5,14 +5,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="produto")
+@Embeddable
 public class ProdutoModel {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
-
-    @Column(length = 128)
-    private String nome;
 
     @Column(length = 128)
     private String descricao;
@@ -31,14 +29,6 @@ public class ProdutoModel {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
 }

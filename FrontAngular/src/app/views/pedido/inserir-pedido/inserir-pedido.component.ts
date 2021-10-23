@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { itemDoPedido, Pedido, Produto } from 'src/app/shared';
-import { Cliente } from 'src/app/shared/models/cliente';
+import { Cliente, Pedido } from 'src/app/shared';
+import { ItemDoPedido } from 'src/app/shared/models/itemdopedido.model';
+import { Produto } from 'src/app/shared/models/produto.model';
 import { InserirClienteComponent } from '../../cliente/inserir-cliente/inserir-cliente.component';
 import { ClienteService } from '../../cliente/services/cliente.service';
-import { ProdutoService } from '../../produto/services/produto.service';
 import { PedidoService } from '../services/pedido.service';
 
 @Component({
@@ -18,12 +18,14 @@ import { PedidoService } from '../services/pedido.service';
 export class InserirPedidoComponent implements OnInit {
   cpf: number = 0;
   public formPedido! : FormGroup;
-  produto:  Produto | undefined;
+  public formItemPedido! : FormGroup;
+  produto!:  Produto;
   quantidade: number = 0;
-  cliente: Cliente = new Cliente(0,'', '','');
-  produtos!: Produto[];
-  items: itemDoPedido[] =  [];
-  pedido = new Pedido(new Date,this.cliente,this.items)
+  cliente: Cliente = new Cliente(1,'11111111111', 'teste','novaki');
+  produtos: Produto[]=  [];
+  prodAux: Produto[]=  [];
+  items: ItemDoPedido[] =  [];
+  pedido = new Pedido(new Date,this.cliente)
   
 
   constructor(private fb: FormBuilder,
@@ -35,10 +37,10 @@ export class InserirPedidoComponent implements OnInit {
   ngOnInit(): void {
     this.getAllProdutos()
     this.formPedido = this.fb.group({
-      id: [4,],
+      id:[''],
       data:['',],
       cliente: [this.cliente,],
-      itens:[this.items,],
+      itens: [JSON.stringify(this.items),],
     });
   }
 
@@ -50,11 +52,24 @@ export class InserirPedidoComponent implements OnInit {
   inserir(): void{
     
     if (this.formPedido.valid){
-        this.pedidoService.adicionarItemDoPedido(new itemDoPedido(1,5,new Produto(1,'produto1'))).subscribe();
-       this.pedidoService.adicionarPedido(this.formPedido.value).subscribe(
-        result => {});
-        this.dialogRef.close();
-        this.formPedido.reset();
+      this.formPedido = this.fb.group({
+        id:[''],
+        data:['',],
+        cliente: [this.cliente,],
+      });
+       this.pedidoService.adicionarPedido(this.formPedido.value).subscribe(result => {});
+ this.prodAux.forEach(element => {
+        this.formItemPedido = this.fb.group({
+          pedido: [new Pedido(new Date().toISOString().slice(0, 19).replace('T', ' '),this.cliente),],
+          quantidade: [this.quantidade,],
+          produto:[new Produto(element.id,element.descricao),],
+        });
+        console.log(this.formItemPedido.value)
+        this.pedidoService.adicionarItemDoPedido(this.formItemPedido.value).subscribe();
+      });
+       
+        //this.dialogRef.close();
+       // this.formPedido.reset();
        // window.location.reload();      
      }  
   }
@@ -63,7 +78,6 @@ export class InserirPedidoComponent implements OnInit {
     document.getElementById('formPedido')?.click();
       this.pedidoService.adicionarPedido(addForm.value).subscribe(
         (response: Pedido) =>{
-          console.log(response);
           this.pedidoService.getPedidos();
         },
         (error: HttpErrorResponse) =>{
@@ -99,9 +113,8 @@ export class InserirPedidoComponent implements OnInit {
     this.cpf = event.target.value;
   }
   addItem(){
-    this.items.push(new itemDoPedido(5,this.quantidade,this.produto))
-    console.log(this.items)
-    
+    this.items.push(new ItemDoPedido(this.quantidade,this.produto,new Pedido(new Date(),this.cliente),))
+    this.prodAux.push(this.produto)
   }
   
 
