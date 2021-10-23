@@ -25,7 +25,7 @@ export class InserirPedidoComponent implements OnInit {
   produtos: Produto[] = [];
   prodAux: Produto[] = [];
   items: ItemDoPedido[] = [];
-  pedido = new Pedido(new Date(), this.cliente);
+  pedido = new Pedido(new Date(), this.cliente,this.items);
 
   constructor(
     private fb: FormBuilder,
@@ -41,7 +41,7 @@ export class InserirPedidoComponent implements OnInit {
       id: [''],
       data: [''],
       cliente: [this.cliente],
-      itens: [JSON.stringify(this.items)],
+      itens: [this.items,],
     });
   }
 
@@ -66,6 +66,7 @@ export class InserirPedidoComponent implements OnInit {
         id: [''],
         data: [''],
         cliente: [this.cliente],
+        itens: [this.items,],
       });
       this.pedidoService
         .adicionarPedido(this.formPedido.value)

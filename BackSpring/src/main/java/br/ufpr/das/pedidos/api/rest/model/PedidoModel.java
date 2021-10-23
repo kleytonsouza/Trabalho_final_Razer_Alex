@@ -18,7 +18,7 @@ public class PedidoModel {
     @OneToOne
     private ClienteModel cliente;
 
-    /*
+    
     @OneToMany
     private List<ItemDoPedidoModel> itens;
 
@@ -30,7 +30,7 @@ public class PedidoModel {
 
     public void setItens(List<ItemDoPedidoModel> itens) {
         this.itens = itens;
-    }*/
+    }
 
 
 
