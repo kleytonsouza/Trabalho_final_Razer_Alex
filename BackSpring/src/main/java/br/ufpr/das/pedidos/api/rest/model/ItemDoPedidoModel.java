@@ -1,23 +1,12 @@
 package br.ufpr.das.pedidos.api.rest.model;
 
 import javax.persistence.*;
-
-import java.io.Serializable;
 import java.util.List;
 
 
 @Entity
 @Table(name = "item_do_pedido")
 public class ItemDoPedidoModel implements Serializable {
-
-
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id;
-
-    @Column
-    private int quantidade;
-
 
     @OneToMany
     private List<PedidoModel> pedido;
@@ -56,5 +45,13 @@ public class ItemDoPedidoModel implements Serializable {
 
     public void setProduto(ProdutoModel produto) {
         this.produto = produto;
+    }
+
+    public ClienteModel getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteModel cliente) {
+        this.cliente = cliente;
     }
 }
