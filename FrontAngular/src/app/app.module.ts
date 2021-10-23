@@ -21,6 +21,7 @@ import { MatTableModule} from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { ListarClienteComponent } from './views/cliente/listar-cliente/listar-cliente.component';
 import { PedidoModule } from './views/pedido/pedido.module';
+import { MatOptionModule, MatOptionSelectionChange } from '@angular/material/core';
 
 
 
@@ -52,6 +53,9 @@ import { PedidoModule } from './views/pedido/pedido.module';
     MatSelectModule, 
     MatPaginatorModule,
     MatTableModule,
+    MatOptionModule,
+    MatSelectModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Produto } from 'src/app/shared/models/cliente.model';
 import { ProdutoService } from '../services/produto.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Produto } from 'src/app/shared/models/produto.model';
 
 @Component({
   selector: 'app-editar-produto',
@@ -31,7 +31,6 @@ ngOnInit(): void {
   
   this.formProduto = this.fb.group({
     id: [this.data.id, [Validators.required]],
-    nome: [this.data.nome, [Validators.required]],
     descricao: [this.data.descricao, [Validators.required]]
   })
 }

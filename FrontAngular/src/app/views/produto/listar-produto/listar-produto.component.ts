@@ -21,7 +21,7 @@ import { InserirProdutoComponent } from '../inserir-produto/inserir-produto.comp
 export class ListarProdutoComponent  {
 
   ELEMENT_DATA!: Produto[];
-  displayedColumns = ['id', 'nome', 'descricao', 'op'];
+  displayedColumns = ['id', 'descricao', 'op'];
   dataSource = new MatTableDataSource<Produto>(this.ELEMENT_DATA);
   produtos!: Produto[];
 

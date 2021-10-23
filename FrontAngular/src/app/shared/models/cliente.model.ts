@@ -9,32 +9,29 @@
     }  
 }*/
 
-import { Cliente } from "src/app/shared/models/cliente";
+import { ItemDoPedido } from "./itemdopedido.model";
+
+export interface Cliente{
+    id: number;
+    cpf: string;
+    nome: string;
+    sobrenome: string;
+}
+export class Cliente {
+    constructor(
+      public  id: number,
+      public cpf: string,
+      public nome: string,
+      public sobrenome: string){
+    }
+}
+
 
 export class Pedido{
     
-    constructor(public cliente: Cliente, public itemsPedido: itemDoPedido[]){
-        this.cliente = cliente;
-        this.itemsPedido = itemsPedido;      
-    }
-
-}
-
-export class Produto{
-    public  id!: number;
-
-    constructor(public nome: string, public descricao: string){
-        this.nome = nome;
-        this.descricao = descricao;
-    }
-}
-
-export class itemDoPedido{
-    
-    constructor( public produto: any, public quantidade: number){
-
-        this.produto = produto;
-        this.quantidade = quantidade;
+    constructor(public date: Date | String,public cliente: Cliente){
+        this.date = date
+        this.cliente = cliente;   
     }
 
 }

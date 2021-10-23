@@ -12,9 +12,6 @@ public class ProdutoModel {
     private int id;
 
     @Column(length = 128)
-    private String nome;
-
-    @Column(length = 128)
     private String descricao;
 
     public int getId() {
@@ -31,14 +28,6 @@ public class ProdutoModel {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
 }

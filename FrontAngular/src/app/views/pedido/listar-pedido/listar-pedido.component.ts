@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { Cliente } from 'src/app/shared/models/cliente';
+import { Cliente, Pedido } from 'src/app/shared/models/cliente.model';
+import { ItemDoPedido } from 'src/app/shared/models/itemdopedido.model';
 import { Produto } from 'src/app/shared/models/produto.model';
-import { itemDoPedido, Pedido } from 'src/app/shared/models/cliente.model';
 import { InserirPedidoComponent } from '../inserir-pedido/inserir-pedido.component';
 
 
@@ -15,7 +15,7 @@ import { InserirPedidoComponent } from '../inserir-pedido/inserir-pedido.compone
 
 export class ListarPedidoComponent implements OnInit {
 
-   ELEMENT_DATA!: itemDoPedido[];
+   ELEMENT_DATA!: ItemDoPedido[];
 
    produto_data: Produto[] = [ 
     new Produto (12345,"Produto 12345"), 
@@ -24,13 +24,13 @@ export class ListarPedidoComponent implements OnInit {
 
     produto = new Produto (1,"Produto 12345")
     cliente = new Cliente(1,'12345678910','douglas','novaki')
-    items: itemDoPedido[] = [new itemDoPedido(this.produto,2),new itemDoPedido(this.produto,1),new itemDoPedido(this.produto,5)];
-    pedido = new Pedido(this.cliente,this.items)
+    items: ItemDoPedido[] = [];
+    pedido = new Pedido(new Date(),this.cliente)
     
 
 
     displayedColumns = ['produto', 'quantidade'];
-    dataSource = new MatTableDataSource<itemDoPedido>(this.ELEMENT_DATA);
+    dataSource = new MatTableDataSource<ItemDoPedido>(this.ELEMENT_DATA);
     
 
   constructor(public dialog: MatDialog) { }
@@ -46,7 +46,8 @@ export class ListarPedidoComponent implements OnInit {
     inserirPedido() {
       const dialogRef = this.dialog.open(InserirPedidoComponent,{
         minWidth: '300px',
-        minHeight: '300px' }
+        minHeight: '300px',
+        panelClass: 'custom-dialog', }
         );
   
       dialogRef.afterClosed().subscribe(result => {

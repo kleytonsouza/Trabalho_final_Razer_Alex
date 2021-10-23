@@ -1,7 +1,12 @@
 package br.ufpr.das.pedidos.api.rest.controller;
 
 import br.ufpr.das.pedidos.api.rest.model.PedidoModel;
+import br.ufpr.das.pedidos.api.rest.model.ProdutoModel;
 import br.ufpr.das.pedidos.api.rest.repository.PedidoRepository;
+import br.ufpr.das.pedidos.api.rest.repository.ProdutoRepository;
+import br.ufpr.das.pedidos.api.rest.model.ClienteModel;
+
+import org.hibernate.annotations.Any;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@RestController
 public class PedidoController {
 
 
@@ -55,6 +61,8 @@ public class PedidoController {
     }
 
 
+
+
     @PostMapping(path = "/v1/public/pedido/salvar")
     public ResponseEntity<PedidoModel> salvar(@RequestBody PedidoModel pedidoModel) {
         PedidoModel novoPedido = repository.save(pedidoModel);
@@ -69,6 +77,7 @@ public class PedidoController {
         return new ResponseEntity<>(novoPedido, HttpStatus.OK);
     }
 
+    
 
 
 
