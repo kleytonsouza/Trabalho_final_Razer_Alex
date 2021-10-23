@@ -1,35 +1,27 @@
 package br.ufpr.das.pedidos.api.rest.model;
 
 import javax.persistence.*;
+
+import java.io.Serializable;
 import java.util.List;
 
 
-@Entity
-@Table(name = "item_do_pedido")
+@Entity(name = "item_do_pedido")
+@IdClass(ItemDoPedidoModel.class)
 public class ItemDoPedidoModel implements Serializable {
 
-    @OneToMany
-    private List<PedidoModel> pedido;
 
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @Column
+    private int quantidade;
+
+    @Id
+    @ManyToOne(cascade = CascadeType.ALL)
     private ProdutoModel produto;
 
+    @Id
+    @ManyToOne(cascade = CascadeType.ALL)
+    private PedidoModel pedido;
 
-    public List<PedidoModel> getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(List<PedidoModel> pedido) {
-        this.pedido = pedido;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getQuantidade() {
         return quantidade;
@@ -45,13 +37,5 @@ public class ItemDoPedidoModel implements Serializable {
 
     public void setProduto(ProdutoModel produto) {
         this.produto = produto;
-    }
-
-    public ClienteModel getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(ClienteModel cliente) {
-        this.cliente = cliente;
     }
 }
