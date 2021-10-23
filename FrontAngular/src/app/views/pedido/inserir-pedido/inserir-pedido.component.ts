@@ -21,20 +21,12 @@ export class InserirPedidoComponent implements OnInit {
   public formItemPedido! : FormGroup;
   produto!:  Produto;
   quantidade: number = 0;
-<<<<<<< HEAD
-  cliente: Cliente = new Cliente(0, '', '', '');
-  produtos: Produto[] = [];
-  prodAux: Produto[] = [];
-  items: ItemDoPedido[] = [];
-  pedido = new Pedido(new Date(), this.cliente);
-=======
   cliente: Cliente = new Cliente(1,'11111111111', 'teste','novaki');
   produtos: Produto[]=  [];
   prodAux: Produto[]=  [];
   items: ItemDoPedido[] =  [];
   pedido = new Pedido(new Date,this.cliente)
   
->>>>>>> parent of 349d46d (Merge branch 'master' of https://github.com/kleytonsouza/Trabalho_final_Razer_Alex)
 
   constructor(private fb: FormBuilder,
     public dialogRef: MatDialogRef<InserirClienteComponent>, 
@@ -45,17 +37,10 @@ export class InserirPedidoComponent implements OnInit {
   ngOnInit(): void {
     this.getAllProdutos()
     this.formPedido = this.fb.group({
-<<<<<<< HEAD
-      id: [''],
-      data: [''],
-      cliente: [this.cliente],
-      itens: [JSON.stringify(this.items)],
-=======
       id:[''],
       data:['',],
       cliente: [this.cliente,],
       itens: [JSON.stringify(this.items),],
->>>>>>> parent of 349d46d (Merge branch 'master' of https://github.com/kleytonsouza/Trabalho_final_Razer_Alex)
     });
   }
 
@@ -79,19 +64,8 @@ export class InserirPedidoComponent implements OnInit {
           quantidade: [this.quantidade,],
           produto:[new Produto(element.id,element.descricao),],
         });
-<<<<<<< HEAD
-        this.pedidoService
-          .adicionarItemDoPedido(this.formItemPedido.value)
-          .subscribe();
-      });
-      this.formPedido = this.fb.group({
-        id: [''],
-        data: [''],
-        cliente: [this.cliente],
-=======
         console.log(this.formItemPedido.value)
         this.pedidoService.adicionarItemDoPedido(this.formItemPedido.value).subscribe();
->>>>>>> parent of 349d46d (Merge branch 'master' of https://github.com/kleytonsouza/Trabalho_final_Razer_Alex)
       });
        
         //this.dialogRef.close();

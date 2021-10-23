@@ -29,16 +29,9 @@ export class Cliente {
 
 export class Pedido{
     
-<<<<<<< HEAD
-    constructor(public date: Date | String,public cliente: Cliente,/*public itemDoPedido: ItemDoPedido[]*/){
-        this.date = date
-        this.cliente = cliente;   
-       // this.itemDoPedido = itemDoPedido;  
-=======
     constructor(public date: Date | String,public cliente: Cliente){
         this.date = date
         this.cliente = cliente;   
->>>>>>> parent of 349d46d (Merge branch 'master' of https://github.com/kleytonsouza/Trabalho_final_Razer_Alex)
     }
 
 }
