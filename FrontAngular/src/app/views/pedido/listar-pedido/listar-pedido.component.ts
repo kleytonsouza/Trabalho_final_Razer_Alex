@@ -44,16 +44,9 @@ export class ListarPedidoComponent implements OnInit {
 
     this.pedidoService.getAllItemDoPedido().subscribe(
       ite => {
-        this.items = ite
-        this.items.forEach(element => {
-          console.log(element)
-          if(element.cliente.id == this.cliente.id){
-          this.dataSource.data.push(element)
-          }
-        });
+        this.dataSource.data = ite
       }
      );
-
     }
     inserirPedido() {
       const dialogRef = this.dialog.open(InserirPedidoComponent,{
