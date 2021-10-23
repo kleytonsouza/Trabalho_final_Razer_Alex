@@ -1,1 +1,20 @@
-<p>remover-produto works!</p>
+<h1 mat-dialog-title>Remover Produto</h1>
+<div mat-dialog-content> 
+    <form class="example-form" [formGroup]="formProduto">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome" name="nome">
+          </mat-form-field>
+          <br>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Descrição</mat-label>
+            <input matInput formControlName="descricao" name="descricao">
+          </mat-form-field>
+          <br>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="remover()">Confirmar Remoção</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button mat-button (click)="cancel()">Cancelar</button>
+</div>

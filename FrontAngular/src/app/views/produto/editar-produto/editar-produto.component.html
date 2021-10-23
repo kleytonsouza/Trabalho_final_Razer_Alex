@@ -1,35 +1,20 @@
-<div class="container container-fluid">
-    <h1>Editar Produto</h1>
-    <div class="well">
-        <form #formProduto="ngForm">
-            <div class="form-group col-md-6">
-                <label for="descricao">Descricao</label>
-                <input type="text" class="form-control" id="descricao" name="descricao" minlength="2" required
-                [(ngModel)]="produto.descricao" #descricao="ngModel">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="id">Id</label>
-                <input type="text" class="form-control" id="id" name="id"  required
-                [(ngModel)]="produto.id" #id="ngModel" numerico>
-            </div>
-            <div class="form-group">
-                <button style="margin-right: 20px;" type="button" class="btn btn-primary" (click)="atualizar()" [disabled]="!formProduto.form.valid">
-                    <i class="fa fa-save" aria-hidden="true"></i>
-                    Atualizar
-                </button>
-                <a class="btn btn-secondary" [routerLink]="['/produtos']">
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                    Voltar
-                </a>
-            </div>    
-            <div *ngIf="descricao.errors && (descricao.dirty || descricao.touched)" class="alert alert-danger">
-                <div [hidden]="!descricao.errors?.required">
-                    Digite a descricao do produto
-                </div>
-                <div [hidden]="!descricao.errors?.minlength">
-                    A descricao deve conter ao menos 2 caracteres.
-                </div>
-            </div>
-        </form>
-    </div>
+<h1 mat-dialog-title>Editar Produto</h1>
+<div mat-dialog-content> 
+    <form class="example-form" [formGroup]="formProduto">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome" name="nome">
+          </mat-form-field>
+          <br>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Descrição</mat-label>
+            <input matInput formControlName="descricao" name="descricao">
+          </mat-form-field>
+          <br>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="atualizar()">Salvar</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button mat-button (click)="cancel()">Cancelar</button>
 </div>
