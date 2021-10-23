@@ -16,12 +16,10 @@ public class ItemDoPedidoModel implements Serializable {
 
     @Id
     @ManyToOne(cascade = CascadeType.ALL)
-    @Embedded
     private ProdutoModel produto;
 
     @Id
     @ManyToOne(cascade = CascadeType.ALL)
-    @Embedded
     private PedidoModel pedido;
 
 

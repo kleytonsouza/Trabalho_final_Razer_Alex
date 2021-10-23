@@ -13,7 +13,6 @@ import java.util.List;
 
 
 @Entity(name = "pedido")
-@Embeddable
 public class PedidoModel {
 
     @Id

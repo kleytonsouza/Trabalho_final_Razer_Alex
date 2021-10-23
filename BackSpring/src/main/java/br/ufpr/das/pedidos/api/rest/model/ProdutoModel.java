@@ -5,7 +5,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="produto")
-@Embeddable
 public class ProdutoModel {
 
     @Id
