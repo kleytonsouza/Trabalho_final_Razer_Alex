@@ -25,7 +25,7 @@ export class InserirPedidoComponent implements OnInit {
   produtos: Produto[]=  [];
   prodAux: Produto[]=  [];
   items: ItemDoPedido[] =  [];
-  pedido = new Pedido(new Date,this.cliente)
+  pedido = new Pedido(new Date,this.cliente,this.items)
   
 
   constructor(private fb: FormBuilder,
@@ -60,7 +60,7 @@ export class InserirPedidoComponent implements OnInit {
        this.pedidoService.adicionarPedido(this.formPedido.value).subscribe(result => {});
  this.prodAux.forEach(element => {
         this.formItemPedido = this.fb.group({
-          pedido: [new Pedido(new Date().toISOString().slice(0, 19).replace('T', ' '),this.cliente),],
+          pedido: [new Pedido(new Date().toISOString().slice(0, 19).replace('T', ' '),this.cliente,this.items),],
           quantidade: [this.quantidade,],
           produto:[new Produto(element.id,element.descricao),],
         });
@@ -113,7 +113,7 @@ export class InserirPedidoComponent implements OnInit {
     this.cpf = event.target.value;
   }
   addItem(){
-    this.items.push(new ItemDoPedido(this.quantidade,this.produto,new Pedido(new Date(),this.cliente),))
+    this.items.push(new ItemDoPedido(this.quantidade,this.produto))
     this.prodAux.push(this.produto)
   }
   

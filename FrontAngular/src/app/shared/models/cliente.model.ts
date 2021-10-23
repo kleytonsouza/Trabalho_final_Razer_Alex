@@ -29,9 +29,10 @@ export class Cliente {
 
 export class Pedido{
     
-    constructor(public date: Date | String,public cliente: Cliente){
+    constructor(public date: Date | String,public cliente: Cliente,public itemDoPedido: ItemDoPedido[]){
         this.date = date
         this.cliente = cliente;   
+        this.itemDoPedido = itemDoPedido;  
     }
 
 }

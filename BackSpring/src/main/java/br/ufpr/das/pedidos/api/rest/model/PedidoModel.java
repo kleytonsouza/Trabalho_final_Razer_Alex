@@ -1,13 +1,6 @@
 package br.ufpr.das.pedidos.api.rest.model;
 
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import org.hibernate.annotations.OnDelete;
-
-import org.hibernate.annotations.OnDeleteAction;
-
 import java.util.Date;
 import java.util.List;
 
@@ -22,9 +15,22 @@ public class PedidoModel {
     @Column
     private Date data;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name="id_cliente")
-    private ClienteModel cliente ;
+    @OneToOne
+    private ClienteModel cliente;
+
+    @OneToMany
+    private List<ItemDoPedidoModel> itens;
+
+
+
+    public List<ItemDoPedidoModel> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<ItemDoPedidoModel> itens) {
+        this.itens = itens;
+    }
+
 
 
 

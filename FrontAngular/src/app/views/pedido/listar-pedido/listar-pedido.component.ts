@@ -25,7 +25,7 @@ export class ListarPedidoComponent implements OnInit {
     produto = new Produto (1,"Produto 12345")
     cliente = new Cliente(1,'12345678910','douglas','novaki')
     items: ItemDoPedido[] = [];
-    pedido = new Pedido(new Date(),this.cliente)
+    pedido = new Pedido(new Date(),this.cliente,this.items)
     
 
 

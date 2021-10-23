@@ -1,27 +1,29 @@
 package br.ufpr.das.pedidos.api.rest.model;
 
 import javax.persistence.*;
-
-import java.io.Serializable;
 import java.util.List;
 
 
 @Entity(name = "item_do_pedido")
-@IdClass(ItemDoPedidoModel.class)
-public class ItemDoPedidoModel implements Serializable {
+public class ItemDoPedidoModel {
 
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int id;
 
     @Column
     private int quantidade;
 
-    @Id
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private ProdutoModel produto;
 
-    @Id
-    @ManyToOne(cascade = CascadeType.ALL)
-    private PedidoModel pedido;
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getQuantidade() {
         return quantidade;
