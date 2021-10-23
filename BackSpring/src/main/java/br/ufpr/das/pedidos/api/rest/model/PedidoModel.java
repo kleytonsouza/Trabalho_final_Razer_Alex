@@ -12,7 +12,8 @@ import java.util.Date;
 import java.util.List;
 
 
-@Entity(name = "pedido")
+@Entity
+@Table(name = "pedido" )
 public class PedidoModel {
 
     @Id
@@ -20,12 +21,23 @@ public class PedidoModel {
     private int id;
 
     @Column
+    @Temporal(TemporalType.DATE)
     private Date data;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name="id_cliente")
-    private ClienteModel cliente ;
+    private ClienteModel cliente;
 
+
+    @OneToMany(cascade = {CascadeType.ALL})
+    private List<ItemDoPedidoModel> itensDoPedido;
+
+    public List<ItemDoPedidoModel> getItensDoPedido() {
+        return itensDoPedido;
+    }
+
+    public void setItensDoPedido(List<ItemDoPedidoModel> itensDoPedido) {
+        this.itensDoPedido = itensDoPedido;
+    }
 
 
     public int getId() {

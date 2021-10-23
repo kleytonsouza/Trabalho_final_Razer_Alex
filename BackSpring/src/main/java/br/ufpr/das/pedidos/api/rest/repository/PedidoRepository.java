@@ -11,6 +11,7 @@ import java.util.Optional;
 public interface PedidoRepository extends CrudRepository<PedidoModel, Integer> {
 
 
-    Optional<PedidoModel>  findAllByCliente(Integer cliente);
+    Optional<PedidoModel>  findAllByCliente(Integer idCliente);
+
 
 }

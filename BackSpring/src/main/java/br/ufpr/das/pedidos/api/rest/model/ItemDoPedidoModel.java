@@ -6,22 +6,41 @@ import java.io.Serializable;
 import java.util.List;
 
 
-@Entity(name = "item_do_pedido")
-@IdClass(ItemDoPedidoModel.class)
+@Entity
+@Table(name = "item_do_pedido")
 public class ItemDoPedidoModel implements Serializable {
 
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int id;
 
     @Column
     private int quantidade;
 
-    @Id
-    @ManyToOne(cascade = CascadeType.ALL)
+
+    @OneToMany
+    private List<PedidoModel> pedido;
+
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private ProdutoModel produto;
 
-    @Id
-    @ManyToOne(cascade = CascadeType.ALL)
-    private PedidoModel pedido;
 
+    public List<PedidoModel> getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(List<PedidoModel> pedido) {
+        this.pedido = pedido;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getQuantidade() {
         return quantidade;
