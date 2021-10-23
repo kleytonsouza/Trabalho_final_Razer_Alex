@@ -27,24 +27,6 @@ public class PedidoModel {
     @ManyToOne(cascade = CascadeType.MERGE)
     private ClienteModel cliente;
 
-<<<<<<< HEAD
-    /*
-    @OneToMany
-    private List<ItemDoPedidoModel> itens;
-
-
-
-    public List<ItemDoPedidoModel> getItens() {
-        return itens;
-    }
-
-    public void setItens(List<ItemDoPedidoModel> itens) {
-        this.itens = itens;
-    }*/
-
-
-=======
->>>>>>> parent of 349d46d (Merge branch 'master' of https://github.com/kleytonsouza/Trabalho_final_Razer_Alex)
 
     @OneToMany(cascade = {CascadeType.ALL})
     private List<ItemDoPedidoModel> itensDoPedido;

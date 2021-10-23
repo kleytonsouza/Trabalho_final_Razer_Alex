@@ -10,8 +10,6 @@ import java.util.List;
 @IdClass(ItemDoPedidoModel.class)
 public class ItemDoPedidoModel implements Serializable {
 
-<<<<<<< HEAD
-=======
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -20,16 +18,6 @@ public class ItemDoPedidoModel implements Serializable {
     @Column
     private int quantidade;
 
-
-    @OneToMany
-    private List<PedidoModel> pedido;
-
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private ProdutoModel produto;
->>>>>>> parent of 349d46d (Merge branch 'master' of https://github.com/kleytonsouza/Trabalho_final_Razer_Alex)
-
-    @Column
-    private int quantidade;
 
     @Id
     @ManyToOne(cascade = CascadeType.ALL)
@@ -54,5 +42,22 @@ public class ItemDoPedidoModel implements Serializable {
 
     public void setProduto(ProdutoModel produto) {
         this.produto = produto;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public PedidoModel getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(PedidoModel pedido) {
+        this.pedido = pedido;
     }
 }
