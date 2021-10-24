@@ -7,7 +7,6 @@ import java.util.List;
 
 
 @Entity(name = "item_do_pedido")
-@IdClass(ItemDoPedidoModel.class)
 public class ItemDoPedidoModel implements Serializable {
 
 
@@ -18,14 +17,11 @@ public class ItemDoPedidoModel implements Serializable {
     @Column
     private int quantidade;
 
-
-    @Id
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     private ProdutoModel produto;
 
-    @Id
-    @ManyToOne(cascade = CascadeType.ALL)
-    private PedidoModel pedido;
+    @OneToOne(cascade = CascadeType.MERGE)
+    private ClienteModel cliente;
 
 
     public int getQuantidade() {
@@ -53,11 +49,11 @@ public class ItemDoPedidoModel implements Serializable {
         this.id = id;
     }
 
-    public PedidoModel getPedido() {
-        return pedido;
+    public ClienteModel getCliente() {
+        return cliente;
     }
 
-    public void setPedido(PedidoModel pedido) {
-        this.pedido = pedido;
+    public void setCliente(ClienteModel cliente) {
+        this.cliente = cliente;
     }
 }

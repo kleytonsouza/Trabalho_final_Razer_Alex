@@ -10,7 +10,7 @@ imports: [
 
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Cliente } from 'src/app/shared';
+import { Cliente } from 'src/app/shared/models/cliente';
 
 
 @Injectable({providedIn: 'root'})

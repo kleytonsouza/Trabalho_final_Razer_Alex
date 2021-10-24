@@ -55,7 +55,7 @@ const routes: Routes = [
   },
   {
     path: 'pedidos',
-    redirectTo: 'pedidos/listar/0'
+    redirectTo: 'pedidos/listar/1'
   },
   {
     path: 'pedidos/listar/:id',

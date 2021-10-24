@@ -21,17 +21,6 @@ public class ClienteModel {
     private String sobrenome;
 
 
-    @OneToMany
-    private List<PedidoModel> pedidos;
-
-    public List<PedidoModel> getPedidos() {
-        return pedidos;
-    }
-
-    public void setPedidos(List<PedidoModel> pedidos) {
-        this.pedidos = pedidos;
-    }
-
     public int getId() {
         return id;
     }

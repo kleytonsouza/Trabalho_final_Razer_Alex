@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { Cliente, Pedido } from 'src/app/shared/models/cliente.model';
+import { Cliente } from 'src/app/shared/models/cliente';
+import { Pedido } from 'src/app/shared/models/cliente.model';
 import { ItemDoPedido } from 'src/app/shared/models/itemdopedido.model';
 import { Produto } from 'src/app/shared/models/produto.model';
 import { InserirPedidoComponent } from '../inserir-pedido/inserir-pedido.component';
@@ -19,15 +20,12 @@ export class ListarPedidoComponent implements OnInit {
 
    ELEMENT_DATA!: ItemDoPedido[];
 
-   produto_data: Produto[] = [ 
-    new Produto (12345,"Produto 12345"), 
-    new Produto (12346,"Produto 12346"), 
-    new Produto (12347,"Produto 12347")]
+   produto_data: Produto[] = []
 
-    produto = new Produto (1,"Produto 12345")
-    cliente = new Cliente(1,'12345678910','douglas','novaki')
+    produto!: Produto;
+    cliente = new Cliente(1,'','','')
     items: ItemDoPedido[] = [];
-    pedido = new Pedido(new Date(),this.cliente)
+    pedido = new Pedido(new Date(),this.cliente,this.items)
     clienteId!: number;
 
 

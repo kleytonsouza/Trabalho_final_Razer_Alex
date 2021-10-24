@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Cliente, Pedido } from 'src/app/shared';
+import { Pedido } from 'src/app/shared';
+import { Cliente } from 'src/app/shared/models/cliente';
 import { ItemDoPedido } from 'src/app/shared/models/itemdopedido.model';
 import { Produto } from 'src/app/shared/models/produto.model';
 import { InserirClienteComponent } from '../../cliente/inserir-cliente/inserir-cliente.component';
@@ -21,11 +22,11 @@ export class InserirPedidoComponent implements OnInit {
   public formItemPedido! : FormGroup;
   produto!:  Produto;
   quantidade: number = 0;
-  cliente: Cliente = new Cliente(1,'11111111111', 'teste','novaki');
+  cliente: Cliente = new Cliente(0,'', '','');
   produtos: Produto[]=  [];
   prodAux: Produto[]=  [];
   items: ItemDoPedido[] =  [];
-  pedido = new Pedido(new Date,this.cliente)
+  pedido = new Pedido(new Date,this.cliente,this.items)
   
 
   constructor(private fb: FormBuilder,
@@ -40,7 +41,6 @@ export class InserirPedidoComponent implements OnInit {
       id:[''],
       data:['',],
       cliente: [this.cliente,],
-      itens: [JSON.stringify(this.items),],
     });
   }
 
@@ -60,9 +60,9 @@ export class InserirPedidoComponent implements OnInit {
        this.pedidoService.adicionarPedido(this.formPedido.value).subscribe(result => {});
  this.prodAux.forEach(element => {
         this.formItemPedido = this.fb.group({
-          pedido: [new Pedido(new Date().toISOString().slice(0, 19).replace('T', ' '),this.cliente),],
           quantidade: [this.quantidade,],
           produto:[new Produto(element.id,element.descricao),],
+          cliente: [this.cliente],
         });
         console.log(this.formItemPedido.value)
         this.pedidoService.adicionarItemDoPedido(this.formItemPedido.value).subscribe();
@@ -113,7 +113,7 @@ export class InserirPedidoComponent implements OnInit {
     this.cpf = event.target.value;
   }
   addItem(){
-    this.items.push(new ItemDoPedido(this.quantidade,this.produto,new Pedido(new Date(),this.cliente),))
+    this.items.push(new ItemDoPedido(this.quantidade,this.produto,this.cliente))
     this.prodAux.push(this.produto)
   }
   
