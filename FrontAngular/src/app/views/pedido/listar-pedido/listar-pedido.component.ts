@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
 import { Cliente, Pedido } from 'src/app/shared/models/cliente.model';
 import { ItemDoPedido } from 'src/app/shared/models/itemdopedido.model';
 import { Produto } from 'src/app/shared/models/produto.model';
@@ -21,14 +22,16 @@ export class ListarPedidoComponent implements OnInit {
     cliente = new Cliente(1,'11111111111','douglas','novaki')
     items: ItemDoPedido[] = [];
     pedido = new Pedido(new Date(),this.cliente,this.items)
-    
+    clienteId!: number;
 
 
     displayedColumns = ['produto', 'quantidade'];
     dataSource = new MatTableDataSource<ItemDoPedido>(this.ELEMENT_DATA);
     
 
-  constructor(private pedidoService: PedidoService,public dialog: MatDialog) { }
+  constructor(private pedidoService: PedidoService,public dialog: MatDialog, public route: ActivatedRoute) { 
+    this.route.params.subscribe(params => this.clienteId = params['id']);
+  }
 
   ngOnInit(): void {
       this.getAllPedidos();
@@ -36,7 +39,7 @@ export class ListarPedidoComponent implements OnInit {
 
   public getAllPedidos(){
 
-    this.pedidoService.getAllItemDoPedido().subscribe(
+    this.pedidoService.getAllItemDoPedido(this.clienteId).subscribe(
       ite => {
         this.dataSource.data = ite
       }
