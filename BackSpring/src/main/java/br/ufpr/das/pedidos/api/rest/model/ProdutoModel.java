@@ -1,6 +1,7 @@
 package br.ufpr.das.pedidos.api.rest.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -13,6 +14,11 @@ public class ProdutoModel {
 
     @Column(length = 128)
     private String descricao;
+
+
+    @OneToMany
+    private List<ItemDoPedidoModel> itemDoPedido;
+
 
     public int getId() {
         return id;

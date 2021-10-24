@@ -1,10 +1,10 @@
-import { Cliente, Pedido } from ".";
+import { Pedido } from ".";
 
 export interface ItemDoPedido{
   
     quantidade: number;
     produto: any;
-    cliente: Cliente;
+    pedido: Pedido,
     id?: any;
 }
 export class ItemDoPedido {
@@ -12,7 +12,7 @@ export class ItemDoPedido {
       
       public quantidade: number,
       public produto: any,
-      public cliente: Cliente,
+      public pedido: Pedido,
       public id?:any,
       ){
     }

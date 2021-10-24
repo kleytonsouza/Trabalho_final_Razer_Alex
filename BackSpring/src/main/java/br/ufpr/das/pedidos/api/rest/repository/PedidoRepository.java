@@ -12,7 +12,8 @@ import java.util.Optional;
 public interface PedidoRepository extends CrudRepository<PedidoModel, Integer> {
 
 
-    Optional<PedidoModel>  findAllByCliente(Integer cliente);
+    Optional<PedidoModel>  findAllByCliente(Integer idCliente);
+
 
     @Query("SELECT t FROM item_do_pedido t WHERE cliente_id = ?1")
     Iterable<PedidoModel> findItemByCliente(Integer id);

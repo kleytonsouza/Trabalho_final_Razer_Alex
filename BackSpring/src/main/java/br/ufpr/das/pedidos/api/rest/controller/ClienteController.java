@@ -29,12 +29,6 @@ public class ClienteController {
         Optional<ClienteModel> cliente = repository.findById(clienteId);
         return new ResponseEntity<>(cliente, HttpStatus.OK);
     }
-    @GetMapping(path = "/v1/public/cliente/cpf/{clienteId}")
-    public ResponseEntity<Optional<ClienteModel>> consultarCpf(@PathVariable Integer clienteId) {
-
-        Optional<ClienteModel> cliente = repository.findByCpf(clienteId);
-        return new ResponseEntity<>(cliente, HttpStatus.OK);
-    }
 
 
     @GetMapping(path = "/v1/public/cliente/{clienteId}/pedidos")
