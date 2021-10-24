@@ -55,6 +55,10 @@ export class PedidoService {
     return this.http.post<Pedido>(`${this.apiServerUrl}/v1/public/pedido/remover`, pedido);
   }
 
+  public removerItemPedido(item: ItemDoPedido): Observable<ItemDoPedido>{
+    return this.http.post<ItemDoPedido>(`${this.apiServerUrl}/v1/public/itemDoPedido/remover`, item);
+  }
+
 
   public deletarPedido(pedidoID: number): Observable<void>{
     return this.http.delete<void>(`${this.apiServerUrl}/v1/public/pedido/deletar/${pedidoID}`);

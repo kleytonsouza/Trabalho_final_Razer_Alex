@@ -15,6 +15,7 @@ import { PedidoService } from './services/pedido.service';
 import { MatSelectModule } from '@angular/material/select';
 import {MatListModule} from '@angular/material/list'
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -40,7 +41,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatOptionModule,
     MatLineModule,
     MatListModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatIconModule
   ],
   providers: [
     PedidoService
