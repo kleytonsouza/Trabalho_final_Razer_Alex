@@ -1,11 +1,14 @@
 package br.ufpr.das.pedidos.api.rest.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import java.util.List;
 
-
-@Entity(name = "pedido")
+@Entity
+@Table(name = "Pedido")
 public class PedidoModel {
 
     @Id
@@ -19,7 +22,7 @@ public class PedidoModel {
     @OneToOne(cascade = CascadeType.MERGE)
     private ClienteModel cliente;
 
-    @OneToMany(cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "mPedido", cascade = CascadeType.MERGE)
     private List<ItemDoPedidoModel> itens;
 
 

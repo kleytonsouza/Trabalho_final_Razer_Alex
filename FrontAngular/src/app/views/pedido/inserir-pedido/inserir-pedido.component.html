@@ -62,7 +62,7 @@
     <mat-list class="mat-elevation-z8 " #matItem>
       <mat-list-item *ngFor="let it of items">
         {{it.produto.descricao}}
-        <button type="button" class="btn btn-outline-danger btn-sm pull-right">Remover</button>
+        <button type="button" class="btn btn-outline-danger btn-sm pull-right" (click)='removeItem(it)'>Remover</button>
       </mat-list-item>
 
     </mat-list>

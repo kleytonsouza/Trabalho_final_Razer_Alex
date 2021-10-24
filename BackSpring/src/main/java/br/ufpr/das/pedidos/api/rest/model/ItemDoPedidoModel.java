@@ -23,6 +23,10 @@ public class ItemDoPedidoModel implements Serializable {
     @OneToOne(cascade = CascadeType.MERGE)
     private ClienteModel cliente;
 
+    @ManyToOne
+    @JoinColumn(name = "pedido_id",referencedColumnName = "id")
+    private PedidoModel mPedido;
+
 
     public int getQuantidade() {
         return quantidade;
@@ -55,5 +59,12 @@ public class ItemDoPedidoModel implements Serializable {
 
     public void setCliente(ClienteModel cliente) {
         this.cliente = cliente;
+    }
+    public PedidoModel getPedido() {
+        return mPedido;
+    }
+
+    public void setPedido(PedidoModel mPedido) {
+        this.mPedido = mPedido;
     }
 }

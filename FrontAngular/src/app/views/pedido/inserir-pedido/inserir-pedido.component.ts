@@ -24,7 +24,6 @@ export class InserirPedidoComponent implements OnInit {
   quantidade: number = 0;
   cliente: Cliente = new Cliente(0,'', '','');
   produtos: Produto[]=  [];
-  prodAux: Produto[]=  [];
   items: ItemDoPedido[] =  [];
   pedido = new Pedido(new Date,this.cliente,this.items)
   
@@ -56,21 +55,22 @@ export class InserirPedidoComponent implements OnInit {
         id:[''],
         data:['',],
         cliente: [this.cliente,],
+        itens: [this.items,],
       });
        this.pedidoService.adicionarPedido(this.formPedido.value).subscribe(result => {});
- this.prodAux.forEach(element => {
+ this.items.forEach(element => {
         this.formItemPedido = this.fb.group({
-          quantidade: [this.quantidade,],
-          produto:[new Produto(element.id,element.descricao),],
+          quantidade: [element.quantidade,],
+          produto:[element.produto],
           cliente: [this.cliente],
         });
         console.log(this.formItemPedido.value)
         this.pedidoService.adicionarItemDoPedido(this.formItemPedido.value).subscribe();
       });
        
-        //this.dialogRef.close();
-       // this.formPedido.reset();
-       // window.location.reload();      
+        this.dialogRef.close();
+        this.formPedido.reset();
+        window.location.reload();      
      }  
   }
 
@@ -84,6 +84,11 @@ export class InserirPedidoComponent implements OnInit {
            alert(error.message);
         }
       );
+  }
+  public removeItem(it: any){
+    this.items.forEach((element, index) => {
+      if(element==it) this.items.splice(index,1);
+    });
   }
 
   public getOneClientes(id: number){
@@ -114,7 +119,8 @@ export class InserirPedidoComponent implements OnInit {
   }
   addItem(){
     this.items.push(new ItemDoPedido(this.quantidade,this.produto,this.cliente))
-    this.prodAux.push(this.produto)
+    alert(this.quantidade)
+    console.log(this.items)
   }
   
 
