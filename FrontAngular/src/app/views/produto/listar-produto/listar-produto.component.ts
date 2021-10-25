@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Produto } from 'src/app/shared/models/produto.model';
 import { ProdutoService } from '../services/produto.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -8,15 +8,11 @@ import { EditarProdutoComponent } from '../editar-produto/editar-produto.compone
 import { RemoverProdutoComponent } from '../remover-produto/remover-produto.component';
 import { InserirProdutoComponent } from '../inserir-produto/inserir-produto.component';
 
-
-
-
 @Component({
   selector: 'app-listar-produto',
   templateUrl: './listar-produto.component.html',
   styleUrls: ['./listar-produto.component.css']
 })
-
 
 export class ListarProdutoComponent  {
 
@@ -27,17 +23,17 @@ export class ListarProdutoComponent  {
 
   constructor(private produtoService : ProdutoService, public dialog: MatDialog) { }
 
-  ngOnInit(): void {
-    this.getAllProdutos();
-  }
-
+  ngOnInit(): void { this.getAllProdutos() }
 
   editar(produto : Produto) {
-    const dialogRef = this.dialog.open(EditarProdutoComponent,{
-      minWidth: '300px',
-      minHeight: '300px',
-      data: produto }
-      );
+    const dialogRef = this.dialog.open(
+      EditarProdutoComponent,
+      {
+        minWidth: '300px',
+        minHeight: '300px',
+        data: produto
+      }
+    );
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -46,15 +42,18 @@ export class ListarProdutoComponent  {
   }
 
   inserir() {
-    const dialogRef = this.dialog.open(InserirProdutoComponent,{
-      minWidth: '300px',
-      minHeight: '300px' }
-      );
+    const dialogRef = this.dialog.open(
+      InserirProdutoComponent,
+      {
+        minWidth: '300px',
+        minHeight: '300px' 
+      }
+    );
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    dialogRef.afterClosed().subscribe(
+      result => {
+      //console.log(`Dialog result: ${result}`);
       this.getAllProdutos();
-
     });
   }
 
@@ -64,7 +63,7 @@ export class ListarProdutoComponent  {
       minHeight: '300px',
       data: produto});
 
-    dialogRef.afterClosed().subscribe(result =>{
+    dialogRef.afterClosed().subscribe(() =>{
       console.log('Dialog result: ${result}');
       this.getAllProdutos();
     })  
@@ -79,19 +78,18 @@ export class ListarProdutoComponent  {
         alert(error.message);
       }
     );
-    
   }
 
   public getAllProdutos(){
     this.produtoService.listarTodos().subscribe(
-    produtos => {
-      this.produtos = produtos
-      this.dataSource.data = produtos
-    }
-   );}
+      produtos => {
+        this.produtos = produtos,
+        this.dataSource.data = produtos
+      }
+    )
+  }
  
-
-   applyFilter(event: Event) {
+  applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }

@@ -1,11 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Produto } from 'src/app/shared/models/produto.model';
 import { ProdutoService } from '../services/produto.service';
 import { MatDialogRef } from '@angular/material/dialog';
-import { HttpErrorResponse } from '@angular/common/http';
-
 
 @Component({
   selector: 'app-inserir-produto',
@@ -20,41 +17,25 @@ export class InserirProdutoComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<InserirProdutoComponent>,
-    private produtoService: ProdutoService,
-    private router: Router) { }
+    private produtoService: ProdutoService
+  ) { }
 
-    ngOnInit(): void {
+  ngOnInit(): void {
     this.formProduto = this.fb.group({
       descricao: ['', [Validators.required]]
     })
   }
 
-    cancel(): void{
+  cancel(): void{
+    this.dialogRef.close();
+    this.formProduto.reset();
+  }
+
+  inserir(): void{
+    if (this.formProduto.valid){
+      this.produtoService.inserir(this.formProduto.value).subscribe();
       this.dialogRef.close();
       this.formProduto.reset();
-    }
-
-    inserir(): void{
-      if (this.formProduto.valid){
-        console.log(this.formProduto.value)
-        this.produtoService.inserir(this.formProduto.value).subscribe(result => {});
-         this.dialogRef.close();
-         this.formProduto.reset();
-        // window.location.reload();      
-      }  
-    }
-
-    public onAddProduto(addForm: NgForm): void{
-      document.getElementById('formProduto')?.click();
-        this.produtoService.inserir(addForm.value).subscribe(
-          (response: Produto) =>{
-            console.log(response);
-            this.produtoService.listarTodos();
-          },
-          (error: HttpErrorResponse) =>{
-             alert(error.message);
-          }
-        );
-    }
-
+    }  
+  }
 }
