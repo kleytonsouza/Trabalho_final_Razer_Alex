@@ -15,17 +15,17 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 
-
-
 @NgModule({
-  declarations: [
+  declarations: 
+  [
     EditarProdutoComponent,
     InserirProdutoComponent,
     RemoverProdutoComponent,
     ListarProdutoComponent
 
   ],
-  imports: [
+  imports: 
+  [
     CommonModule,
     RouterModule,
     FormsModule,
@@ -39,7 +39,8 @@ import { MatIconModule } from '@angular/material/icon';
     ReactiveFormsModule,
     MatIconModule
   ],
-  providers: [
+  providers: 
+  [
     ProdutoService
   ]
 })

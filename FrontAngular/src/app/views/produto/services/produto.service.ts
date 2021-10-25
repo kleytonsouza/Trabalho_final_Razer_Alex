@@ -1,12 +1,5 @@
 import { Injectable } from '@angular/core';
-
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-
-imports: [
-  HttpClientModule,
-  HttpClient
-]
-
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Produto } from "src/app/shared/models/produto.model";
 import { environment } from 'src/environments/environment';
@@ -15,25 +8,21 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 
-
 @Injectable({providedIn: 'root'})
 export class ProdutoService {
 
   private apiServerUrl = environment.apiBaseUrl;
   
   constructor(private http: HttpClient) { }
-
   
   public listarTodos(): Observable<Produto[]>{
     return this.http.get<Produto[]>(`${this.apiServerUrl}/v1/public/produto/listar`);
   }
-
    
   public inserir(produto: Produto): Observable<Produto>{
     console.log(produto)
     return this.http.post<Produto>(`${this.apiServerUrl}/v1/public/produto/salvar`, produto);
   }
-
 
   public buscarPorId(id: number): Observable<Produto>{
     return this.http.get<Produto>(`${this.apiServerUrl}/v1/public/produto/${id}`);
@@ -51,7 +40,5 @@ export class ProdutoService {
   public remover(produto: Produto): Observable<Produto>{
     return this.http.post<Produto>(`${this.apiServerUrl}/v1/public/produto/remover`, produto);
   }
-
-
 
 }
