@@ -21,19 +21,17 @@ import { MatTableModule} from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { ListarClienteComponent } from './views/cliente/listar-cliente/listar-cliente.component';
 import { PedidoModule } from './views/pedido/pedido.module';
-import { MatOptionModule, MatOptionSelectionChange } from '@angular/material/core';
-
-
-
-
+import { MatOptionModule } from '@angular/material/core';
 
 @NgModule({
-  declarations: [
+  declarations: 
+  [
     AppComponent,
     HomeComponent,
     ListarClienteComponent
   ],
-  imports: [
+  imports: 
+  [
     BrowserModule,
     AppRoutingModule,
     ClienteModule,
@@ -55,12 +53,9 @@ import { MatOptionModule, MatOptionSelectionChange } from '@angular/material/cor
     MatTableModule,
     MatOptionModule,
     MatSelectModule
-    
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-
-
 
 export class AppModule { }

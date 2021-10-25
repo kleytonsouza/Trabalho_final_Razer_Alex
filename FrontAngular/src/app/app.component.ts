@@ -8,6 +8,7 @@ import { Cliente } from "src/app/shared/models/cliente";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent  implements OnInit{
   title = 'Clientes Pedidos';
 
