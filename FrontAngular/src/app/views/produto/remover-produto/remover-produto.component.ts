@@ -1,6 +1,6 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ProdutoService } from '../services/produto.service';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Produto } from '../../../shared/models/produto.model';
 import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
