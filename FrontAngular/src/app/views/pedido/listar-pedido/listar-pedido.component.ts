@@ -1,60 +1,71 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
 import { Cliente } from 'src/app/shared/models/cliente';
+import { Pedido } from 'src/app/shared/models/cliente.model';
+import { ItemDoPedido } from 'src/app/shared/models/itemdopedido.model';
 import { Produto } from 'src/app/shared/models/produto.model';
-import { itemDoPedido, Pedido } from 'src/app/shared/models/cliente.model';
 import { InserirPedidoComponent } from '../inserir-pedido/inserir-pedido.component';
-
+import { PedidoService } from '../services/pedido.service';
 
 @Component({
   selector: 'app-pedido',
   templateUrl: './listar-pedido.component.html',
-  styleUrls: ['./listar-pedido.component.css']
+  styleUrls: ['./listar-pedido.component.css'],
 })
-
 export class ListarPedidoComponent implements OnInit {
+  ELEMENT_DATA!: ItemDoPedido[];
 
-   ELEMENT_DATA!: itemDoPedido[];
+  produto_data: Produto[] = [];
 
-   produto_data: Produto[] = [ 
-    new Produto (12345,"Produto 12345"), 
-    new Produto (12346,"Produto 12346"), 
-    new Produto (12347,"Produto 12347")]
+  produto!: Produto;
+  cliente = new Cliente(1, '', '', '');
+  items: ItemDoPedido[] = [];
+  pedido = new Pedido(new Date(), this.cliente, this.items);
+  clienteId!: number;
 
-    produto = new Produto (1,"Produto 12345")
-    cliente = new Cliente(1,'12345678910','douglas','novaki')
-    items: itemDoPedido[] = [new itemDoPedido(this.produto,2),new itemDoPedido(this.produto,1),new itemDoPedido(this.produto,5)];
-    pedido = new Pedido(this.cliente,this.items)
-    
+  displayedColumns = ['produto', 'quantidade','op'];
+  dataSource = new MatTableDataSource<ItemDoPedido>(this.ELEMENT_DATA);
 
-
-    displayedColumns = ['produto', 'quantidade'];
-    dataSource = new MatTableDataSource<itemDoPedido>(this.ELEMENT_DATA);
-    
-
-  constructor(public dialog: MatDialog) { }
-
-  ngOnInit(): void {
-    console.log(this.pedido)
-      this.getAllPedidos();
+  constructor(
+    private pedidoService: PedidoService,
+    public dialog: MatDialog,
+    public route: ActivatedRoute,
+  ) {
+    this.route.params.subscribe((params) => (this.clienteId = params['id']));
   }
 
-  public getAllPedidos(){
-      this.dataSource.data = this.items;
-    }
-    inserirPedido() {
-      const dialogRef = this.dialog.open(InserirPedidoComponent,{
-        minWidth: '300px',
-        minHeight: '300px' }
-        );
-  
-      dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result}`);
-        this.getAllPedidos();
-  
-      });
-    }
+  ngOnInit(): void {
+    console.log(this.pedido);
+    this.getAllPedidos();
+  }
 
+  public getAllPedidos() {
+    this.pedidoService.getAllItemDoPedido(this.clienteId).subscribe((ite) => {
+      this.dataSource.data = ite;
+    });
+  }
+  inserirPedido() {
+    const dialogRef = this.dialog.open(InserirPedidoComponent, {
+      minWidth: '300px',
+      minHeight: '300px',
+      panelClass: 'custom-dialog',
+    });
 
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+      this.getAllPedidos();
+    });
+  }
+
+  deletarPedido(it: ItemDoPedido){
+    if(window.confirm('Tem certeza que voce quer deletar este pedido ?')){
+      this.pedidoService.removerItemPedido(it).subscribe(
+        result => {
+          this.getAllPedidos();
+        });
+     }
+    
+  }
 }

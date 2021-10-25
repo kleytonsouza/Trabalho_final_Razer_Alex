@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { InserirClienteComponent } from '../inserir-cliente/inserir-cliente.component';
 import { EditarClienteComponent } from '../editar-cliente/editar-cliente.component';
 import { RemoverClienteComponent } from '../remover-cliente/remover-cliente.component';
+import { Router } from '@angular/router';
 
 
 
@@ -25,9 +26,9 @@ export class ListarClienteComponent  {
   displayedColumns = ['id', 'cpf','nome', 'sobrenome', 'op'];
   dataSource = new MatTableDataSource<Cliente>(this.ELEMENT_DATA);
   clientes!: Cliente[];
-
   
-  constructor(private clientesService: ClienteService, public dialog: MatDialog){}
+  
+  constructor(private clientesService: ClienteService, public dialog: MatDialog,public router: Router){}
 
 
   ngOnInit(): void {
@@ -47,6 +48,10 @@ export class ListarClienteComponent  {
       console.log(`Dialog result: ${result}`);
       this.getAllClientes();
     });
+  }
+
+  verPedidos(cliente : Cliente){
+    this.router.navigate(['/pedidos/listar/', cliente.id]);
   }
 
 

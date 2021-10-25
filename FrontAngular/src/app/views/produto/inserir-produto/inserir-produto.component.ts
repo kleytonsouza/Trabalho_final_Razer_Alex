@@ -25,8 +25,6 @@ export class InserirProdutoComponent implements OnInit {
 
     ngOnInit(): void {
     this.formProduto = this.fb.group({
-      id: ['',],
-      nome: ['', [Validators.required]],
       descricao: ['', [Validators.required]]
     })
   }
@@ -38,6 +36,7 @@ export class InserirProdutoComponent implements OnInit {
 
     inserir(): void{
       if (this.formProduto.valid){
+        console.log(this.formProduto.value)
         this.produtoService.inserir(this.formProduto.value).subscribe(result => {});
          this.dialogRef.close();
          this.formProduto.reset();

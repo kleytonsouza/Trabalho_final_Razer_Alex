@@ -55,10 +55,10 @@ const routes: Routes = [
   },
   {
     path: 'pedidos',
-    redirectTo: 'pedidos/listar'
+    redirectTo: 'pedidos/listar/1'
   },
   {
-    path: 'pedidos/listar',
+    path: 'pedidos/listar/:id',
     component: ListarPedidoComponent
   },
   {

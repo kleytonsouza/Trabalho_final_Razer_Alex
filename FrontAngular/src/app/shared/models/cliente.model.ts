@@ -9,32 +9,16 @@
     }  
 }*/
 
-import { Cliente } from "src/app/shared/models/cliente";
+import { Cliente } from "./cliente";
+import { ItemDoPedido } from "./itemdopedido.model";
+
 
 export class Pedido{
     
-    constructor(public cliente: Cliente, public itemsPedido: itemDoPedido[]){
-        this.cliente = cliente;
-        this.itemsPedido = itemsPedido;      
-    }
-
-}
-
-export class Produto{
-    public  id!: number;
-
-    constructor(public nome: string, public descricao: string){
-        this.nome = nome;
-        this.descricao = descricao;
-    }
-}
-
-export class itemDoPedido{
-    
-    constructor( public produto: any, public quantidade: number){
-
-        this.produto = produto;
-        this.quantidade = quantidade;
+    constructor(public date: Date | String,public cliente: Cliente,public itens: ItemDoPedido[]){
+        this.date = date
+        this.cliente = cliente;   
+        this.itens = itens;
     }
 
 }

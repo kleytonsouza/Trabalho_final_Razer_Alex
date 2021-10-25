@@ -30,12 +30,10 @@ export class ProdutoService {
 
    
   public inserir(produto: Produto): Observable<Produto>{
+    console.log(produto)
     return this.http.post<Produto>(`${this.apiServerUrl}/v1/public/produto/salvar`, produto);
   }
 
-  public buscarPorNome(nome: String): Observable<Produto>{
-    return this.http.get<Produto>(`${this.apiServerUrl}/v1/public/produto/${nome}`);
-  }
 
   public buscarPorId(id: number): Observable<Produto>{
     return this.http.get<Produto>(`${this.apiServerUrl}/v1/public/produto/${id}`);

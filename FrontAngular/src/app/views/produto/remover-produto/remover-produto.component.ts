@@ -29,8 +29,7 @@ export class RemoverProdutoComponent implements OnInit {
     ngOnInit(): void {
       this.formProduto = this.fb.group({
         id: [this.data.id, [Validators.required]],
-        nome: [this.data.nome, [Validators.required]],
-        descricao: [this.data.descricao, [Validators.required]],
+        describe: [this.data.descricao, [Validators.required]],
       })
     }
 

@@ -3,9 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { itemDoPedido, Pedido, Produto } from 'src/app/shared';
+import { Pedido } from 'src/app/shared';
 import { Cliente } from 'src/app/shared/models/cliente';
+import { ItemDoPedido } from 'src/app/shared/models/itemdopedido.model';
+import { Produto } from 'src/app/shared/models/produto.model';
 import { InserirClienteComponent } from '../../cliente/inserir-cliente/inserir-cliente.component';
+import { ClienteService } from '../../cliente/services/cliente.service';
 import { PedidoService } from '../services/pedido.service';
 
 @Component({
@@ -14,28 +17,30 @@ import { PedidoService } from '../services/pedido.service';
   styleUrls: ['./inserir-pedido.component.css']
 })
 export class InserirPedidoComponent implements OnInit {
+  cpf: number = 0;
   public formPedido! : FormGroup;
-  produto = new Produto ("Produto 12345", "Descrição do protudot")
-  cliente = new Cliente(1,'12345678910','douglas','novaki')
-  items: itemDoPedido[] = [new itemDoPedido(this.produto,2),new itemDoPedido(this.produto,1)];
-  pedido = new Pedido(this.cliente,this.items)
+  public formItemPedido! : FormGroup;
+  produto!:  Produto;
+  quantidade: number = 0;
+  cliente: Cliente = new Cliente(0,'', '','');
+  produtos: Produto[]=  [];
+  items: ItemDoPedido[] =  [];
+  pedido = new Pedido(new Date,this.cliente,this.items)
   
 
   constructor(private fb: FormBuilder,
     public dialogRef: MatDialogRef<InserirClienteComponent>, 
     private pedidoService: PedidoService,
-    private router: Router) { }
+    private router: Router,
+    private clientesService: ClienteService) { }
 
   ngOnInit(): void {
-    
+    this.getAllProdutos()
     this.formPedido = this.fb.group({
-      //id: [1,],
-      data:[Date.now(),],
+      id:[''],
+      data:['',],
       cliente: [this.cliente,],
-      itens:[this.items,],
-    })
-
-    console.log(this.formPedido.value)
+    });
   }
 
   cancel(): void{
@@ -44,12 +49,28 @@ export class InserirPedidoComponent implements OnInit {
   }
 
   inserir(): void{
+    
     if (this.formPedido.valid){
-       this.pedidoService.adicionarPedido(this.formPedido.value).subscribe(
-        result => {});
+      this.formPedido = this.fb.group({
+        id:[''],
+        data:['',],
+        cliente: [this.cliente,],
+        itens: [this.items,],
+      });
+       this.pedidoService.adicionarPedido(this.formPedido.value).subscribe(result => {});
+ this.items.forEach(element => {
+        this.formItemPedido = this.fb.group({
+          quantidade: [element.quantidade,],
+          produto:[element.produto],
+          cliente: [this.cliente],
+        });
+        console.log(this.formItemPedido.value)
+        this.pedidoService.adicionarItemDoPedido(this.formItemPedido.value).subscribe();
+      });
+       
         this.dialogRef.close();
         this.formPedido.reset();
-       // window.location.reload();      
+        window.location.reload();      
      }  
   }
 
@@ -57,7 +78,6 @@ export class InserirPedidoComponent implements OnInit {
     document.getElementById('formPedido')?.click();
       this.pedidoService.adicionarPedido(addForm.value).subscribe(
         (response: Pedido) =>{
-          console.log(response);
           this.pedidoService.getPedidos();
         },
         (error: HttpErrorResponse) =>{
@@ -65,5 +85,43 @@ export class InserirPedidoComponent implements OnInit {
         }
       );
   }
+  public removeItem(it: any){
+    this.items.forEach((element, index) => {
+      if(element==it) this.items.splice(index,1);
+    });
+  }
+
+  public getOneClientes(id: number){
+    // passar id do cliente
+    this.clientesService.getCliente(id).subscribe(
+    cliente => {
+      this.cliente = cliente
+    }
+   );
+  }
+  public getAllProdutos(){
+    this.pedidoService.getProdutos().subscribe(
+      prod => {
+        this.produtos = prod;
+      }
+     );
+  }
+
+
+  changeProduto(value: any) {
+    this.produto = value;
+  }
+  changeValue(event: any){
+    this.quantidade = event.target.value;
+  }
+  changeCPF(event: any){
+    this.cpf = event.target.value;
+  }
+  addItem(){
+    this.items.push(new ItemDoPedido(this.quantidade,this.produto,this.cliente))
+    alert(this.quantidade)
+    console.log(this.items)
+  }
+  
 
 }
