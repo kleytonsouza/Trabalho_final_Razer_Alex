@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RemoverClienteComponent } from './remover-cliente.component';
 
-describe('RemoverClienteComponent', () => {
+xdescribe('RemoverClienteComponent', () => {
   let component: RemoverClienteComponent;
   let fixture: ComponentFixture<RemoverClienteComponent>;
 
