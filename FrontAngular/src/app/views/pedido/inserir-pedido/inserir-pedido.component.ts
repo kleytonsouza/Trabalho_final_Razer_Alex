@@ -120,7 +120,6 @@ export class InserirPedidoComponent implements OnInit {
   }
   addItem(){
     this.items.push(new ItemDoPedido(this.quantidade,this.produto,this.cliente))
-    alert(this.quantidade)
     console.log(this.items)
   }
 
