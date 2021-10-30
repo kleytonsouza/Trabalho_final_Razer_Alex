@@ -27,7 +27,7 @@ export class InserirClienteComponent implements OnInit {
     ngOnInit(): void {
       this.formCliente = this.fb.group({
         id: ['', ],
-        cpf: ['', [Validators.required]],
+        cpf: ['', [Validators.required, Validators.minLength(11)]],
         nome: ['', [Validators.required]],
         sobrenome: ['', [Validators.required]]
       })
