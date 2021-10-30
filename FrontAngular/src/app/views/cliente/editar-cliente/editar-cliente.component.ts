@@ -17,8 +17,7 @@ export class EditarClienteComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) 
-    public data: Cliente,
+    @Inject(MAT_DIALOG_DATA) public data: Cliente,
     public dialogRef: MatDialogRef<EditarClienteComponent>,
     private clienteService: ClienteService
   ) { }

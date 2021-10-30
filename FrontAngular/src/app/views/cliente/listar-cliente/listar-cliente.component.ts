@@ -22,21 +22,28 @@ export class ListarClienteComponent  {
   dataSource = new MatTableDataSource<Cliente>(this.ELEMENT_DATA);
   clientes!: Cliente[];
   
-  constructor(private clientesService: ClienteService, public dialog: MatDialog,public router: Router){}
+  constructor(
+    private clientesService: ClienteService,
+    public dialog: MatDialog,
+    public router: Router
+  ){}
 
   ngOnInit(): void { this.getAllClientes() }
 
   update(cliente : Cliente) {
-    const dialogRef = this.dialog.open(EditarClienteComponent,{
-      minWidth: '300px',
-      minHeight: '300px',
-      data: cliente }
-      );
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-      this.getAllClientes();
-    });
+    const dialogRef = this.dialog.open(
+      EditarClienteComponent,{
+        minWidth: '300px',
+        minHeight: '300px',
+        data: cliente 
+      }
+    );
+    dialogRef.afterClosed().subscribe(
+      result => {
+        console.log(`Dialog result: ${result}`);
+        this.getAllClientes();
+      }
+    );
   }
 
   listOrdens(cliente : Cliente){
@@ -45,8 +52,7 @@ export class ListarClienteComponent  {
 
   add() {
     const dialogRef = this.dialog.open(
-      InserirClienteComponent,
-      {
+      InserirClienteComponent,{
         minWidth: '300px',
         minHeight: '300px' 
       }
