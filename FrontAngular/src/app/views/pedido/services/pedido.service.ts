@@ -10,7 +10,7 @@ imports: [
 
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Pedido } from 'src/app/shared';
+import { Pedido } from 'src/app/shared/models/cliente';
 import { Produto } from 'src/app/shared/models/produto.model';
 import { ItemDoPedido } from 'src/app/shared/models/itemdopedido.model';
 
@@ -28,7 +28,6 @@ export class PedidoService {
     return this.http.get<Pedido[]>(`${this.apiServerUrl}/v1/public/pedido/listar`);
   }
 
-
   public getPedido(pedidoID: number): Observable<Pedido>{
     return this.http.get<Pedido>(`${this.apiServerUrl}/v1/public/pedido/${pedidoID}`);
   }
@@ -45,11 +44,9 @@ export class PedidoService {
     return this.http.get<ItemDoPedido[]>(`${this.apiServerUrl}/v1/public/pedido/item/listar/${id}`);
   }
 
-
   public atualizarPedido(pedido: Pedido): Observable<Pedido>{
     return this.http.post<Pedido>(`${this.apiServerUrl}/v1/public/pedido/atualizar`, pedido);
   }
-
 
   public removerPedido(pedido: Pedido): Observable<Pedido>{
     return this.http.post<Pedido>(`${this.apiServerUrl}/v1/public/pedido/remover`, pedido);
@@ -58,7 +55,6 @@ export class PedidoService {
   public removerItemPedido(item: ItemDoPedido): Observable<ItemDoPedido>{
     return this.http.post<ItemDoPedido>(`${this.apiServerUrl}/v1/public/itemDoPedido/remover`, item);
   }
-
 
   public deletarPedido(pedidoID: number): Observable<void>{
     return this.http.delete<void>(`${this.apiServerUrl}/v1/public/pedido/deletar/${pedidoID}`);

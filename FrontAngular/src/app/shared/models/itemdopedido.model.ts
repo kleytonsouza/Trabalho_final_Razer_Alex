@@ -1,4 +1,3 @@
-import { Pedido } from ".";
 import { Cliente } from "./cliente";
 
 export interface ItemDoPedido{
