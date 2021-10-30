@@ -10,7 +10,7 @@ imports: [
 
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Pedido } from 'src/app/shared/models/cliente';
+import { Pedido } from 'src/app/shared/models/cliente.model';
 import { Produto } from 'src/app/shared/models/produto.model';
 import { ItemDoPedido } from 'src/app/shared/models/itemdopedido.model';
 

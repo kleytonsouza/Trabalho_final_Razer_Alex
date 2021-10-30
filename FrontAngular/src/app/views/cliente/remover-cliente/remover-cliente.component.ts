@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { ClienteService } from '../services/cliente.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Cliente } from '../../../shared/models/cliente';
+import { Cliente } from '../../../shared/models/cliente.model';
 import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({

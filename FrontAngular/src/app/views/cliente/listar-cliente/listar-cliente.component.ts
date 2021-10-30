@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ClienteService } from '../services/cliente.service';
-import { Cliente } from "src/app/shared/models/cliente";
+import { Cliente } from "src/app/shared/models/cliente.model";
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Cliente } from 'src/app/shared/models/cliente';
+import { Cliente } from 'src/app/shared/models/cliente.model';
 
 @Injectable({providedIn: 'root'})
 export class ClienteService {
