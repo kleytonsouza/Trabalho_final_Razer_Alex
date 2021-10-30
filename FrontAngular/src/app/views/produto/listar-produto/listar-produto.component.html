@@ -1,10 +1,8 @@
 <div class="container container-fluid">
-  <br>
-  <button mat-raised-button color="primary" (click)="inserir()">Incluir Produto </button><br><br>
+  <button mat-raised-button color="primary" (click)="inserir()">Incluir Produto </button>
   <h1>Lista de Produtos</h1>
   <mat-label>Pesquisar</mat-label>
   <input matInput (keyup)="applyFilter($event)" style="margin-left: 10px;" placeholder="Digite o produto" #input>
-  
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> ID </th>
@@ -14,23 +12,19 @@
       <th mat-header-cell *matHeaderCellDef> Descrição </th>
       <td mat-cell *matCellDef="let row"> {{row.descricao}} </td>
     </ng-container>
-
     <ng-container matColumnDef="op">
-        <th mat-header-cell *matHeaderCellDef> Opções </th>
-        <td mat-cell *matCellDef="let row">
-            <button mat-mini-fab (click)="remover(row)" color="primary" aria-label="Example icon button with a delete icon" >
-                <mat-icon>delete</mat-icon>
-            </button>
-            &nbsp;
-            <button  mat-mini-fab  (click)="editar(row)" color="primary" aria-label="Example icon button with a delete icon">
-                <mat-icon>edit</mat-icon>
-            </button>
-        </td>
-      </ng-container>
-  
+      <th mat-header-cell *matHeaderCellDef> Opções </th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-mini-fab (click)="remover(row)" color="primary" aria-label="Example icon button with a delete icon" >
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button  mat-mini-fab  (click)="editar(row)" color="primary" aria-label="Example icon button with a delete icon">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
     <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell" colspan="4"><b>Nenhum Produto Encontrado com nome </b>" {{input.value}} "</td>
     </tr>
