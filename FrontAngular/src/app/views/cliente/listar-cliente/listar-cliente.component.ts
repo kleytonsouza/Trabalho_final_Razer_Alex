@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ClienteService } from '../services/cliente.service';
-import { Cliente } from "src/app/shared/models/cliente";
+import { Cliente } from "src/app/shared/models/cliente.model";
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
@@ -20,14 +20,14 @@ import { Router } from '@angular/router';
 
 export class ListarClienteComponent  {
 
- 
+
 
   ELEMENT_DATA!: Cliente[];
   displayedColumns = ['id', 'cpf','nome', 'sobrenome', 'op'];
   dataSource = new MatTableDataSource<Cliente>(this.ELEMENT_DATA);
   clientes!: Cliente[];
-  
-  
+
+
   constructor(private clientesService: ClienteService, public dialog: MatDialog,public router: Router){}
 
 
@@ -103,7 +103,7 @@ export class ListarClienteComponent  {
    );}
 
 
- 
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

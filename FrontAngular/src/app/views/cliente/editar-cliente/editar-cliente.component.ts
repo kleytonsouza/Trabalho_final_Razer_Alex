@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClienteService } from '../services/cliente.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Cliente } from '../../../shared/models/cliente';
+import { Cliente } from '../../../shared/models/cliente.model';
 import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -18,19 +18,19 @@ export class EditarClienteComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder,
-              @Inject(MAT_DIALOG_DATA) 
+              @Inject(MAT_DIALOG_DATA)
               public data: Cliente,
               public dialogRef: MatDialogRef<EditarClienteComponent>,
-           
+
               private clienteService: ClienteService,
               private router: Router,
               private route: ActivatedRoute) { }
 
-              
- 
+
+
 
   ngOnInit(): void {
-  
+
     this.formCliente = this.fb.group({
       id: [this.data.id, [Validators.required]],
       cpf: [this.data.cpf, [Validators.required]],
@@ -39,15 +39,15 @@ export class EditarClienteComponent implements OnInit {
     })
   }
 
-  
+
   atualizar(): void{
 
     if (this.formCliente.valid){
         this.clienteService.atualizarCliente(this.formCliente.value).subscribe(
         result => {});
         this.dialogRef.close();
-        this.formCliente.reset();      
-     }  
+        this.formCliente.reset();
+     }
   }
 
   cancel(): void{

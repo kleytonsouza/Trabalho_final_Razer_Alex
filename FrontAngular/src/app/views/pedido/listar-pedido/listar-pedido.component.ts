@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { Cliente } from 'src/app/shared/models/cliente';
-import { Pedido } from 'src/app/shared/models/cliente.model';
+import { Cliente } from 'src/app/shared/models/cliente.model';
+import { Pedido } from 'src/app/shared/models/pedido.model';
 import { ItemDoPedido } from 'src/app/shared/models/itemdopedido.model';
 import { Produto } from 'src/app/shared/models/produto.model';
 import { InserirPedidoComponent } from '../inserir-pedido/inserir-pedido.component';
@@ -66,6 +66,6 @@ export class ListarPedidoComponent implements OnInit {
           this.getAllPedidos();
         });
      }
-    
+
   }
 }

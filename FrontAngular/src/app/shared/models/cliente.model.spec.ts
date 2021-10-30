@@ -1,7 +1,7 @@
 import { Produto } from './produto.model';
 import { ItemDoPedido } from './itemdopedido.model';
-import { Cliente } from './cliente';
-import { Pedido } from './cliente.model';
+import { Cliente } from './cliente.model';
+import { Pedido } from './pedido.model';
 
 describe('ClienteModel', () => {
 

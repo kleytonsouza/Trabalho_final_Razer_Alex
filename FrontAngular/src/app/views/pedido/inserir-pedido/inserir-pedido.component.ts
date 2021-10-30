@@ -3,8 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Pedido } from 'src/app/shared';
-import { Cliente } from 'src/app/shared/models/cliente';
+
+import { Cliente } from 'src/app/shared/models/cliente.model';
+import { Pedido } from 'src/app/shared/models/pedido.model';
 import { ItemDoPedido } from 'src/app/shared/models/itemdopedido.model';
 import { Produto } from 'src/app/shared/models/produto.model';
 import { InserirClienteComponent } from '../../cliente/inserir-cliente/inserir-cliente.component';
@@ -26,10 +27,10 @@ export class InserirPedidoComponent implements OnInit {
   produtos: Produto[]=  [];
   items: ItemDoPedido[] =  [];
   pedido = new Pedido(new Date,this.cliente,this.items)
-  
+
 
   constructor(private fb: FormBuilder,
-    public dialogRef: MatDialogRef<InserirClienteComponent>, 
+    public dialogRef: MatDialogRef<InserirClienteComponent>,
     private pedidoService: PedidoService,
     private router: Router,
     private clientesService: ClienteService) { }
@@ -49,7 +50,7 @@ export class InserirPedidoComponent implements OnInit {
   }
 
   inserir(): void{
-    
+
     if (this.formPedido.valid){
       this.formPedido = this.fb.group({
         id:[''],
@@ -67,11 +68,11 @@ export class InserirPedidoComponent implements OnInit {
         console.log(this.formItemPedido.value)
         this.pedidoService.adicionarItemDoPedido(this.formItemPedido.value).subscribe();
       });
-       
+
         this.dialogRef.close();
         this.formPedido.reset();
-        window.location.reload();      
-     }  
+        window.location.reload();
+     }
   }
 
   public onAddPedido(addForm: NgForm): void{
@@ -122,6 +123,6 @@ export class InserirPedidoComponent implements OnInit {
     alert(this.quantidade)
     console.log(this.items)
   }
-  
+
 
 }

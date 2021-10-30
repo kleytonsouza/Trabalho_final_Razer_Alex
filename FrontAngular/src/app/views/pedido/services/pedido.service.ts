@@ -10,7 +10,7 @@ imports: [
 
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Pedido } from 'src/app/shared';
+import { Pedido } from 'src/app/shared/models/pedido.model';
 import { Produto } from 'src/app/shared/models/produto.model';
 import { ItemDoPedido } from 'src/app/shared/models/itemdopedido.model';
 
@@ -38,7 +38,7 @@ export class PedidoService {
   }
 
   public adicionarItemDoPedido(item: ItemDoPedido): Observable<ItemDoPedido>{
-    
+
     return this.http.post<ItemDoPedido>(`${this.apiServerUrl}/v1/public/itemDoPedido/salvar`, item);
   }
   public getAllItemDoPedido(id: number): Observable<ItemDoPedido[]>{

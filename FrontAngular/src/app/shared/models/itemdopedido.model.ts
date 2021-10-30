@@ -1,8 +1,8 @@
-import { Pedido } from ".";
-import { Cliente } from "./cliente";
+import { Pedido } from "./pedido.model";
+import { Cliente } from "./cliente.model";
 
 export interface ItemDoPedido{
-  
+
     quantidade: number;
     produto: any;
     cliente: Cliente,
@@ -10,7 +10,7 @@ export interface ItemDoPedido{
 }
 export class ItemDoPedido {
     constructor(
-      
+
       public quantidade: number,
       public produto: any,
       public cliente: Cliente,
