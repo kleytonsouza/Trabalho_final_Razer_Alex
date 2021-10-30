@@ -3,7 +3,7 @@
   <button mat-raised-button color="primary" (click)="inserir()">Incluir Produto </button><br><br>
   <h1>Lista de Produtos</h1>
   <mat-label>Pesquisar</mat-label>
-  <input matInput (keyup)="applyFilter($event)" style="margin-left: 10px;" placeholder="Digite o produto" #input>
+  <input matInput (keyup)="applyFilter($event)" style="margin-left: 10px; margin-bottom: 10px;" placeholder="Digite o produto" #input>
   
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
