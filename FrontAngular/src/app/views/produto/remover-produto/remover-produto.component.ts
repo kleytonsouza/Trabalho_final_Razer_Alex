@@ -16,31 +16,31 @@ export class RemoverProdutoComponent implements OnInit {
   public formProduto!: FormGroup;
   public produto!: Produto;
 
-  constructor(private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) 
-    public data: Produto,
+  constructor(
+    private formBuilder: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: Produto,
     public dialogRef: MatDialogRef<RemoverProdutoComponent>,
- 
-    private produtoService: ProdutoService) { }
+    private produtoService: ProdutoService
+  ) { }
 
-    ngOnInit(): void {
-      this.formProduto = this.formBuilder.group({
-        id: [this.data.id, [Validators.required]],
-        descricao: [this.data.descricao, [Validators.required]],
-      })
-    }
+  ngOnInit(): void {
+    this.formProduto = this.formBuilder.group({
+      id: [this.data.id, [Validators.required]],
+      descricao: [this.data.descricao, [Validators.required]],
+    })
+  }
 
-    remover(): void{
-      if (this.formProduto.valid){
-          this.produtoService.remover(this.formProduto.value).subscribe();
-          this.dialogRef.close();
-          this.formProduto.reset();      
-       }  
-    }
-  
-    cancel(): void{
+  delete(): void{
+    if (this.formProduto.valid){
+      this.produtoService.remover(this.formProduto.value).subscribe();
       this.dialogRef.close();
-      this.formProduto.reset();
-    }
+      this.formProduto.reset();      
+    }  
+  }
+
+  cancel(): void{
+    this.dialogRef.close();
+    this.formProduto.reset();
+  }
 
 }

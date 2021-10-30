@@ -11,23 +11,23 @@ export class ClienteService {
 
   constructor(private http: HttpClient) { }
 
-  public getClientes(): Observable<Cliente[]>{
+  getClientes(): Observable<Cliente[]>{
     return this.http.get<Cliente[]>(`${this.apiServerUrl}/v1/public/cliente/listar`);
   }
 
-  public getCliente(clienteID: number): Observable<Cliente>{
+  getCliente(clienteID: number): Observable<Cliente>{
     return this.http.get<Cliente>(`${this.apiServerUrl}/v1/public/cliente/${clienteID}`);
   }
 
-  public addCliente(cliente: Cliente): Observable<Cliente>{
+  addCliente(cliente: Cliente): Observable<Cliente>{
     return this.http.post<Cliente>(`${this.apiServerUrl}/v1/public/cliente/salvar`, cliente);
   }
 
-  public updateCliente(cliente: Cliente): Observable<Cliente>{
+  updateCliente(cliente: Cliente): Observable<Cliente>{
     return this.http.post<Cliente>(`${this.apiServerUrl}/v1/public/cliente/atualizar`, cliente);
   }
 
-  public deleteCliente(cliente: Cliente): Observable<Cliente>{
+  deleteCliente(cliente: Cliente): Observable<Cliente>{
     return this.http.post<Cliente>(`${this.apiServerUrl}/v1/public/cliente/remover`, cliente);
   }
 

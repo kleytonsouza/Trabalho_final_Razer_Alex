@@ -5,11 +5,9 @@
             <mat-label>Descrição</mat-label>
             <input matInput formControlName="descricao" name="descricao">
         </mat-form-field>
-        <br>
     </form>
 </div>
 <div mat-dialog-actions>
-    <button mat-raised-button color="primary" (click)="atualizar()">Salvar</button>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button mat-raised-button color="primary" (click)="update()">Salvar</button>
     <button mat-button (click)="cancel()">Cancelar</button>
 </div>

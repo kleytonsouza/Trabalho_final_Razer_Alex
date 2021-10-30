@@ -15,29 +15,28 @@ export class ProdutoService {
   
   constructor(private http: HttpClient) { }
   
-  public listarTodos(): Observable<Produto[]>{
+  listAll(): Observable<Produto[]>{
     return this.http.get<Produto[]>(`${this.apiServerUrl}/v1/public/produto/listar`);
   }
    
-  public inserir(produto: Produto): Observable<Produto>{
+  add(produto: Produto): Observable<Produto>{
     console.log(produto)
     return this.http.post<Produto>(`${this.apiServerUrl}/v1/public/produto/salvar`, produto);
   }
 
-  public buscarPorId(id: number): Observable<Produto>{
+  findById(id: number): Observable<Produto>{
     return this.http.get<Produto>(`${this.apiServerUrl}/v1/public/produto/${id}`);
-    
   }
 
-  public atualizar(produto: Produto): Observable<Produto>{
+  update(produto: Produto): Observable<Produto>{
     return this.http.post<Produto>(`${this.apiServerUrl}/v1/public/produto/atualizar`, produto);
   }
 
-  public delete(id: number): Observable<void>{
+  delete(id: number): Observable<void>{
     return this.http.delete<void>(`${this.apiServerUrl}/v1/public/produto/deletar/${id}`);
   }
 
-  public remover(produto: Produto): Observable<Produto>{
+  remover(produto: Produto): Observable<Produto>{
     return this.http.post<Produto>(`${this.apiServerUrl}/v1/public/produto/remover`, produto);
   }
 

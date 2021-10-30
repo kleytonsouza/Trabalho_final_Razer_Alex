@@ -2,14 +2,12 @@
 <div mat-dialog-content> 
     <form class="example-form" [formGroup]="formProduto">
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>descrição</mat-label>
+            <mat-label>Descrição</mat-label>
             <input matInput formControlName="descricao" name="descricao">
         </mat-form-field>
-        <br>
     </form>
 </div>
 <div mat-dialog-actions>
-    <button mat-raised-button color="primary" (click)="inserir()">Salvar</button>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button mat-raised-button color="primary" (click)="add()">Salvar</button>
     <button mat-button (click)="cancel()">Cancelar</button>
 </div>
