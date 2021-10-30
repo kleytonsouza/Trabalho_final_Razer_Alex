@@ -1,25 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditarPedidoComponent } from './editar-pedido.component';
+// import { EditarPedidoComponent } from './editar-pedido.component';
 
-describe('EditarPedidoComponent', () => {
-  let component: EditarPedidoComponent;
-  let fixture: ComponentFixture<EditarPedidoComponent>;
+// describe('EditarPedidoComponent', () => {
+//   let component: EditarPedidoComponent;
+//   let fixture: ComponentFixture<EditarPedidoComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ EditarPedidoComponent ]
-    })
-    .compileComponents();
-  });
+//   beforeEach(async () => {
+//     await TestBed.configureTestingModule({
+//       declarations: [ EditarPedidoComponent ]
+//     })
+//     .compileComponents();
+//   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(EditarPedidoComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//   beforeEach(() => {
+//     fixture = TestBed.createComponent(EditarPedidoComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });

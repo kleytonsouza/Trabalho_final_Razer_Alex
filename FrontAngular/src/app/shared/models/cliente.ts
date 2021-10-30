@@ -1,3 +1,6 @@
+import { ItemDoPedido } from "./itemdopedido.model";
+
+
 export interface Cliente{
     id: number;
     cpf: string;
@@ -11,4 +14,18 @@ export class Cliente {
       public nome: string,
       public sobrenome: string){
     }
+}
+
+
+
+
+
+export class Pedido{
+    
+    constructor(public date: Date | String,public cliente: Cliente,public itens: ItemDoPedido[]){
+        this.date = date
+        this.cliente = cliente;   
+        this.itens = itens;
+    }
+
 }
