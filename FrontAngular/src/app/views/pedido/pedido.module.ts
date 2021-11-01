@@ -6,7 +6,7 @@ import { InserirPedidoComponent } from './inserir-pedido/inserir-pedido.componen
 import { EditarPedidoComponent } from './editar-pedido/editar-pedido.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatLineModule, MatNativeDateModule, MatOptionModule, MatOptionSelectionChange } from '@angular/material/core';
+import { MatLineModule, MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
