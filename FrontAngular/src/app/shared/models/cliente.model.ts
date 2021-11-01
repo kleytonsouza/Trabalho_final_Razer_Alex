@@ -20,10 +20,8 @@ export class Pedido{
     constructor(
         public date: Date | String,
         public cliente: Cliente,
-        public itens: ItemDoPedido[]
     ){
         this.date = date
-        this.cliente = cliente;   
-        this.itens = itens;
+        this.cliente = cliente;
     }
 }

@@ -22,7 +22,7 @@ export class ListarPedidoComponent implements OnInit {
   produto!: Produto;
   cliente = new Cliente(1, '', '', '');
   items: ItemDoPedido[] = [];
-  pedido = new Pedido(new Date(), this.cliente, this.items);
+  pedido = new Pedido(new Date(), this.cliente);
   clienteId!: number;
 
   displayedColumns = ['produto', 'quantidade', 'op'];

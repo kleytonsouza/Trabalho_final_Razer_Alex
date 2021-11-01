@@ -1,7 +1,6 @@
 package br.ufpr.das.pedidos.api.rest.model;
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "Pedido")
@@ -16,17 +15,6 @@ public class PedidoModel {
 
     @OneToOne(cascade = CascadeType.MERGE)
     private ClienteModel cliente;
-
-    @OneToMany(mappedBy = "mPedido", cascade = CascadeType.MERGE)
-    private List<ItemDoPedidoModel> itens;
-
-    public List<ItemDoPedidoModel> getItens() {
-        return itens;
-    }
-
-    public void setItens(List<ItemDoPedidoModel> itens) {
-        this.itens = itens;
-    }
 
     public int getId() {
         return id;

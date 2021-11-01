@@ -27,7 +27,7 @@ export class InserirPedidoComponent implements OnInit {
   cliente: Cliente = new Cliente(0, '', '', '');
   produtos: Produto[] = [];
   items: ItemDoPedido[] = [];
-  pedido = new Pedido(new Date(), this.cliente, this.items);
+  pedido = new Pedido(new Date(), this.cliente,);
 
   constructor(
     private fb: FormBuilder,
