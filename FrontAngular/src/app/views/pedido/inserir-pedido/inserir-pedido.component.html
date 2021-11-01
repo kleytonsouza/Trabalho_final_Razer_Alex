@@ -1,6 +1,5 @@
 <form class="example-form" [formGroup]="formPedido">
   <div class="row">
-
     <form class="cpf-form">
       <div class="row">
         <div class="col-9">
@@ -8,13 +7,13 @@
             <mat-form-field class="example-full-width" appearance="fill">
               <mat-label>Id</mat-label>
               <input matInput formControlName="cpf" name="cpf" type="text" aria-label="CPF"
-                aria-describedby="basic-addon2"  (change)="changeCPF($event)">
+                aria-describedby="basic-addon2" (change)="changeCPF($event)">
             </mat-form-field>
           </div>
         </div>
         <div class="col">
           <div class="form-floating mb-3">
-            <button mat-flat-button color="primary"(click)='getOneClientes(cpf)' >Pesquisar</button>
+            <button mat-flat-button color="primary" (click)='getOneClientes(cpf)'>Pesquisar</button>
           </div>
         </div>
         <div class="col">
@@ -22,8 +21,8 @@
             <a>CPF: {{cliente.cpf}}</a><br>
             <a>Nome: {{cliente.nome}}</a><br>
             <a>Sobrenome: {{cliente.sobrenome}}</a><br>
+          </div>
         </div>
-      </div>
       </div>
     </form>
     <br>
@@ -54,7 +53,7 @@
     </div>
     <div class="col">
       <div class="form-floating mb-3">
-        <button mat-flat-button color="primary" (click)='addItem()' >Adicionar</button>
+        <button mat-flat-button color="primary" (click)='addItem()'>Adicionar</button>
       </div>
     </div>
   </div>

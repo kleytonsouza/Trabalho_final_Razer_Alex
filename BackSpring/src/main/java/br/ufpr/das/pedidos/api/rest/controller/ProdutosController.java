@@ -1,13 +1,9 @@
 package br.ufpr.das.pedidos.api.rest.controller;
-
-
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import br.ufpr.das.pedidos.api.rest.model.ProdutoModel;
 import br.ufpr.das.pedidos.api.rest.repository.ProdutoRepository;
 
@@ -19,9 +15,6 @@ public class ProdutosController {
 	
 	@GetMapping(path = "/v1/public/produto/{id}")
 	public ResponseEntity<Optional<ProdutoModel>> consultar(@PathVariable Integer id){
-		
-		System.out.println("Hello world!");
-		
 		Optional<ProdutoModel> produto = repository.findById(id);
 		return new ResponseEntity<>(produto, HttpStatus.OK);
 	}
@@ -34,7 +27,6 @@ public class ProdutosController {
 	
 	@GetMapping(path = "/v1/public/produto/listar")
     public ResponseEntity<Iterable<ProdutoModel>> listar() {
-		
         Iterable<ProdutoModel> produtos = repository.findAll();
         return new ResponseEntity<>(produtos, HttpStatus.OK);
     }
@@ -49,7 +41,5 @@ public class ProdutosController {
     public ResponseEntity<ProdutoModel> atualizar(@RequestBody ProdutoModel produtoModel) {
     	ProdutoModel novoProduto = repository.save(produtoModel);
         return new ResponseEntity<>(novoProduto, HttpStatus.OK);
-    }
-	
-	
+    }	
 }

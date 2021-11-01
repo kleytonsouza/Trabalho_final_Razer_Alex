@@ -25,13 +25,13 @@ export class ListarPedidoComponent implements OnInit {
   pedido = new Pedido(new Date(), this.cliente, this.items);
   clienteId!: number;
 
-  displayedColumns = ['produto', 'quantidade','op'];
+  displayedColumns = ['produto', 'quantidade', 'op'];
   dataSource = new MatTableDataSource<ItemDoPedido>(this.ELEMENT_DATA);
 
   constructor(
     private pedidoService: PedidoService,
     public dialog: MatDialog,
-    public route: ActivatedRoute,
+    public route: ActivatedRoute
   ) {
     this.route.params.subscribe((params) => (this.clienteId = params['id']));
   }
@@ -46,26 +46,24 @@ export class ListarPedidoComponent implements OnInit {
       this.dataSource.data = ite;
     });
   }
+
   inserirPedido() {
     const dialogRef = this.dialog.open(InserirPedidoComponent, {
       minWidth: '300px',
       minHeight: '300px',
       panelClass: 'custom-dialog',
     });
-
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
       this.getAllPedidos();
     });
   }
 
-  deletarPedido(it: ItemDoPedido){
-    if(window.confirm('Tem certeza que voce quer deletar este pedido ?')){
-      this.pedidoService.removerItemPedido(it).subscribe(
-        result => {
-          this.getAllPedidos();
-        });
-     }
-    
+  deletarPedido(it: ItemDoPedido) {
+    if (window.confirm('Tem certeza que voce quer deletar este pedido ?')) {
+      this.pedidoService.removerItemPedido(it).subscribe((result) => {
+        this.getAllPedidos();
+      });
+    }
   }
 }

@@ -1,17 +1,12 @@
 package br.ufpr.das.pedidos.api.rest.model;
-
 import javax.persistence.*;
-
 import java.io.Serializable;
-import java.util.List;
-
 
 @Entity(name = "item_do_pedido")
 public class ItemDoPedidoModel implements Serializable {
 
-
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column
@@ -24,9 +19,8 @@ public class ItemDoPedidoModel implements Serializable {
     private ClienteModel cliente;
 
     @ManyToOne
-    @JoinColumn(name = "pedido_id",referencedColumnName = "id")
+    @JoinColumn(name = "pedido_id", referencedColumnName = "id")
     private PedidoModel mPedido;
-
 
     public int getQuantidade() {
         return quantidade;
@@ -44,7 +38,6 @@ public class ItemDoPedidoModel implements Serializable {
         this.produto = produto;
     }
 
-
     public int getId() {
         return id;
     }
@@ -60,6 +53,7 @@ public class ItemDoPedidoModel implements Serializable {
     public void setCliente(ClienteModel cliente) {
         this.cliente = cliente;
     }
+
     public PedidoModel getPedido() {
         return mPedido;
     }
