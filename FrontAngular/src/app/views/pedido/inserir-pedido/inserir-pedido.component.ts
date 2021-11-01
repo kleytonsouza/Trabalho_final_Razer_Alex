@@ -1,10 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Pedido } from 'src/app/shared/models/cliente';
-import { Cliente } from 'src/app/shared/models/cliente';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { Pedido } from 'src/app/shared/models/cliente.model';
+import { Cliente } from 'src/app/shared/models/cliente.model';
 import { ItemDoPedido } from 'src/app/shared/models/itemdopedido.model';
 import { Produto } from 'src/app/shared/models/produto.model';
 import { InserirClienteComponent } from '../../cliente/inserir-cliente/inserir-cliente.component';

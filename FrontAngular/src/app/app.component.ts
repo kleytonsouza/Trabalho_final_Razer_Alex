@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ClienteService } from './views/cliente/services/cliente.service';
-import { Cliente } from "src/app/shared/models/cliente";
+import { Cliente } from "src/app/shared/models/cliente.model";
 
 @Component({
   selector: 'app-root',

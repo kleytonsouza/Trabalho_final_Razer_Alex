@@ -17,8 +17,7 @@ export class EditarProdutoComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) 
-    public data: Produto,
+    @Inject(MAT_DIALOG_DATA) public data: Produto,
     public dialogRef: MatDialogRef<EditarProdutoComponent>,
     private produtoService: ProdutoService
   ) { }
@@ -30,9 +29,9 @@ export class EditarProdutoComponent implements OnInit {
     })
   }
 
-  atualizar(): void{
+  update(): void{
     if (this.formProduto.valid){
-        this.produtoService.atualizar(this.formProduto.value).subscribe();
+        this.produtoService.update(this.formProduto.value).subscribe();
         this.dialogRef.close();
         this.formProduto.reset();      
     }  

@@ -1,11 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { ClienteService } from '../services/cliente.service';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { Cliente } from '../../../shared/models/cliente';
-import { HttpErrorResponse } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Cliente } from '../../../shared/models/cliente.model';
 import { MatDialogRef } from '@angular/material/dialog';
-
 
 @Component({
   selector: 'app-inserir-cliente',
@@ -14,24 +11,23 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 
 export class InserirClienteComponent implements OnInit {
+  
   public formCliente! : FormGroup;
   public cliente!: Cliente;
+  
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<InserirClienteComponent>, 
-    private clienteService: ClienteService,
-    private router: Router) { }
-  
-   
+    private clienteService: ClienteService
+  ){ }
 
-    ngOnInit(): void {
-      this.formCliente = this.fb.group({
-        id: ['', ],
-        cpf: ['', [Validators.required]],
-        nome: ['', [Validators.required]],
-        sobrenome: ['', [Validators.required]]
-      })
-    
+  ngOnInit(): void {
+    this.formCliente = this.fb.group({
+      id: ['', ],
+      cpf: ['', [Validators.required]],
+      nome: ['', [Validators.required]],
+      sobrenome: ['', [Validators.required]]
+    })
   }
 
   cancel(): void{
@@ -39,31 +35,12 @@ export class InserirClienteComponent implements OnInit {
     this.formCliente.reset();
   }
 
-    inserir(): void{
-      if (this.formCliente.valid){
-         this.clienteService.adicionarCliente(this.formCliente.value).subscribe(
-          result => {});
-          this.dialogRef.close();
-          this.formCliente.reset();
-         // window.location.reload();      
-       }  
-    }
-      
-    
-
-
-    public onAddCliente(addForm: NgForm): void{
-      document.getElementById('formCliente')?.click();
-        this.clienteService.adicionarCliente(addForm.value).subscribe(
-          (response: Cliente) =>{
-            console.log(response);
-            this.clienteService.getClientes();
-          },
-          (error: HttpErrorResponse) =>{
-             alert(error.message);
-          }
-        );
-    }
-
-
+  add(): void{
+    if (this.formCliente.valid){
+      this.clienteService.addCliente(this.formCliente.value).subscribe();
+      this.dialogRef.close();
+      this.formCliente.reset();
+    }  
+  }
+  
 }

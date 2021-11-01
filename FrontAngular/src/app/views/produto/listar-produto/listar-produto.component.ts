@@ -21,43 +21,42 @@ export class ListarProdutoComponent  {
   dataSource = new MatTableDataSource<Produto>(this.ELEMENT_DATA);
   produtos!: Produto[];
 
-  constructor(private produtoService : ProdutoService, public dialog: MatDialog) { }
+  constructor(
+    private produtoService : ProdutoService, 
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void { this.getAllProdutos() }
 
-  editar(produto : Produto) {
+  update(produto : Produto) {
     const dialogRef = this.dialog.open(
-      EditarProdutoComponent,
-      {
+      EditarProdutoComponent,{
         minWidth: '300px',
         minHeight: '300px',
         data: produto
       }
     );
-
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
       this.getAllProdutos();
     });
   }
 
-  inserir() {
+  add() {
     const dialogRef = this.dialog.open(
-      InserirProdutoComponent,
-      {
+      InserirProdutoComponent,{
         minWidth: '300px',
         minHeight: '300px' 
       }
-    );
-
+    )
     dialogRef.afterClosed().subscribe(
       result => {
-      //console.log(`Dialog result: ${result}`);
-      this.getAllProdutos();
-    });
+        this.getAllProdutos();
+      }
+    );
   }
 
-  remover(produto: Produto){
+  delete(produto: Produto){
     const dialogRef = this.dialog.open(RemoverProdutoComponent, {
       minWidth: '300px',
       minHeight: '300px',
@@ -69,8 +68,8 @@ export class ListarProdutoComponent  {
     })  
   }
 
-  listarTodos(){
-    this.produtoService.listarTodos().subscribe(
+  listAll(){
+    this.produtoService.listAll().subscribe(
       (response: Produto[]) =>{
         this.produtos = response;
       },
@@ -81,7 +80,7 @@ export class ListarProdutoComponent  {
   }
 
   public getAllProdutos(){
-    this.produtoService.listarTodos().subscribe(
+    this.produtoService.listAll().subscribe(
       produtos => {
         this.produtos = produtos,
         this.dataSource.data = produtos

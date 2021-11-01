@@ -15,13 +15,13 @@ export class InserirProdutoComponent implements OnInit {
   public produto! : Produto;
   
   constructor(
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<InserirProdutoComponent>,
     private produtoService: ProdutoService
   ) { }
 
   ngOnInit(): void {
-    this.formProduto = this.fb.group({
+    this.formProduto = this.formBuilder.group({
       descricao: ['', [Validators.required]]
     })
   }
@@ -31,9 +31,9 @@ export class InserirProdutoComponent implements OnInit {
     this.formProduto.reset();
   }
 
-  inserir(): void{
+  add(): void{
     if (this.formProduto.valid){
-      this.produtoService.inserir(this.formProduto.value).subscribe();
+      this.produtoService.add(this.formProduto.value).subscribe();
       this.dialogRef.close();
       this.formProduto.reset();
     }  

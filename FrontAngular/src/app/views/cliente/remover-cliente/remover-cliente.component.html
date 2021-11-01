@@ -1,157 +1,25 @@
-
-<!--  
-<div class="container container-fluid">
-    <h1>Editar CLiente</h1>
-    <div class="well">
-        <form #formCliente="ngForm">
-            <div class="form-group col-md-6">
-                <label for="nome">Nome</label>
-                <input type="text" class="form-control" id="nome" name="nome" minlength="2" required
-                [(ngModel)]="cliente.nome" #nome="ngModel">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="sobrenome">Sobrenome</label>
-                <input type="text" class="form-control" id="sobrenome" name="sobrenome" minlength="2" required
-                [(ngModel)]="cliente.sobrenome" #sobrenome="ngModel">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="cpf">CPF</label>
-                <input type="text" class="form-control" id="cpf" name="cpf" minlength="11" maxlength="11" required
-                [(ngModel)]="cliente.cpf" #cpf="ngModel" numerico>
-            </div>
-            <div class="form-group">
-                <button style="margin-right: 20px;" type="button" class="btn btn-primary" (click)="atualizar()" [disabled]="!formCliente.form.valid">
-                    <i class="fa fa-save" aria-hidden="true"></i>
-                    Atualizar
-                </button>
-                <a class="btn btn-secondary" [routerLink]="['/']">
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                    Voltar
-                </a>
-            </div>    
-            <div *ngIf="nome.errors && (nome.dirty || nome.touched)" class="alert alert-danger">
-                <div [hidden]="!nome.errors?.required">
-                    Digite o nome do cliente
-                </div>
-                <div [hidden]="!nome.errors?.minlength">
-                    O nome deve conter ao menos 2 caracteres.
-                </div>
-            </div>
-            <div *ngIf="sobrenome.errors && (nome.dirty || sobrenome.touched)" class="alert alert-danger">
-                <div [hidden]="!sobrenome.errors?.required">
-                    Digite o sobrenome do cliente
-                </div>
-                <div [hidden]="!sobrenome.errors?.minlength">
-                    O sobrenome deve conter ao menos 2 caracteres.
-                </div>
-            </div>
-            <div *ngIf="cpf.errors && (cpf.dirty || cpf.touched)" class="alert alert-danger">
-                <div [hidden]="!cpf.errors?.required">
-                    Digite o cpf do cliente
-                </div>
-                <div [hidden]="!cpf.errors?.minlength">
-                    O CPF deve conter 11 numeros.
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
--->
-
-
-<!-- 
-<div class="container container-fluid">
-    <h1>Novo Cliente</h1>
-    <div class="well">
-        <form #formCliente="ngForm">
-            <div class="form-group col-md-6">
-                <label for="nome">Nome:</label>
-                <input type="text" class="form-control " id="nome" name="nome" minlength="2" required
-                [(ngModel)]="cliente.nome" #nome="ngModel">
-                <div *ngIf="nome.errors && (nome.dirty || nome.touched)" class="alert alert-danger">
-                    <div [hidden]="!nome.errors.required">Digite o nome da pessoa.</div>
-                    <div>O nome deve conter ao menos 2 caracteres.</div>
-                </div>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="sobrenome">Sobrenome:</label>
-                <input type="text" class="form-control " id="sobrenome" name="sobrenome" minlength="2" required
-                [(ngModel)]="cliente.sobrenome" #sobrenome="ngModel">
-                <div *ngIf="sobrenome.errors && (sobrenome.dirty || sobrenome.touched)" class="alert alert-danger">
-                    <div *ngIf="sobrenome.errors && (sobrenome.dirty || sobrenome.touched)" class="alert alert-danger">
-                        <div [hidden]="!sobrenome.errors.required">Digite o nome da pessoa.</div>
-                        <div>O nome deve conter ao menos 2 caracteres.</div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="cpf">CPF:</label>
-                <input type="string" class="form-control " id="cpf" name="cpf" required maxlength="11" minlength="11"
-                [(ngModel)]="cliente.cpf" #cpf="ngModel" numerico mask="CPF_CNPJ">
-                <div *ngIf="cpf.errors && (cpf.dirty || cpf.touched)" class="alert alert-danger">
-                    <div [hidden]="!cpf.errors?.required">
-                        Digite o cpf do cliente
-                    </div>
-                    <div [hidden]="!cpf.errors?.minlength">
-                        O CPF deve conter 11 numeros.
-                    </div>
-                    <div [hidden]="!cpf.errors?.maxlength">
-                        O CPF deve conter 11 numeros.
-                    </div>
-                </div>
-            </div>
-            <a style="margin-right: 20px;" class="btn btn-secondary" [routerLink]="['/']">
-                <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                Voltar
-            </a>
-            <button type="button" class="btn btn-primary" (click)="inserir()" [disabled]="!formCliente.form.valid">
-                <i class="fa fa-save" aria-hidden="true"></i>
-                Salvar
-            </button>
-        </form>
-    </div>
-</div>
--->
-
 <h1 mat-dialog-title>Remover Cliente</h1>
-
-<div mat-dialog-content> 
+<div mat-dialog-content>
     <form class="example-form" [formGroup]="formCliente">
-
-
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>ID</mat-label>
-            <input matInput formControlName="id" name="id">
-          </mat-form-field>
-          <br>
-        
+            <input matInput readonly formControlName="id" name="id">
+        </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>C.P.F</mat-label>
-            <input matInput formControlName="cpf" name="cpf">
-          </mat-form-field>
-          <br>
-
+            <input matInput readonly formControlName="cpf" name="cpf">
+        </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Nome</mat-label>
-            <input matInput formControlName="nome" name="nome">
-          </mat-form-field>
-          <br>
-
-          <mat-form-field class="example-full-width" appearance="fill">
+            <input matInput readonly formControlName="nome" name="nome">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Sobrenome</mat-label>
-            <input matInput formControlName="sobrenome" name="sobrenome">
-          </mat-form-field>
-
-
+            <input matInput readonly formControlName="sobrenome" name="sobrenome">
+        </mat-form-field>
     </form>
-
 </div>
 <div mat-dialog-actions>
-    <button mat-raised-button color="primary" (click)="remover()">Confirmar Remoção</button>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button mat-raised-button color="primary" (click)="delete()">Confirmar Remoção</button>
     <button mat-button (click)="cancel()">Cancelar</button>
 </div>
-
-
-
-
