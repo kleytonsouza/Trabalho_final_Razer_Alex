@@ -32,7 +32,7 @@ export class RemoverProdutoComponent implements OnInit {
 
   delete(): void{
     if (this.formProduto.valid){
-      this.produtoService.remover(this.formProduto.value).subscribe();
+      this.produtoService.delete(this.formProduto.value).subscribe();
       this.dialogRef.close();
       this.formProduto.reset();      
     }  
