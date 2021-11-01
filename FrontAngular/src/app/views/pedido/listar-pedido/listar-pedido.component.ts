@@ -37,7 +37,6 @@ export class ListarPedidoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.pedido);
     this.getAllPedidos();
   }
 
@@ -52,6 +51,7 @@ export class ListarPedidoComponent implements OnInit {
       minWidth: '300px',
       minHeight: '300px',
       panelClass: 'custom-dialog',
+      data: {id: this.clienteId},
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);

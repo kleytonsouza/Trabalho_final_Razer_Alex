@@ -1,8 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Pedido } from 'src/app/shared/models/cliente';
 import { Cliente } from 'src/app/shared/models/cliente';
 import { ItemDoPedido } from 'src/app/shared/models/itemdopedido.model';
@@ -32,10 +32,15 @@ export class InserirPedidoComponent implements OnInit {
     public dialogRef: MatDialogRef<InserirClienteComponent>,
     private pedidoService: PedidoService,
     private router: Router,
-    private clientesService: ClienteService
+    private clientesService: ClienteService,
+    public route: ActivatedRoute,
+    @Inject(MAT_DIALOG_DATA) public data: {
+      id: any
+   }
   ) {}
 
   ngOnInit(): void {
+    this.getOneClientes();
     this.getAllProdutos();
     this.formPedido = this.fb.group({
       id: [''],
@@ -66,7 +71,6 @@ export class InserirPedidoComponent implements OnInit {
           produto: [element.produto],
           cliente: [this.cliente],
         });
-        console.log(this.formItemPedido.value);
         this.pedidoService
           .adicionarItemDoPedido(this.formItemPedido.value)
           .subscribe();
@@ -95,8 +99,8 @@ export class InserirPedidoComponent implements OnInit {
     });
   }
 
-  public getOneClientes(id: number) {
-    this.clientesService.getCliente(id).subscribe((cliente) => {
+  public getOneClientes() {
+    this.clientesService.getCliente(this.data.id).subscribe((cliente) => {
       this.cliente = cliente;
     });
   }
@@ -115,15 +119,10 @@ export class InserirPedidoComponent implements OnInit {
     this.quantidade = event.target.value;
   }
 
-  changeCPF(event: any) {
-    this.cpf = event.target.value;
-  }
 
   addItem() {
     this.items.push(
       new ItemDoPedido(this.quantidade, this.produto, this.cliente)
     );
-    alert(this.quantidade);
-    console.log(this.items);
   }
 }
