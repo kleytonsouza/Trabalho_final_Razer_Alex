@@ -45,7 +45,6 @@ export class InserirPedidoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    alert(formatDate(this.date,'yyyyMMddHHmm',"en-US"))
     this.getOneClientes();
     this.getAllProdutos();
     this.formPedido = this.fb.group({
