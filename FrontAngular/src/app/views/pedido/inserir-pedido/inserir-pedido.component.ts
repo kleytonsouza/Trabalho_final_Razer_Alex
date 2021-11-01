@@ -12,6 +12,7 @@ import { Produto } from 'src/app/shared/models/produto.model';
 import { InserirClienteComponent } from '../../cliente/inserir-cliente/inserir-cliente.component';
 import { ClienteService } from '../../cliente/services/cliente.service';
 import { PedidoService } from '../services/pedido.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-inserir-pedido',
@@ -28,6 +29,8 @@ export class InserirPedidoComponent implements OnInit {
   produtos: Produto[] = [];
   items: ItemDoPedido[] = [];
   pedido = new Pedido(new Date(), this.cliente,);
+  date: Date = new Date()
+  
 
   constructor(
     private fb: FormBuilder,
@@ -42,6 +45,7 @@ export class InserirPedidoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    alert(formatDate(this.date,'yyyyMMddHHmm',"en-US"))
     this.getOneClientes();
     this.getAllProdutos();
     this.formPedido = this.fb.group({
@@ -60,7 +64,7 @@ export class InserirPedidoComponent implements OnInit {
     if (this.formPedido.valid) {
       this.formPedido = this.fb.group({
         id: [''],
-        data: [''],
+        data: [formatDate(this.date,"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'","en-US")],
         cliente: [this.cliente],
         itens: [this.items],
       });

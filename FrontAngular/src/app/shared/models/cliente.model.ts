@@ -18,10 +18,10 @@ export class Cliente {
 
 export class Pedido{
     constructor(
-        public date: Date | String,
+        public data: Date,
         public cliente: Cliente,
     ){
-        this.date = date
+        this.data = data
         this.cliente = cliente;
     }
 }
