@@ -36,8 +36,4 @@ export class ProdutoService {
     return this.http.delete<void>(`${this.apiServerUrl}/v1/public/produto/deletar/${id}`);
   }
 
-  remover(produto: Produto): Observable<Produto>{
-    return this.http.post<Produto>(`${this.apiServerUrl}/v1/public/produto/remover`, produto);
-  }
-
 }
