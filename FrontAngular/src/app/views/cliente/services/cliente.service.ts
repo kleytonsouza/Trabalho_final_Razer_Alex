@@ -7,7 +7,7 @@ import { Cliente } from 'src/app/shared/models/cliente.model';
 @Injectable({providedIn: 'root'})
 export class ClienteService {
   
-  private apiServerUrl = environment.apiBaseUrl;
+  public apiServerUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) { }
 
