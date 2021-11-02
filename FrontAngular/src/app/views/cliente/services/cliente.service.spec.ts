@@ -73,14 +73,16 @@ describe('ClientService', () => {
     clienteService.addCliente(novoCliente).subscribe(
       cliente => {
         expect(cliente.id).toEqual(4, 'id esperada do novo cliente');
-        expect(cliente.cpf).toEqual('99999999999', 'cpf esperado do novo cliente');
+        expect(cliente.cpf).toEqual(novoCliente.cpf, 'cpf esperado do novo cliente');
+        expect(cliente.nome).toEqual(novoCliente.nome, 'nome esperado do novo cliente');
+        expect(cliente.sobrenome).toEqual(novoCliente.sobrenome, 'sobrenome esperado do novo cliente');
         done();
       }, done.fail
     );
     
   });
 
-  it(`updateCliente() deve adicionar um novo cliente à lista`, (done: DoneFn) => {
+  it(`updateCliente() deve atualizar um cliente da lista`, (done: DoneFn) => {
     
     // fazer a atualização do ultimo cliente da lista
     let atualizarCliente = CLIENTESLISTA[CLIENTESLISTA.length-1];
@@ -107,6 +109,21 @@ describe('ClientService', () => {
         expect(cliente.cpf).toEqual(atualizarCliente.cpf, 'cpf esperado do novo cliente');
         expect(cliente.nome).toEqual(atualizarCliente.nome, 'nome esperado do novo cliente');
         expect(cliente.sobrenome).toEqual(atualizarCliente.sobrenome, 'nome esperado do novo cliente');
+        done();
+      }, done.fail
+    );
+    
+  });
+
+  it(`deleteCliente() deve remover um cliente`, (done: DoneFn) => {
+    let deleteCliente = CLIENTESLISTA[CLIENTESLISTA.length-1];
+    CLIENTESLISTA.pop();
+
+    httpClientSpy.post.and.returnValue(of(deleteCliente));
+    
+    clienteService.deleteCliente(deleteCliente).subscribe(
+      cliente => {
+        expect(CLIENTESLISTA).not.toContain(cliente);
         done();
       }, done.fail
     );
