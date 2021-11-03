@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { InserirPedidoComponent } from './inserir-pedido.component';
 
 xdescribe('InserirPedidoComponent', () => {

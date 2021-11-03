@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ListarProdutoComponent } from './listar-produto.component';
 
 xdescribe('ListarProdutoComponent', () => {

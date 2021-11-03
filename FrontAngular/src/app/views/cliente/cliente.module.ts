@@ -14,8 +14,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { RemoverClienteComponent } from './remover-cliente/remover-cliente.component';
 import { MatNativeDateModule } from '@angular/material/core';
 
-
-
 @NgModule({
   declarations: [
     InserirClienteComponent,

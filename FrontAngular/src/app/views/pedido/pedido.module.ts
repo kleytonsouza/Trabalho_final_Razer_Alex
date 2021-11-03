@@ -17,8 +17,6 @@ import {MatListModule} from '@angular/material/list'
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 
-
-
 @NgModule({
   declarations: [
     ListarPedidoComponent,
