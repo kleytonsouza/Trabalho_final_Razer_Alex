@@ -16,7 +16,7 @@ export class RemoverClienteComponent implements OnInit {
   public cliente!: Cliente;
 
   constructor(
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) 
     public data: Cliente,
     public dialogRef: MatDialogRef<RemoverClienteComponent>,
@@ -24,7 +24,7 @@ export class RemoverClienteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.formCliente = this.fb.group({
+    this.formCliente = this.formBuilder.group({
       id: [this.data.id, [Validators.required]],
       cpf: [this.data.cpf, [Validators.required]],
       nome: [this.data.nome, [Validators.required]],
