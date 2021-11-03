@@ -16,13 +16,13 @@ export class InserirClienteComponent implements OnInit {
   public cliente!: Cliente;
   
   constructor(
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<InserirClienteComponent>, 
     private clienteService: ClienteService
   ){ }
 
   ngOnInit(): void {
-    this.formCliente = this.fb.group({
+    this.formCliente = this.formBuilder.group({
       id: ['', ],
       cpf: ['', [Validators.required]],
       nome: ['', [Validators.required]],
