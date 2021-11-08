@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class ProdutoModel {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
 
     @Column(length = 128)

@@ -6,7 +6,7 @@ import java.io.Serializable;
 public class ItemDoPedidoModel implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column
