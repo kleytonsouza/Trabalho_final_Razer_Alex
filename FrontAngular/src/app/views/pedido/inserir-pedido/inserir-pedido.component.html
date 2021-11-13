@@ -7,11 +7,13 @@
       <div class="form-floating mb-3">
         <mat-form-field appearance="fill">
           <mat-label>Produto</mat-label>
-          <mat-select #prod (selectionChange)="changeProduto($event.value)">
+          <mat-select #prod (selectionChange)="changeProduto($event.value)" required>
             <mat-option *ngFor="let produto of produtos" [value]="produto">
               {{produto.descricao}}
             </mat-option>
           </mat-select>
+          <mat-error *ngIf="formPedido.hasError('required')">Escolha um Produto</mat-error>
+          <mat-hint>{{formPedido.value?.sound}}</mat-hint>
         </mat-form-field>
       </div>
     </div>
@@ -23,7 +25,7 @@
           <mat-error *ngIf="formPedido.get('quantidade')?.errors?.required">
             Insira a Quantidade
           </mat-error>
-          <mat-error *ngIf="formPedido.get('quantidade')?.errors?.minlength">
+          <mat-error *ngIf="formPedido.get('quantidade')?.errors?.min">
               A Quantidade deve ser maior que Zero
           </mat-error>
         </mat-form-field>
