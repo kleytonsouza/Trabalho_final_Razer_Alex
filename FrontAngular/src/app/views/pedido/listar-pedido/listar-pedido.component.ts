@@ -6,6 +6,7 @@ import { Cliente } from 'src/app/shared/models/cliente.model';
 import { Pedido } from 'src/app/shared/models/cliente.model';
 import { ItemDoPedido } from 'src/app/shared/models/itemdopedido.model';
 import { Produto } from 'src/app/shared/models/produto.model';
+import { ClienteService } from '../../cliente/services/cliente.service';
 import { InserirPedidoComponent } from '../inserir-pedido/inserir-pedido.component';
 import { PedidoService } from '../services/pedido.service';
 
@@ -16,11 +17,9 @@ import { PedidoService } from '../services/pedido.service';
 })
 export class ListarPedidoComponent implements OnInit {
   ELEMENT_DATA!: ItemDoPedido[];
-
   produto_data: Produto[] = [];
-
   produto!: Produto;
-  cliente = new Cliente(1, '', '', '');
+  cliente!: Cliente;
   items: ItemDoPedido[] = [];
   pedido = new Pedido(new Date(), this.cliente);
   clienteId!: number;
@@ -30,6 +29,7 @@ export class ListarPedidoComponent implements OnInit {
 
   constructor(
     private pedidoService: PedidoService,
+    private clienteService: ClienteService,
     public dialog: MatDialog,
     public route: ActivatedRoute
   ) {
@@ -38,6 +38,7 @@ export class ListarPedidoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllPedidos();
+    this.getCliente();
   }
 
 
@@ -45,6 +46,13 @@ export class ListarPedidoComponent implements OnInit {
     this.pedidoService.getAllItemDoPedido(this.clienteId).subscribe((ite) => {
       this.dataSource.data = ite;
     });
+  }
+
+  public getCliente(){
+    this.clienteService.getCliente(this.clienteId).subscribe((ite) => {
+      this.cliente = ite;
+      console.log(ite)
+    })
   }
 
   inserirPedido() {
