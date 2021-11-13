@@ -2,3 +2,11 @@
     max-width: 800px;
     margin-bottom: 8px;
   }
+
+  p {
+    margin-left: 5px;
+  }
+
+  header{
+    margin-bottom: 7px;
+  }
