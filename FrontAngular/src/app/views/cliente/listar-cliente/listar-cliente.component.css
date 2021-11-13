@@ -14,10 +14,6 @@ table {
 
   }
 
-  .mat-cell-btns {
-    text-align: center;
-    justify-content:center;
-  }
 
   .mat-column-op, td, button{
     overflow: hidden;
@@ -33,5 +29,6 @@ table {
 
   .btn_add_cliente{
     margin: 20px 0;
+    text-align: left;
 
   }

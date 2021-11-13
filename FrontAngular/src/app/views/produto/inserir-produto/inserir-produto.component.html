@@ -3,7 +3,13 @@
     <form class="example-form" [formGroup]="formProduto">
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Descrição</mat-label>
-            <input matInput formControlName="descricao" name="descricao">
+            <input matInput formControlName="descricao" required minlength="2" name="descricao">
+            <mat-error *ngIf="formProduto.get('descricao')?.errors?.required">
+                Insira uma Descrição
+            </mat-error>
+            <mat-error *ngIf="formProduto.get('descricao')?.errors?.minlength">
+                A Descrição deve ter no minimo 2 caracteres
+            </mat-error>
         </mat-form-field>
     </form>
 </div>

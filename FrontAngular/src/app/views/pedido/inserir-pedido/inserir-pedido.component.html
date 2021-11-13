@@ -1,5 +1,5 @@
 <form class="example-form" [formGroup]="formPedido">
-  <div class="row">
+  <div class="row ">
     <h3>Adicionar Produto a lista</h3>
   </div>
   <div class="row">
@@ -43,12 +43,10 @@
         {{it.produto.descricao}}
         <button type="button" class="btn btn-outline-danger btn-sm pull-right" (click)='removeItem(it)'>Remover</button>
       </mat-list-item>
-
     </mat-list>
   </div>
   <div mat-dialog-actions>
     <button mat-raised-button color="primary" (click)="inserir()">Salvar</button>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <button mat-button (click)="cancel()">Cancelar</button>
   </div>
 </form>

@@ -10,3 +10,8 @@ table {
 .custom-dialog >  mat-dialog-container {
   background: var(--background);
 }
+
+.btn_add_pedido{
+  margin: 20px 0;
+
+}

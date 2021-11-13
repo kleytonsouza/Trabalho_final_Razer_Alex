@@ -61,7 +61,7 @@ export class ListarPedidoComponent implements OnInit {
   }
 
   deletarPedido(it: ItemDoPedido) {
-    if (window.confirm('Tem certeza que voce quer deletar este pedido ?')) {
+    if (window.confirm('Tem certeza que voce quer deletar este produto ?')) {
       this.pedidoService.removerItemPedido(it).subscribe((result) => {
         this.getAllPedidos();
       });
