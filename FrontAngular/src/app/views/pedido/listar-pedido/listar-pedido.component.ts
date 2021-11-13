@@ -40,6 +40,7 @@ export class ListarPedidoComponent implements OnInit {
     this.getAllPedidos();
   }
 
+
   public getAllPedidos() {
     this.pedidoService.getAllItemDoPedido(this.clienteId).subscribe((ite) => {
       this.dataSource.data = ite;

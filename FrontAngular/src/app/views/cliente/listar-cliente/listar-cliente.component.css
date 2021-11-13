@@ -7,3 +7,31 @@ table {
     font-size: 14px;
     width: 100%;
   }
+
+  .box_search {
+
+    margin: 10px;
+
+  }
+
+  .mat-cell-btns {
+    text-align: center;
+    justify-content:center;
+  }
+
+  .mat-column-op, td, button{
+    overflow: hidden;
+    margin-right: 50px;
+    width: 30;
+    text-overflow: ellipsis;
+    white-space: nowrap
+  }
+
+  #options {
+    text-align: center;
+  }
+
+  .btn_add_cliente{
+    margin: 20px 0;
+
+  }

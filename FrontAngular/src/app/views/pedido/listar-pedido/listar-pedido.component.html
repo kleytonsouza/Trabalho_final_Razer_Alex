@@ -1,8 +1,8 @@
 <div class="container container-fluid">
   <br>
   <button mat-raised-button color="primary" (click)="inserirPedido()">Incluir Pedido </button><br><br>
-  <h1>Lista de Pedido de {{cliente.nome}}</h1>
-  <mat-label>Pesquisar</mat-label>
+  <h1>Lista de Pedido de {{ cliente.id }}</h1>
+ 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="produto">
       <th mat-header-cell *matHeaderCellDef> Produto </th>

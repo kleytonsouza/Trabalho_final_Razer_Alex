@@ -14,6 +14,8 @@ export class Cliente {
         public nome: string,
         public sobrenome: string
     ){}
+
+   
 }
 
 export class Pedido{
