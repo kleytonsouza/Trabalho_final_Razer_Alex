@@ -3,20 +3,41 @@
     <form class="example-form" [formGroup]="formCliente">
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>C.P.F</mat-label>
-            <input matInput formControlName="cpf" name="cpf">
+            <input matInput formControlName="cpf" required minlength="11" maxlength="11" name="cpf">
+            <mat-error *ngIf="formCliente.get('cpf')?.errors?.required">
+                Insira o CPF
+            </mat-error>
+            <mat-error *ngIf="formCliente.get('cpf')?.errors?.minlength">
+                CPF Deve ter no minimo 11 numeros
+            </mat-error>
+            <mat-error *ngIf="formCliente.get('cpf')?.errors?.maxlength">
+                CPF Deve ter no maximo 11 numeros
+            </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Nome</mat-label>
-            <input matInput formControlName="nome" name="nome">
+            <input matInput formControlName="nome" required minlength="2" name="nome">
+            <mat-error *ngIf="formCliente.get('nome')?.errors?.required">
+                Insira um nome
+            </mat-error>
+            <mat-error *ngIf="formCliente.get('nome')?.errors?.minlength">
+                O nome deve ter no minimo 2 caracteres
+            </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Sobrenome</mat-label>
-            <input matInput formControlName="sobrenome" name="sobrenome">
+            <mat-label>Sobrenome</mat-label>
+            <input matInput formControlName="sobrenome" required minlength="2" name="sobrenome">
+            <mat-error *ngIf="formCliente.get('sobrenome')?.errors?.required">
+                Insira um Sobrenome
+            </mat-error>
+            <mat-error *ngIf="formCliente.get('sobrenome')?.errors?.minlength">
+                O Sobrenome deve ter no minimo 2 caractres
+            </mat-error>
         </mat-form-field>
     </form>
 </div>
 <div mat-dialog-actions>
-    <button mat-raised-button color="primary" (click)="add()">
+    <button mat-raised-button color="primary" [disabled]="!formCliente.valid" (click)="add()">
         Salvar
     </button>
     <button mat-button (click)="cancel()">
