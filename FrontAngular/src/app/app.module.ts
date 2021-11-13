@@ -22,17 +22,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { ListarClienteComponent } from './views/cliente/listar-cliente/listar-cliente.component';
 import { PedidoModule } from './views/pedido/pedido.module';
 import { MatOptionModule } from '@angular/material/core';
-import { MinimoValidatorDirective } from './shared/directives/minimo-validator.directive';
-import { CpfValidatorDirective } from './shared/directives/cpf-validator.directive';
+
 
 @NgModule({
   declarations: 
   [
     AppComponent,
     HomeComponent,
-    ListarClienteComponent,
-    MinimoValidatorDirective,
-    CpfValidatorDirective
+    ListarClienteComponent
   ],
   imports: 
   [

@@ -19,13 +19,19 @@
       <div class="form-floating mb-3">
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Quantidade</mat-label>
-          <input type="number" matInput placeholder="0" (change)="changeValue($event)" name="quantidade">
+          <input type="number" matInput placeholder="0" required min="1" (change)="changeValue($event)" name="quantidade">
+          <mat-error *ngIf="formPedido.get('quantidade')?.errors?.required">
+            Insira a Quantidade
+          </mat-error>
+          <mat-error *ngIf="formPedido.get('quantidade')?.errors?.minlength">
+              A Quantidade deve ser maior que Zero
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
     <div class="col">
       <div class="form-floating mb-3">
-        <button mat-flat-button color="primary" (click)='addItem()'>Adicionar</button>
+        <button mat-flat-button color="primary" [disabled]="!formPedido.valid" (click)='addItem()'>Adicionar</button>
       </div>
     </div>
   </div>
