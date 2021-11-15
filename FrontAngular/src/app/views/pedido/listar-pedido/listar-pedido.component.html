@@ -2,7 +2,7 @@
   <div class="btn_add_pedido">
     <button mat-raised-button color="primary" (click)="inserirPedido()">Incluir Pedido </button>
   </div>
-  <h1>Lista de Produtos do cliente "colocar o nome do cliente"</h1>
+  <h1>Lista de Produtos do cliente {{ cliente.nome }}</h1>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="produto">
       <th mat-header-cell *matHeaderCellDef> Produto </th>
@@ -27,4 +27,5 @@
       <td class="mat-cell" colspan="4">Nenhum Produto encontrado</td>
     </tr>
   </table>
+  <button routerLink="../../../clientes/listar" class="btn btn-lg btn-danger" style="float: right; margin-top: 12px;">Voltar</button>
 </div>

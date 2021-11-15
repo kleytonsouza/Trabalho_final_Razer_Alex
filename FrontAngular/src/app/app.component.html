@@ -3,6 +3,10 @@
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="">
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </button>
     <button mat-menu-item routerLink="clientes/listar">
       <mat-icon>person</mat-icon>
       <span>Clientes</span>
@@ -12,6 +16,6 @@
       <span>Produtos</span>
     </button>
   </mat-menu>
-  <span>DAS - Trabalho Desenvolvimento Web </span>
+  <span><button type="button" class="btn btn-success" routerLink="">DAS - Trabalho Desenvolvimento Web </button></span>
 </mat-toolbar>
 <router-outlet></router-outlet>

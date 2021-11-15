@@ -51,7 +51,6 @@ export class ListarPedidoComponent implements OnInit {
   public getCliente(){
     this.clienteService.getCliente(this.clienteId).subscribe((ite) => {
       this.cliente = ite;
-      console.log(ite)
     })
   }
 
