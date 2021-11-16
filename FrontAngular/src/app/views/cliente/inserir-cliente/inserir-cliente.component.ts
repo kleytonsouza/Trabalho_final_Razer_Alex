@@ -36,11 +36,18 @@ export class InserirClienteComponent implements OnInit {
   }
 
   add(): void{
-    if (this.formCliente.valid){
-      this.clienteService.addCliente(this.formCliente.value).subscribe();
-      this.dialogRef.close();
-      this.formCliente.reset();
-    }  
+    this.clienteService.getClienteByCpf(this.formCliente.value['cpf']).subscribe((ite) => {
+      if(ite.length == 0){
+       if (this.formCliente.valid){
+          this.clienteService.addCliente(this.formCliente.value).subscribe();
+          this.dialogRef.close();
+          this.formCliente.reset();
+        }
+      }
+      else {
+        alert("Ja possui cliente cadastrado com este CPF")
+      }
+    })
   }
   
 }
