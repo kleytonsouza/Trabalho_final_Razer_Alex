@@ -125,9 +125,13 @@ export class InserirPedidoComponent implements OnInit {
   }
 
 
-  addItem() {
-    this.items.push(
-      new ItemDoPedido(this.quantidade, this.produto, this.cliente)
-    );
+    addItem() {
+    if(this.quantidade <= 0){
+      alert("Quantidade deve ser maior que 0")
+    }else{
+      this.items.push(
+        new ItemDoPedido(this.quantidade, this.produto, this.cliente)
+      ); 
+    }
   }
 }
