@@ -30,6 +30,12 @@ public class ClienteController {
         return new ResponseEntity<>(cliente, HttpStatus.OK);
     }
 
+    @GetMapping(path = "/v1/public/cliente/cpf/{cpf}")
+    public ResponseEntity<Iterable<ClienteModel>> consultarCpf(@PathVariable String cpf) {
+        Iterable<ClienteModel> cliente = repository.findAllByCpf(cpf);
+        return new ResponseEntity<>(cliente, HttpStatus.OK);
+    }
+
 
     @GetMapping(path = "/v1/public/cliente/{clienteId}/pedidos")
     public ResponseEntity<Optional<PedidoModel>> consultarPedidos(@PathVariable Integer clienteId) {
