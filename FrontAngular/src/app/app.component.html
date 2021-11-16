@@ -1,21 +1,8 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="">
-      <mat-icon>home</mat-icon>
-      <span>Home</span>
-    </button>
-    <button mat-menu-item routerLink="clientes/listar">
-      <mat-icon>person</mat-icon>
-      <span>Clientes</span>
-    </button>
-    <button mat-menu-item routerLink="produtos/listar">
-      <mat-icon>inventory_2</mat-icon>
-      <span>Produtos</span>
-    </button>
-  </mat-menu>
+  <button mat-button routerLink="">Inicio</button>
+  <button mat-button routerLink="clientes/listar">Cliente</button>
+  <button mat-button routerLink="produtos/listar">Produto</button>
   <span><button type="button" class="btn btn-success" routerLink="">DAS - Trabalho Desenvolvimento Web </button></span>
 </mat-toolbar>
+
 <router-outlet></router-outlet>
