@@ -18,6 +18,10 @@ export class ClienteService {
   getCliente(clienteID: number): Observable<Cliente>{
     return this.http.get<Cliente>(`${this.apiServerUrl}/v1/public/cliente/${clienteID}`);
   }
+  
+  getClienteByCpf(cpf: string): Observable<Cliente[]>{
+    return this.http.get<Cliente[]>(`${this.apiServerUrl}/v1/public/cliente/cpf/${cpf}`);
+  }
 
   addCliente(cliente: Cliente): Observable<Cliente>{
     return this.http.post<Cliente>(`${this.apiServerUrl}/v1/public/cliente/salvar`, cliente);
