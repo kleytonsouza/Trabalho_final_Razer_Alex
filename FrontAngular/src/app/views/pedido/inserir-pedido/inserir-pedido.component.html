@@ -21,7 +21,7 @@
       <div class="form-floating mb-3">
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Quantidade</mat-label>
-          <input type="number" matInput placeholder="0" required min="1" name="quantidade">
+          <input type="number" matInput placeholder="0" required min="1" (change)="changeValue($event)" name="quantidade">
           <mat-error *ngIf="formPedido.get('quantidade')?.errors?.required">
             Insira a Quantidade
           </mat-error>
