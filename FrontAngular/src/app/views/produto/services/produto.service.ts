@@ -31,8 +31,8 @@ export class ProdutoService {
     return this.http.post<Produto>(`${this.apiServerUrl}/v1/public/produto/atualizar`, produto);
   }
 
-  delete(id: number): Observable<void>{
-    return this.http.delete<void>(`${this.apiServerUrl}/v1/public/produto/deletar/${id}`);
+  delete(produto: Produto): Observable<Produto>{
+    return this.http.post<Produto>(`${this.apiServerUrl}/v1/public/produto/remover`, produto);
   }
 
 }

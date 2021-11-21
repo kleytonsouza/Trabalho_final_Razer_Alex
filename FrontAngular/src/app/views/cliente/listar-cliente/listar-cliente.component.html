@@ -4,7 +4,7 @@
   </div>
   <h1>Lista de Clientes</h1>
   <mat-label>Pesquisar</mat-label>
-  <input matInput (keyup)="applyFilter($event)" class="box_search" placeholder="Ex. André" #input>
+    <input matInput (keyup)="applyFilter($event)" class="box_search" #input>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> ID </th>
