@@ -12,15 +12,13 @@ public class ItemDoPedidoModel implements Serializable {
     @Column
     private int quantidade;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
+    @JoinColumn(name = "produto_id", referencedColumnName = "id")
     private ProdutoModel produto;
-
-    @OneToOne(cascade = CascadeType.MERGE)
-    private ClienteModel cliente;
 
     @ManyToOne
     @JoinColumn(name = "pedido_id", referencedColumnName = "id")
-    private PedidoModel mPedido;
+    private PedidoModel pedido;
 
     public int getQuantidade() {
         return quantidade;
@@ -46,19 +44,11 @@ public class ItemDoPedidoModel implements Serializable {
         this.id = id;
     }
 
-    public ClienteModel getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(ClienteModel cliente) {
-        this.cliente = cliente;
-    }
-
     public PedidoModel getPedido() {
-        return mPedido;
+        return pedido;
     }
 
-    public void setPedido(PedidoModel mPedido) {
-        this.mPedido = mPedido;
+    public void setPedido(PedidoModel pedido) {
+        this.pedido = pedido;
     }
 }

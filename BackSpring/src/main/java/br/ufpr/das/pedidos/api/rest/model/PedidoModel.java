@@ -13,7 +13,8 @@ public class PedidoModel {
     @Column
     private Date data;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", referencedColumnName = "id")
     private ClienteModel cliente;
 
     public int getId() {
