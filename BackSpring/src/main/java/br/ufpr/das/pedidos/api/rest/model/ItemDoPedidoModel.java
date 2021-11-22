@@ -1,9 +1,9 @@
 package br.ufpr.das.pedidos.api.rest.model;
 import javax.persistence.*;
-import java.io.Serializable;
+
 
 @Entity(name = "item_do_pedido")
-public class ItemDoPedidoModel implements Serializable {
+public class ItemDoPedidoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
