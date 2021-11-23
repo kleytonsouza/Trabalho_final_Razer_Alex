@@ -26,7 +26,7 @@ const routes: Routes = [
     component: ListarClienteComponent
   },
   {
-    path: 'clientes/pedido',
+    path: 'pedidos',
     component: ListarPedidoComponent
   },
   {
@@ -55,18 +55,18 @@ const routes: Routes = [
   },
   {
     path: 'pedidos',
-    redirectTo: 'pedidos/listar/1'
+    redirectTo: 'pedidos'
   },
   {
-    path: 'pedidos/listar/:id',
+    path: 'pedidos',
     component: ListarPedidoComponent
   },
   {
-    path: 'pedidos/novo',
+    path: 'pedidos',
     component: InserirPedidoComponent
   },
   {
-    path: 'pedidos/editar/:id',
+    path: 'pedidos/:id',
     component: EditarPedidoComponent
   }
 ];

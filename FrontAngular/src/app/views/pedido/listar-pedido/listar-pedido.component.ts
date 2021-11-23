@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Cliente } from 'src/app/shared/models/cliente.model';
-import { Pedido } from 'src/app/shared/models/cliente.model';
+import { Pedido } from 'src/app/shared/models/pedido.model';
 import { ItemDoPedido } from 'src/app/shared/models/itemdopedido.model';
 import { Produto } from 'src/app/shared/models/produto.model';
 import { ClienteService } from '../../cliente/services/cliente.service';
@@ -21,7 +21,7 @@ export class ListarPedidoComponent implements OnInit {
   produto!: Produto;
   cliente!: Cliente;
   items: ItemDoPedido[] = [];
-  pedido = new Pedido(new Date(), this.cliente);
+  //pedido = new Pedido(new Date(), this.cliente);
   clienteId!: number;
 
   displayedColumns = ['produto', 'quantidade', 'op'];

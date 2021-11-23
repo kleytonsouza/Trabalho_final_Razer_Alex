@@ -3,7 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Pedido } from 'src/app/shared/models/cliente.model';
+import { Pedido } from 'src/app/shared/models/pedido.model';
 import { Cliente } from 'src/app/shared/models/cliente.model';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -28,7 +28,7 @@ export class InserirPedidoComponent implements OnInit {
   cliente: Cliente = new Cliente(0, '', '', '');
   produtos: Produto[] = [];
   items: ItemDoPedido[] = [];
-  pedido = new Pedido(new Date(), this.cliente,);
+  //pedido = new Pedido(new Date(), this.cliente,);
   date: Date = new Date()
   
 
@@ -36,7 +36,7 @@ export class InserirPedidoComponent implements OnInit {
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<InserirClienteComponent>,
     private pedidoService: PedidoService,
-    private router: Router,
+    //private router: Router,
     private clientesService: ClienteService,
     public route: ActivatedRoute,
     @Inject(MAT_DIALOG_DATA) public data: {

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-imports: [HttpClientModule, HttpClient];
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Pedido } from 'src/app/shared/models/cliente.model';
+import { Pedido } from 'src/app/shared/models/pedido.model';
 import { Produto } from 'src/app/shared/models/produto.model';
 import { ItemDoPedido } from 'src/app/shared/models/itemdopedido.model';
+
+//imports: [HttpClientModule, HttpClient];
 
 @Injectable({
   providedIn: 'root',
@@ -17,66 +18,43 @@ export class PedidoService {
 
   public getPedidos(): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(
-      `${this.apiServerUrl}/v1/public/pedido/listar`
+      `${this.apiServerUrl}/pedidos`
     );
   }
 
   public getPedido(pedidoID: number): Observable<Pedido> {
-    return this.http.get<Pedido>(
-      `${this.apiServerUrl}/v1/public/pedido/${pedidoID}`
-    );
+    return this.http.get<Pedido>(`${this.apiServerUrl}/pedidos/${pedidoID}`);
   }
 
   public adicionarPedido(pedido: Pedido): Observable<Pedido> {
-    return this.http.post<Pedido>(
-      `${this.apiServerUrl}/v1/public/pedido/salvar`,
-      pedido
-    );
+    return this.http.post<Pedido>(`${this.apiServerUrl}/pedidos`,  pedido);
   }
 
   public adicionarItemDoPedido(item: ItemDoPedido): Observable<ItemDoPedido> {
-    return this.http.post<ItemDoPedido>(
-      `${this.apiServerUrl}/v1/public/itemDoPedido/salvar`,
-      item
-    );
+    return this.http.post<ItemDoPedido>(`${this.apiServerUrl}/itemdopedido`, item );
   }
 
   public getAllItemDoPedido(id: number): Observable<ItemDoPedido[]> {
-    return this.http.get<ItemDoPedido[]>(
-      `${this.apiServerUrl}/v1/public/pedido/item/listar/${id}`
-    );
+    return this.http.get<ItemDoPedido[]>(`${this.apiServerUrl}/pedidos/${id}`);
   }
 
   public atualizarPedido(pedido: Pedido): Observable<Pedido> {
-    return this.http.post<Pedido>(
-      `${this.apiServerUrl}/v1/public/pedido/atualizar`,
-      pedido
-    );
+    return this.http.post<Pedido>(`${this.apiServerUrl}/pedidos/${pedido.id}`, pedido);
   }
 
   public removerPedido(pedido: Pedido): Observable<Pedido> {
-    return this.http.post<Pedido>(
-      `${this.apiServerUrl}/v1/public/pedido/remover`,
-      pedido
-    );
+    return this.http.post<Pedido>(`${this.apiServerUrl}/v1/public/pedido/remover`, pedido);
   }
 
   public removerItemPedido(item: ItemDoPedido): Observable<ItemDoPedido> {
-    return this.http.post<ItemDoPedido>(
-      `${this.apiServerUrl}/v1/public/itemDoPedido/remover`,
-      item
-    );
+    return this.http.post<ItemDoPedido>(`${this.apiServerUrl}/v1/public/itemDoPedido/remover`, item);
   }
 
   public deletarPedido(pedidoID: number): Observable<void> {
-    return this.http.delete<void>(
-      `${this.apiServerUrl}/v1/public/pedido/deletar/${pedidoID}`
-    );
+    return this.http.delete<void>(`${this.apiServerUrl}/v1/public/pedido/deletar/${pedidoID}` );
   }
 
   public getProdutos(): Observable<Produto[]> {
-    return this.http.get<Produto[]>(
-      `${this.apiServerUrl}/v1/public/produto/listar`
-    );
+    return this.http.get<Produto[]>(`${this.apiServerUrl}/v1/public/produto/listar`);
   }
 }

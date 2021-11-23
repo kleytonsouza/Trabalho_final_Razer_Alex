@@ -1,4 +1,3 @@
-import { ItemDoPedido } from "./itemdopedido.model";
 
 export interface Cliente{
     id: number;
@@ -14,16 +13,6 @@ export class Cliente {
         public nome: string,
         public sobrenome: string
     ){}
-
    
 }
 
-export class Pedido{
-    constructor(
-        public data: Date,
-        public cliente: Cliente,
-    ){
-        this.data = data
-        this.cliente = cliente;
-    }
-}
