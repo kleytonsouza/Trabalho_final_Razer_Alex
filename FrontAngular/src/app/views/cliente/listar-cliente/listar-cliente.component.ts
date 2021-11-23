@@ -45,8 +45,8 @@ export class ListarClienteComponent  {
     );
   }
 
-  listOrdens(cliente : Cliente){
-    this.router.navigate(['/pedidos', cliente.id]);
+  listOrdens(cliente: Cliente){
+    this.router.navigate(['/pedidos/cliente/',cliente.id]);
   }
 
   add() {

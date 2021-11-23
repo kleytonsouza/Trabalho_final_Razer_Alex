@@ -62,6 +62,10 @@ const routes: Routes = [
     component: ListarPedidoComponent
   },
   {
+    path: 'pedidos/cliente/:id',
+    component: ListarPedidoComponent
+  },
+  {
     path: 'pedidos',
     component: InserirPedidoComponent
   },

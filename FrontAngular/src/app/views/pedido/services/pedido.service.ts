@@ -5,8 +5,9 @@ import { environment } from 'src/environments/environment';
 import { Pedido } from 'src/app/shared/models/pedido.model';
 import { Produto } from 'src/app/shared/models/produto.model';
 import { ItemDoPedido } from 'src/app/shared/models/itemdopedido.model';
+import { Cliente } from 'src/app/shared/models/cliente.model';
 
-//imports: [HttpClientModule, HttpClient];
+imports: [HttpClientModule, HttpClient];
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +25,11 @@ export class PedidoService {
 
   public getPedido(pedidoID: number): Observable<Pedido> {
     return this.http.get<Pedido>(`${this.apiServerUrl}/pedidos/${pedidoID}`);
+  }
+
+  public getPedidoByCliente(clienteID: number): Observable<Pedido> {
+    console.log(clienteID);
+    return this.http.get<Pedido>(`${this.apiServerUrl}/pedidos/cliente/${clienteID}`);
   }
 
   public adicionarPedido(pedido: Pedido): Observable<Pedido> {
