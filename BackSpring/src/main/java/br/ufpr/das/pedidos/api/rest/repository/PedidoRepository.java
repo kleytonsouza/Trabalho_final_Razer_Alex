@@ -9,11 +9,9 @@ import java.util.Optional;
 
 public interface PedidoRepository extends JpaRepository<PedidoModel, Integer> {
 
+Optional<PedidoModel> findById(Integer integer);
 
-}
-
-
-//Optional<PedidoModel> findById(Integer integer);
-//
 //@Query("SELECT t FROM item_do_pedido t WHERE pedido_id = ?1")
 // findItemByCliente(Integer id);
+
+}

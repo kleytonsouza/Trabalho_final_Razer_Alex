@@ -3,15 +3,18 @@
     <form class="example-form" [formGroup]="formCliente">
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>C.P.F</mat-label>
-            <input matInput formControlName="cpf" required minlength="11" maxlength="11" name="cpf" numerico>
+            <input matInput formControlName="cpf" required minlength="11" maxlength="11" name="cpf">
             <mat-error *ngIf="formCliente.get('cpf')?.errors?.required">
                 Insira o CPF
             </mat-error>
+            <mat-error *ngIf="formCliente.get('cpf')?.errors?.pattern">
+                Insira só números
+            </mat-error>
             <mat-error *ngIf="formCliente.get('cpf')?.errors?.minlength">
-                CPF Deve ter no minimo 11 numeros
+                CPF deve conter 11 números
             </mat-error>
             <mat-error *ngIf="formCliente.get('cpf')?.errors?.maxlength">
-                CPF Deve ter no maximo 11 numeros
+                CPF deve conter 11 números
             </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">

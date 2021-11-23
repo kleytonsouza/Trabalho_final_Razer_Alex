@@ -40,7 +40,6 @@ export class ListarClienteComponent  {
     );
     dialogRef.afterClosed().subscribe(
       result => {
-        console.log(`Dialog result: ${result}`);
         this.getAllClientes();
       }
     );

@@ -1,4 +1,3 @@
-/* Structure */
 table {
     width: 100%;
   }
@@ -9,21 +8,18 @@ table {
   }
 
   .box_search {
-
     margin: 10px;
 
   }
 
-
-  .mat-column-op, td, button{
-    overflow: hidden;
-    margin-right: 50px;
-    width: 30;
+  .mat-mini-fab{
+    margin-right: 20px;
+    width: 40;
     text-overflow: ellipsis;
-    white-space: nowrap
+    
   }
 
-  #options {
+  #options, #options_buttons{
     text-align: center;
   }
 

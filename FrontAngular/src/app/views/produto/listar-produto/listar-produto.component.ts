@@ -69,7 +69,7 @@ export class ListarProdutoComponent  {
   }
 
   listAll(){
-    this.produtoService.listAll().subscribe(
+    this.produtoService.getProdutos().subscribe(
       (response: Produto[]) =>{
         this.produtos = response;
       },
@@ -80,7 +80,7 @@ export class ListarProdutoComponent  {
   }
 
   public getAllProdutos(){
-    this.produtoService.listAll().subscribe(
+    this.produtoService.getProdutos().subscribe(
       produtos => {
         this.produtos = produtos,
         this.dataSource.data = produtos

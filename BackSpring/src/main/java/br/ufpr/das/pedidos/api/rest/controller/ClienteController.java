@@ -11,8 +11,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.PrintStream;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,8 +36,9 @@ public class ClienteController {
 
        
     @GetMapping("/cpf/{cpf}")
-    public ClienteModel consultarCpf(Integer cpf) {
-        return repository.findByCpf(cpf);
+    public ClienteModel consultarCpf(@PathVariable String cpf) {
+    	 return repository.findByCpf(cpf);
+        
     }
 
 
@@ -77,7 +76,7 @@ public class ClienteController {
         if (clienteUpdate == null) {
         	throw new EmptyResultDataAccessException(1);
         }
-        BeanUtils.copyProperties(cliente, clienteUpdate, "clienteId");
+        BeanUtils.copyProperties(cliente, clienteUpdate, "id");
         repository.save(clienteUpdate);
         return ResponseEntity.ok(clienteUpdate);
     }

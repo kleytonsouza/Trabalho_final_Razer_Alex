@@ -7,3 +7,9 @@
 .example-full-width{
     width: 100%;
 }
+
+
+.mat-form-field{
+    padding-bottom: 20px;
+}
+

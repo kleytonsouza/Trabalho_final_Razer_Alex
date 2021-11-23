@@ -31,7 +31,7 @@ export class EditarProdutoComponent implements OnInit {
 
   update(): void{
     if (this.formProduto.valid){
-        this.produtoService.update(this.formProduto.value).subscribe();
+        this.produtoService.updateProduto(this.formProduto.value).subscribe();
         this.dialogRef.close();
         this.formProduto.reset();      
     }  

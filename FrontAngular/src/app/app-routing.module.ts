@@ -30,27 +30,27 @@ const routes: Routes = [
     component: ListarPedidoComponent
   },
   {
-    path: 'clientes/novo',
+    path: 'clientes',
     component: InserirClienteComponent
   },
   {
-    path: 'clientes/editar/:cpf',
+    path: 'clientes/:id',
     component: EditarClienteComponent
   },
   {
     path: 'produtos',
-    redirectTo: 'produtos/listar'
+    redirectTo: 'produtos'
   },
   {
-    path: 'produtos/listar',
+    path: 'produtos',
     component: ListarProdutoComponent
   },
   {
-    path: 'produtos/novo',
+    path: 'produtos',
     component: InserirProdutoComponent
   },
   {
-    path: 'produtos/editar/:id',
+    path: 'produtos/:id',
     component: EditarProdutoComponent
   },
   {

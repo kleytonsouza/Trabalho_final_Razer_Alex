@@ -15,24 +15,24 @@ export class ProdutoService {
   
   constructor(private http: HttpClient) { }
   
-  listAll(): Observable<Produto[]>{
-    return this.http.get<Produto[]>(`${this.apiServerUrl}/v1/public/produto/listar`);
+  getProdutos(): Observable<Produto[]>{
+    return this.http.get<Produto[]>(`${this.apiServerUrl}/produtos`);
   }
    
-  add(produto: Produto): Observable<Produto>{
-    return this.http.post<Produto>(`${this.apiServerUrl}/v1/public/produto/salvar`, produto);
+  addProduto(produto: Produto): Observable<Produto>{
+    return this.http.post<Produto>(`${this.apiServerUrl}/produtos`, produto);
   }
 
   findById(id: number): Observable<Produto>{
-    return this.http.get<Produto>(`${this.apiServerUrl}/v1/public/produto/${id}`);
+    return this.http.get<Produto>(`${this.apiServerUrl}/produtos/${id}`);
   }
 
-  update(produto: Produto): Observable<Produto>{
-    return this.http.post<Produto>(`${this.apiServerUrl}/v1/public/produto/atualizar`, produto);
+  updateProduto(produto: Produto): Observable<Produto>{
+    return this.http.put<Produto>(`${this.apiServerUrl}/produtos/${produto.id}`, produto);
   }
 
-  delete(produto: Produto): Observable<Produto>{
-    return this.http.post<Produto>(`${this.apiServerUrl}/v1/public/produto/remover`, produto);
+  deleteProduto(produto: Produto): Observable<Produto>{
+    return this.http.delete<Produto>(`${this.apiServerUrl}/produtos/${produto.id}`);
   }
 
 }

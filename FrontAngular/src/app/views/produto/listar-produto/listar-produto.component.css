@@ -9,32 +9,19 @@ table {
 
   .btn_add_produto{
     margin: 20px 0;
-
   }
-
 
   .box_search {
-
     margin: 10px;
-
   }
 
-  .mat-cell-btns {
-    text-align: center;
-    justify-content:center;
-  }
-
-  
-  .btn_option{
-    overflow: hidden;
-    margin-left: 350px;
-    margin-right: 70px;
-    width: 50;
+  .mat-mini-fab{
+    margin-right: 20px;
+    width: 40;
     text-overflow: ellipsis;
-    white-space: nowrap
+    
   }
 
-
-  #options {
+  #options, #options_buttons{
     text-align: center;
   }

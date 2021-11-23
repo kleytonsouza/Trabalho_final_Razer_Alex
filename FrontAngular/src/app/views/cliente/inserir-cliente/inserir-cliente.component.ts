@@ -24,7 +24,7 @@ export class InserirClienteComponent implements OnInit {
   ngOnInit(): void {
     this.formCliente = this.formBuilder.group({
       id: ['', ],
-      cpf: ['', [Validators.required]],
+      cpf: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       nome: ['', [Validators.required]],
       sobrenome: ['', [Validators.required]]
     })
@@ -49,5 +49,6 @@ export class InserirClienteComponent implements OnInit {
       }
     })
   }
+  
   
 }

@@ -16,7 +16,7 @@ export class ClienteService {
   }
 
   getCliente(clienteID: number): Observable<Cliente>{
-    return this.http.get<Cliente>(`${this.apiServerUrl}clientes/${clienteID}`);
+    return this.http.get<Cliente>(`${this.apiServerUrl}/clientes/${clienteID}`);
   }
   
   getClienteByCpf(cpf: number): Observable<Cliente[]>{
@@ -32,8 +32,6 @@ export class ClienteService {
   }
 
   deleteCliente(clienteID: number): Observable<Cliente>{
-    console.log(clienteID);
-    console.log("melda");
     return this.http.delete<Cliente>(`${this.apiServerUrl}/clientes/${clienteID}`);
   }
 

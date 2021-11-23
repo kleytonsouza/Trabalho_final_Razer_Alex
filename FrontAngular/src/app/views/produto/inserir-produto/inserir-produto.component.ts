@@ -33,7 +33,7 @@ export class InserirProdutoComponent implements OnInit {
 
   add(): void{
     if (this.formProduto.valid){
-      this.produtoService.add(this.formProduto.value).subscribe();
+      this.produtoService.addProduto(this.formProduto.value).subscribe();
       this.dialogRef.close();
       this.formProduto.reset();
     }  
