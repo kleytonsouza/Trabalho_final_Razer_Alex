@@ -3,7 +3,7 @@
     <form class="example-form" [formGroup]="formCliente">
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>C.P.F</mat-label>
-            <input matInput numerico formControlName="cpf" required minlength="11" maxlength="11" name="cpf">
+            <input matInput formControlName="cpf" required minlength="11" maxlength="11" name="cpf" numerico>
             <mat-error *ngIf="formCliente.get('cpf')?.errors?.required">
                 Insira o CPF
             </mat-error>

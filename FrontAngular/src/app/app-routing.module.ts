@@ -19,10 +19,10 @@ const routes: Routes = [
   },
   {
     path: 'clientes',
-    redirectTo: 'clientes/listar'
+    redirectTo: 'clientes'
   },
   {
-    path: 'clientes/listar',
+    path: 'clientes',
     component: ListarClienteComponent
   },
   {

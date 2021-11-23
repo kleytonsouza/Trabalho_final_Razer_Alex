@@ -1,6 +1,7 @@
 package br.ufpr.das.pedidos.api.rest.model;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "pedido")
@@ -11,12 +12,16 @@ public class PedidoModel {
     private int id;
 
     @Column
+    @Temporal(TemporalType.DATE)
     private Date data;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id", referencedColumnName = "id")
+    @JoinColumn(name="cliente_id", nullable=false)
     private ClienteModel cliente;
 
+    @OneToMany(mappedBy="pedido")
+    private List<ItemDoPedidoModel> items;
+    
     public int getId() {
         return id;
     }
@@ -40,4 +45,6 @@ public class PedidoModel {
     public void setCliente(ClienteModel cliente) {
         this.cliente = cliente;
     }
+    
+  
 }

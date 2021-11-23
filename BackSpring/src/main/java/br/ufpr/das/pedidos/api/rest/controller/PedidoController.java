@@ -49,11 +49,11 @@ public class PedidoController {
         return new ResponseEntity<>(novoPedido, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/v1/public/pedido/item/listar/{id}")
-    public ResponseEntity<Iterable<PedidoModel>> listarItem(@PathVariable Integer id) {
-
-        Iterable<PedidoModel> pedidos = repository.findItemByCliente(id);
-        return new ResponseEntity<>(pedidos, HttpStatus.OK);
-    }
+//    @GetMapping(path = "/v1/public/pedido/item/listar/{id}")
+//    public ResponseEntity<Iterable<PedidoModel>> listarItem(@PathVariable Integer id) {
+//
+//        Iterable<PedidoModel> pedidos = repository.findItemByCliente(id);
+//        return new ResponseEntity<>(pedidos, HttpStatus.OK);
+//    }
 
 }

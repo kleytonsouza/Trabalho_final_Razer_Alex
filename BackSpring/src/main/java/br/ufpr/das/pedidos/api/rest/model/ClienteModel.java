@@ -1,5 +1,8 @@
 package br.ufpr.das.pedidos.api.rest.model;
+import java.util.List;
+
 import javax.persistence.*;
+
 
 @Entity(name = "cliente")
 @Table(name = "cliente", uniqueConstraints=@UniqueConstraint(name = "unic_cpf", columnNames = {"cpf"}))
@@ -10,10 +13,15 @@ public class ClienteModel {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
 
+    @OneToMany(mappedBy="cliente")
+    private List<PedidoModel> pedidos;
+    
     @Column(length = 11)
     private String cpf;
+    
     @Column(length = 30)
     private String nome;
+    
     @Column(length = 50)
     private String sobrenome;
 
@@ -48,6 +56,14 @@ public class ClienteModel {
 
     public void setSobrenome(String sobrenome) {
         this.sobrenome = sobrenome;
+    }
+    
+    public List<PedidoModel> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<PedidoModel> pedidos) {
+        this.pedidos = pedidos;
     }
 
 

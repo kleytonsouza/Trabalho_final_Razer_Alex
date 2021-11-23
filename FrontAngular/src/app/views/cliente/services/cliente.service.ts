@@ -12,27 +12,29 @@ export class ClienteService {
   constructor(private http: HttpClient) { }
 
   getClientes(): Observable<Cliente[]>{
-    return this.http.get<Cliente[]>(`${this.apiServerUrl}/v1/public/cliente/listar`);
+    return this.http.get<Cliente[]>(`${this.apiServerUrl}/clientes`);
   }
 
   getCliente(clienteID: number): Observable<Cliente>{
-    return this.http.get<Cliente>(`${this.apiServerUrl}/v1/public/cliente/${clienteID}`);
+    return this.http.get<Cliente>(`${this.apiServerUrl}clientes/${clienteID}`);
   }
   
-  getClienteByCpf(cpf: string): Observable<Cliente[]>{
-    return this.http.get<Cliente[]>(`${this.apiServerUrl}/v1/public/cliente/cpf/${cpf}`);
+  getClienteByCpf(cpf: number): Observable<Cliente[]>{
+    return this.http.get<Cliente[]>(`${this.apiServerUrl}/clientes/cpf/${cpf}`);
   }
 
   addCliente(cliente: Cliente): Observable<Cliente>{
-    return this.http.post<Cliente>(`${this.apiServerUrl}/v1/public/cliente/salvar`, cliente);
+    return this.http.post<Cliente>(`${this.apiServerUrl}/clientes`, cliente);
   }
 
   updateCliente(cliente: Cliente): Observable<Cliente>{
-    return this.http.post<Cliente>(`${this.apiServerUrl}/v1/public/cliente/atualizar`, cliente);
+    return this.http.put<Cliente>(`${this.apiServerUrl}/clientes/${cliente.id}`, cliente);
   }
 
-  deleteCliente(cliente: Cliente): Observable<Cliente>{
-    return this.http.post<Cliente>(`${this.apiServerUrl}/v1/public/cliente/remover`, cliente);
+  deleteCliente(clienteID: number): Observable<Cliente>{
+    console.log(clienteID);
+    console.log("melda");
+    return this.http.delete<Cliente>(`${this.apiServerUrl}/clientes/${clienteID}`);
   }
 
 }
