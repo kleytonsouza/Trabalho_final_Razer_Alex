@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -35,13 +34,8 @@ public class PedidoController {
         
     }
 
-//    @PostMapping(path = "/v1/public/pedido/remover")
-//    public ResponseEntity<?> deletarPost(@RequestBody PedidoModel pedidoModel) {
-//        repository.delete(pedidoModel);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
 
-    @GetMapping()
+    @GetMapping
     public List<PedidoModel> listar() {
         return repository.findAll();
     }
@@ -55,7 +49,20 @@ public class PedidoController {
         
         return ResponseEntity.status(HttpStatus.CREATED).body(novoPedido);
     }
+    
+    
+    @GetMapping("/cliente/{id}")
+    public List<PedidoModel> getPedidoByCliente(@PathVariable Integer id) {
+    	 return repository.findByCliente(id);
+        
+    }
 
+    
+//  @PostMapping(path = "/v1/public/pedido/remover")
+//  public ResponseEntity<?> deletarPost(@RequestBody PedidoModel pedidoModel) {
+//      repository.delete(pedidoModel);
+//      return new ResponseEntity<>(HttpStatus.OK);
+//  }
     
 //    @PostMapping(path = "/v1/public/pedido/atualizar")
 //    public ResponseEntity<PedidoModel> atualizar(@RequestBody PedidoModel pedidoModel) {
@@ -63,11 +70,6 @@ public class PedidoController {
 //        return new ResponseEntity<>(novoPedido, HttpStatus.OK);
 //    }
 
-//    @GetMapping(path = "/v1/public/pedido/item/listar/{id}")
-//    public ResponseEntity<Iterable<PedidoModel>> listarItem(@PathVariable Integer id) {
-//
-//        Iterable<PedidoModel> pedidos = repository.findItemByCliente(id);
-//        return new ResponseEntity<>(pedidos, HttpStatus.OK);
-//    }
+
 
 }
