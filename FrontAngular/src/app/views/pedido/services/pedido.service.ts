@@ -5,7 +5,6 @@ import { environment } from 'src/environments/environment';
 import { Pedido } from 'src/app/shared/models/pedido.model';
 import { Produto } from 'src/app/shared/models/produto.model';
 import { ItemDoPedido } from 'src/app/shared/models/itemdopedido.model';
-import { Cliente } from 'src/app/shared/models/cliente.model';
 
 imports: [HttpClientModule, HttpClient];
 
