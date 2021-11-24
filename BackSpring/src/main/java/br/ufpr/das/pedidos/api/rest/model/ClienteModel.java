@@ -1,6 +1,6 @@
 package br.ufpr.das.pedidos.api.rest.model;
 import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 
@@ -13,6 +13,7 @@ public class ClienteModel {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
 
+    @JsonIgnore
     @OneToMany(mappedBy="cliente")
     private List<PedidoModel> pedidos;
     
