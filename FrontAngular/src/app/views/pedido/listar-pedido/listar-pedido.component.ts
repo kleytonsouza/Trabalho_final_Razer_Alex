@@ -90,9 +90,9 @@ export class ListarPedidoComponent implements OnInit {
     });
   }
 
-  deletarPedido(it: ItemDoPedido) {
+  deletarPedido(pedido: Pedido) {
     if (window.confirm('Tem certeza que voce quer deletar este produto ?')) {
-      this.pedidoService.removerItemPedido(it).subscribe((result) => {
+      this.pedidoService.deletarPedido(pedido.id).subscribe((result) => {
         this.getAllPedidos();
       });
     }
