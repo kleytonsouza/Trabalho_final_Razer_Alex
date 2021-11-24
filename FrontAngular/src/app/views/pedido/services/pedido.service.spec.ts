@@ -1,16 +1,25 @@
-//import { TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import { PedidoService } from './pedido.service';
+import { HttpClient } from '@angular/common/http';
 
-//import { ServicesService } from './pedido.service';
+describe('PedidoService', () => {
+  let service: PedidoService;
+  let httpMock: jasmine.SpyObj<HttpClient>;
 
-//describe('ServicesService', () => {
-//  let service: ServicesService;
+  beforeEach(() => {
+    const spy = jasmine.createSpyObj('HttpClient', ['get','post']);
+    TestBed.configureTestingModule({
+      providers: [
+        PedidoService,
+        { provide: HttpClient, useValue: spy }
+      ]
+    });
+    httpMock = TestBed.inject(HttpClient) as jasmine.SpyObj<HttpClient>;
+    service = TestBed.inject(PedidoService);
+  });
 
-//  beforeEach(() => {
-//    TestBed.configureTestingModule({});
-//    service = TestBed.inject(ServicesService);
-//  });
-
-//  it('should be created', () => {
-//    expect(service).toBeTruthy();
-//  });
-//});
+  it('should be created', () => {
+    console.log(service);
+    expect(service).toBeTruthy();
+  });
+});

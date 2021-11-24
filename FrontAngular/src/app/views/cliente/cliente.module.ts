@@ -13,6 +13,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDialogModule } from '@angular/material/dialog';
 import { RemoverClienteComponent } from './remover-cliente/remover-cliente.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import { HttpClientModule } from '@angular/common/http'; 
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDialogModule,
     MatNativeDateModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     ClienteService
