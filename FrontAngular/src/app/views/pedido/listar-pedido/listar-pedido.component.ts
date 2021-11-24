@@ -59,7 +59,7 @@ export class ListarPedidoComponent implements OnInit {
 
 
   getPedidos(): void{
-    this.pedidoService.getPedidoByCliente(1).subscribe(
+    this.pedidoService.getPedidoByCliente(this.clienteId).subscribe(
       (response: Pedido[])      => { this.pedidos = response, console.log(this.pedidos) },
       (error: HttpErrorResponse) => { alert(error.message)}
     );
@@ -87,7 +87,7 @@ export class ListarPedidoComponent implements OnInit {
   }
 
   public getCliente(){
-     this.clienteService.getClienteByCpf(11111111111).subscribe((ite) => {
+     this.clienteService.getClienteByCpf(this.cliente.cpf).subscribe((ite) => {
       this.cliente = ite;
     }) 
 
