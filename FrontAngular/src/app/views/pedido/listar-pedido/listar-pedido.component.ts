@@ -10,6 +10,7 @@ import { ClienteService } from '../../cliente/services/cliente.service';
 import { InserirPedidoComponent } from '../inserir-pedido/inserir-pedido.component';
 import { PedidoService } from '../services/pedido.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ListarItemdopedidoComponent } from '../../itemdopedido/listar-itemdopedido/listar-itemdopedido.component';
 
 
 
@@ -52,14 +53,13 @@ export class ListarPedidoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  
-   this.getPedidos();
     this.getCliente();
+  // this.getPedidos();
   }
 
 
   getPedidos(): void{
-    this.pedidoService.getPedidoByCliente(this.clienteId).subscribe(
+    this.pedidoService.getPedidoByCliente(1).subscribe(
       (response: Pedido[])      => { this.pedidos = response, console.log(this.pedidos) },
       (error: HttpErrorResponse) => { alert(error.message)}
     );
@@ -87,7 +87,7 @@ export class ListarPedidoComponent implements OnInit {
   }
 
   public getCliente(){
-     this.clienteService.getClienteByCpf(this.cliente.cpf).subscribe((ite) => {
+     this.clienteService.getCliente(1).subscribe((ite) => {
       this.cliente = ite;
     }) 
 
@@ -103,6 +103,16 @@ export class ListarPedidoComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
       this.getAllPedidos();
+    });
+  }
+
+  listarItemsDoPedido(){
+    
+    const dialogRef = this.dialog.open(ListarItemdopedidoComponent, {
+      minWidth: '300px',
+      minHeight: '300px',
+      panelClass: 'custom-dialog',
+      data: {id: this.cliente.id},
     });
   }
 
