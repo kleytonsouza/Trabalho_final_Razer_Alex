@@ -13,6 +13,7 @@ import { InserirClienteComponent } from '../../cliente/inserir-cliente/inserir-c
 import { ClienteService } from '../../cliente/services/cliente.service';
 import { PedidoService } from '../services/pedido.service';
 import { formatDate } from '@angular/common';
+import { ProdutoService } from '../../produto/services/produto.service';
 
 @Component({
   selector: 'app-inserir-pedido',
@@ -36,6 +37,7 @@ export class InserirPedidoComponent implements OnInit {
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<InserirClienteComponent>,
     private pedidoService: PedidoService,
+    private produtoService: ProdutoService,
     //private router: Router,
     private clientesService: ClienteService,
     public route: ActivatedRoute,
@@ -116,7 +118,7 @@ this.getAllProdutos();
   }
 
   public getAllProdutos() {
-    this.pedidoService.getProdutos().subscribe((prod) => {
+    this.produtoService.getProdutos().subscribe((prod) => {
       this.produtos = prod;
     });
   }
