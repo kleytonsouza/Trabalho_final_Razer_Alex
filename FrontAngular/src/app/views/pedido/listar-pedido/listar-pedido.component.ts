@@ -29,11 +29,6 @@ export class ListarPedidoComponent implements OnInit {
   items: ItemDoPedido[] = [];
   dataSource = new MatTableDataSource<Pedido>(this.ELEMENT_DATA);
   pedidos!: Pedido[];
-  ped = [
-    {id:1, date:"22/02/21", cliente:"douglas"},
-    {id:2, date:"12/11/21", cliente:"leonardo"},
-    {id:3, date:"23/02/21", cliente:"geovana"},
-  ]
   itens = [
     {id: 1, name: 'banana,', quantidade:2},
     {id: 2, name: 'cafe',  quantidade:2},
@@ -54,7 +49,7 @@ export class ListarPedidoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCliente();
-  // this.getPedidos();
+    this.getPedidos();
   }
 
 
