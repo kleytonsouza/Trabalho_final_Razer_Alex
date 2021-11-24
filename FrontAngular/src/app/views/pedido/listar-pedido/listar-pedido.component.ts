@@ -53,14 +53,14 @@ export class ListarPedidoComponent implements OnInit {
 
   ngOnInit(): void {
   
-   this.getAllPedidos();
+   this.getPedidos();
     this.getCliente();
   }
 
 
   getPedidos(): void{
-    this.pedidoService.getPedidos().subscribe(
-      (response: Pedido[])      => { this.pedidos = response },
+    this.pedidoService.getPedidoByCliente(1).subscribe(
+      (response: Pedido[])      => { this.pedidos = response, console.log(this.pedidos) },
       (error: HttpErrorResponse) => { alert(error.message)}
     );
   }
@@ -77,18 +77,19 @@ export class ListarPedidoComponent implements OnInit {
 
 
   public getAllPedidos() {
-/*     this.pedidoService.getPedidos().subscribe(
+ this.pedidoService.getPedidoByCliente(1).subscribe(
       pedidos => {
         this.pedidos = pedidos
         this.dataSource.data = pedidos
+        console.log(pedidos)
       }
-    ) */
+    ) 
   }
 
   public getCliente(){
-  /*   this.clienteService.getCliente(this.clienteId).subscribe((ite) => {
+     this.clienteService.getClienteByCpf(11111111111).subscribe((ite) => {
       this.cliente = ite;
-    }) */
+    }) 
 
   }
 
