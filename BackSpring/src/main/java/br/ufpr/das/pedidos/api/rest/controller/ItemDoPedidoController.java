@@ -21,7 +21,10 @@ import br.ufpr.das.pedidos.api.event.ResourceCreatedEvent;
 import br.ufpr.das.pedidos.api.rest.model.ItemDoPedidoModel;
 import br.ufpr.das.pedidos.api.rest.repository.ItemDoPedidoRepository;
 
+import org.springframework.web.bind.annotation.*;
+
 @RestController
+@RequestMapping("/itemdopedido")
 public class ItemDoPedidoController {
     
 	@Autowired
@@ -30,7 +33,7 @@ public class ItemDoPedidoController {
     @Autowired
     private ApplicationEventPublisher publisher;
 
-    @GetMapping(path = "/itemDoPedido")
+    @GetMapping
     public List<ItemDoPedidoModel> listar() {
         return repository.findAll();
     }
@@ -67,6 +70,7 @@ public class ItemDoPedidoController {
         
         return ResponseEntity.status(HttpStatus.CREATED).body(novoItemDoPedido);
     }
+    
    
 
 

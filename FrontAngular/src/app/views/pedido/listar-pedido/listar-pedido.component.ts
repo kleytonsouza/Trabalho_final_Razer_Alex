@@ -29,11 +29,6 @@ export class ListarPedidoComponent implements OnInit {
   items: ItemDoPedido[] = [];
   dataSource = new MatTableDataSource<Pedido>(this.ELEMENT_DATA);
   pedidos!: Pedido[];
-  ped = [
-    {id:1, date:"22/02/21", cliente:"douglas"},
-    {id:2, date:"12/11/21", cliente:"leonardo"},
-    {id:3, date:"23/02/21", cliente:"geovana"},
-  ]
   itens = [
     {id: 1, name: 'banana,', quantidade:2},
     {id: 2, name: 'cafe',  quantidade:2},
@@ -54,31 +49,22 @@ export class ListarPedidoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCliente();
-  // this.getPedidos();
+    this.getPedidos();
   }
 
 
   getPedidos(): void{
     this.pedidoService.getPedidoByCliente(1).subscribe(
-      (response: Pedido[])      => { this.pedidos = response, console.log(this.pedidos) },
+      (response: Pedido[])      => { this.pedidos = response},
       (error: HttpErrorResponse) => { alert(error.message)}
     );
   }
 
 
-  public getAllPedidos() {
- this.pedidoService.getPedidoByCliente(1).subscribe(
-      pedidos => {
-        this.pedidos = pedidos
-        this.dataSource.data = pedidos
-        console.log(pedidos)
-      }
-    ) 
-  }
-
   public getCliente(){
      this.clienteService.getCliente(this.clienteId).subscribe((ite) => {
       this.cliente = ite;
+
     }) 
 
   }
@@ -92,7 +78,7 @@ export class ListarPedidoComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
-      this.getAllPedidos();
+      this.getPedidos();
     });
   }
 
@@ -109,7 +95,7 @@ export class ListarPedidoComponent implements OnInit {
   deletarPedido(pedido: Pedido) {
     if (window.confirm('Tem certeza que voce quer deletar este produto ?')) {
       this.pedidoService.deletarPedido(pedido.id).subscribe((result) => {
-        this.getAllPedidos();
+        this.getPedidos();
       });
     }
   }
