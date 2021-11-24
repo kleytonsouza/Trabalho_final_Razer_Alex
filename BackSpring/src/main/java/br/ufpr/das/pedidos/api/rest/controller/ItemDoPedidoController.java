@@ -38,6 +38,10 @@ public class ItemDoPedidoController {
         return repository.findAll();
     }
 
+    @GetMapping("/pedido/{id}")
+    public Iterable<ItemDoPedidoModel> getItemByPedido(@PathVariable Integer id) {
+    	return repository.findAllById(id);
+    }
 
 //    @DeleteMapping(path = "/itemDoPedido/delete/{itemDoPedidoId}")
 //    public ResponseEntity<?> deletar(@PathVariable Integer itemDoPedidoId) {

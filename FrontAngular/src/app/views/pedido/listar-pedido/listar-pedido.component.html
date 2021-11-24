@@ -16,7 +16,7 @@
                   <span class="text1">Pedido Nº: {{pedido.id}}</span>
                 </div>
               </div>
-              <div class="badge">  <button mat-raised-button color="warn">Deletar </button> </div>
+              <div class="badge">  <button mat-raised-button color="warn" (click)="deletarPedido(pedido)">Deletar </button> </div>
             </div>
             <div class="mt-3">
               <h3 class="heading">Data do pedido<br>{{pedido.data}}</h3>
