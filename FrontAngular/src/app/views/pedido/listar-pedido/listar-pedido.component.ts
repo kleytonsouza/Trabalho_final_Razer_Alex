@@ -66,16 +66,6 @@ export class ListarPedidoComponent implements OnInit {
   }
 
 
-  //public getPedidoByCliente(){
-  //  this.pedidoService.getPedidos(this.cliente.id).subscribe(
-  //    pedidos => {
-  //      this.pedidos = pedidos
-  //      this.dataSource.data = pedidos
-  //    }
-  //  )
-  //}
-
-
   public getAllPedidos() {
  this.pedidoService.getPedidoByCliente(1).subscribe(
       pedidos => {
@@ -87,7 +77,7 @@ export class ListarPedidoComponent implements OnInit {
   }
 
   public getCliente(){
-     this.clienteService.getCliente(1).subscribe((ite) => {
+     this.clienteService.getCliente(this.clienteId).subscribe((ite) => {
       this.cliente = ite;
     }) 
 
