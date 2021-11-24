@@ -87,7 +87,7 @@ export class ListarPedidoComponent implements OnInit {
   }
 
   public getCliente(){
-     this.clienteService.getClienteByCpf(11111111111).subscribe((ite) => {
+     this.clienteService.getClienteByCpf(1).subscribe((ite) => {
       this.cliente = ite;
     }) 
 
