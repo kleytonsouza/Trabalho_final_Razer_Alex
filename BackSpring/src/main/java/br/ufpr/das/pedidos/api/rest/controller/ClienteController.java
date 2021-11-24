@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletResponse;
 
 
@@ -30,8 +32,8 @@ public class ClienteController {
 
     
     @GetMapping("/{id}")
-    public ClienteModel consultar(Integer id) {
-    	return repository.getById(id);
+    public Optional<ClienteModel> consultar(@PathVariable Integer id) {
+    	return repository.findById(id);
     }
 
        
@@ -62,7 +64,7 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<ClienteModel> salvar( @RequestBody ClienteModel clienteModel, HttpServletResponse response) {
+    public ResponseEntity<ClienteModel> salvar(@RequestBody ClienteModel clienteModel, HttpServletResponse response) {
     	ClienteModel  clienteSalvo =  repository.save(clienteModel);
         
         publisher.publishEvent(new ResourceCreatedEvent(this, response, clienteSalvo.getId()));
