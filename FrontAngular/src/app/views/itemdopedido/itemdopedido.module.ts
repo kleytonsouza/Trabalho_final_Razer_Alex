@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListarItemdopedidoComponent } from './listar-itemdopedido/listar-itemdopedido.component';
+import { MatListModule } from '@angular/material/list';
 
 
 
@@ -9,7 +10,8 @@ import { ListarItemdopedidoComponent } from './listar-itemdopedido/listar-itemdo
     ListarItemdopedidoComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatListModule
   ]
 })
 export class ItemdopedidoModule { }
