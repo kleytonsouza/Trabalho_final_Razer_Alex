@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatListModule} from '@angular/material/list'
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -42,7 +43,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatLineModule,
     MatListModule,
     MatCheckboxModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
   ],
   providers: [
     PedidoService

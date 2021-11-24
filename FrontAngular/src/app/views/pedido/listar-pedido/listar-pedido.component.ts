@@ -11,6 +11,9 @@ import { InserirPedidoComponent } from '../inserir-pedido/inserir-pedido.compone
 import { PedidoService } from '../services/pedido.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
+
+
+
 @Component({
   selector: 'app-pedido',
   templateUrl: './listar-pedido.component.html',
@@ -20,11 +23,21 @@ export class ListarPedidoComponent implements OnInit {
   ELEMENT_DATA!: Pedido[];
   produto_data: Produto[] = [];
   produto!: Produto;
-  cliente!: Cliente;
+  cliente: Cliente = new Cliente(0, '', '', '');
   clienteId!: number;
   items: ItemDoPedido[] = [];
   dataSource = new MatTableDataSource<Pedido>(this.ELEMENT_DATA);
   pedidos!: Pedido[];
+  ped = [
+    {id:1, date:"22/02/21", cliente:"douglas"},
+    {id:2, date:"12/11/21", cliente:"leonardo"},
+    {id:3, date:"23/02/21", cliente:"geovana"},
+  ]
+  itens = [
+    {id: 1, name: 'banana,', quantidade:2},
+    {id: 2, name: 'cafe',  quantidade:2},
+    {id: 3, name: 'suco',  quantidade:5}
+  ];
 
   displayedColumns = ['produto', 'quantidade', 'op'];
   //dataSource = new MatTableDataSource<ItemDoPedido>(this.ELEMENT_DATA);
@@ -39,7 +52,8 @@ export class ListarPedidoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllPedidos();
+  
+   this.getAllPedidos();
     this.getCliente();
   }
 
@@ -63,18 +77,19 @@ export class ListarPedidoComponent implements OnInit {
 
 
   public getAllPedidos() {
-    this.pedidoService.getPedidos().subscribe(
+/*     this.pedidoService.getPedidos().subscribe(
       pedidos => {
         this.pedidos = pedidos
         this.dataSource.data = pedidos
       }
-    )
+    ) */
   }
 
   public getCliente(){
-    this.clienteService.getCliente(this.clienteId).subscribe((ite) => {
+  /*   this.clienteService.getCliente(this.clienteId).subscribe((ite) => {
       this.cliente = ite;
-    })
+    }) */
+
   }
 
   inserirPedido() {

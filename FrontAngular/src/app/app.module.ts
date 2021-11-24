@@ -11,7 +11,7 @@ import { HomeComponent } from './views/home/home.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule} from '@angular/material/menu';
 import { MatButtonModule} from '@angular/material/button';
-import { MatCardModule} from '@angular/material/card';
+import { MatCard, MatCardModule} from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatDialogModule} from '@angular/material/dialog';
@@ -53,7 +53,8 @@ import { MatOptionModule } from '@angular/material/core';
     MatPaginatorModule,
     MatTableModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,4 @@
 node_modules
+.vscode/launch.json
+BackSpring/src/main/resources/application.properties
+FrontAngular/package-lock.json

@@ -46,12 +46,12 @@ export class InserirPedidoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getOneClientes();
-    this.getAllProdutos();
+this.getAllProdutos();
     this.formPedido = this.fb.group({
       id: [''],
       data: [''],
       cliente: [this.cliente],
-    });
+    }); 
   }
 
   cancel(): void {
@@ -105,9 +105,14 @@ export class InserirPedidoComponent implements OnInit {
   }
 
   public getOneClientes() {
-    this.clientesService.getCliente(this.data.id).subscribe((cliente) => {
+    /* this.clientesService.getCliente(this.data.id).subscribe((cliente) => {
       this.cliente = cliente;
-    });
+    }); */
+    // alterar ´pra pegar o cliente do banco de dados
+    this.cliente.cpf="11111111111";
+    this.cliente.nome="douglas";
+    this.cliente.sobrenome="novaki";
+    this.cliente.id=1;
   }
 
   public getAllProdutos() {
