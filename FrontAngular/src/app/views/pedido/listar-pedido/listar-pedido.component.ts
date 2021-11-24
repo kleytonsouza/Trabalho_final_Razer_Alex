@@ -55,25 +55,16 @@ export class ListarPedidoComponent implements OnInit {
 
   getPedidos(): void{
     this.pedidoService.getPedidoByCliente(1).subscribe(
-      (response: Pedido[])      => { this.pedidos = response, console.log(this.pedidos) },
+      (response: Pedido[])      => { this.pedidos = response},
       (error: HttpErrorResponse) => { alert(error.message)}
     );
   }
 
 
-  public getAllPedidos() {
- this.pedidoService.getPedidoByCliente(1).subscribe(
-      pedidos => {
-        this.pedidos = pedidos
-        this.dataSource.data = pedidos
-        console.log(pedidos)
-      }
-    ) 
-  }
-
   public getCliente(){
      this.clienteService.getCliente(this.clienteId).subscribe((ite) => {
       this.cliente = ite;
+
     }) 
 
   }
@@ -87,7 +78,7 @@ export class ListarPedidoComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
-      this.getAllPedidos();
+      this.getPedidos();
     });
   }
 
@@ -104,7 +95,7 @@ export class ListarPedidoComponent implements OnInit {
   deletarPedido(pedido: Pedido) {
     if (window.confirm('Tem certeza que voce quer deletar este produto ?')) {
       this.pedidoService.deletarPedido(pedido.id).subscribe((result) => {
-        this.getAllPedidos();
+        this.getPedidos();
       });
     }
   }

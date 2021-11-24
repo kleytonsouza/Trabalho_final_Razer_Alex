@@ -31,7 +31,7 @@ export class InserirPedidoComponent implements OnInit {
   items: ItemDoPedido[] = [];
   //pedido = new Pedido(new Date(), this.cliente,);
   date: Date = new Date()
-  
+
 
   constructor(
     private fb: FormBuilder,
@@ -43,17 +43,17 @@ export class InserirPedidoComponent implements OnInit {
     public route: ActivatedRoute,
     @Inject(MAT_DIALOG_DATA) public data: {
       id: any
-   }
-  ) {}
+    }
+  ) { }
 
   ngOnInit(): void {
     this.getOneClientes();
-this.getAllProdutos();
+    this.getAllProdutos();
     this.formPedido = this.fb.group({
       id: [''],
       data: [''],
       cliente: [this.cliente],
-    }); 
+    });
   }
 
   cancel(): void {
@@ -65,27 +65,27 @@ this.getAllProdutos();
     if (this.formPedido.valid) {
       this.formPedido = this.fb.group({
         id: [''],
-        data: [formatDate(this.date,"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'","en-US")],
+        data: [formatDate(this.date, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", "en-US")],
         cliente: [this.cliente],
         itens: [this.items],
       });
       this.pedidoService
         .adicionarPedido(this.formPedido.value)
-        .subscribe((result) => {});
+        .subscribe((result) => { });
       this.items.forEach((element) => {
         this.formItemPedido = this.fb.group({
           quantidade: [element.quantidade],
           produto: [element.produto],
-          cliente: [this.cliente],
+          pedido: [new Pedido(1,this.date,this.cliente)],
         });
         this.pedidoService
           .adicionarItemDoPedido(this.formItemPedido.value)
           .subscribe();
       });
 
-      this.dialogRef.close();
+/*       this.dialogRef.close();
       this.formPedido.reset();
-      window.location.reload();
+      window.location.reload(); */
     }
   }
 
@@ -107,14 +107,9 @@ this.getAllProdutos();
   }
 
   public getOneClientes() {
-    /* this.clientesService.getCliente(this.data.id).subscribe((cliente) => {
+    this.clientesService.getCliente(this.data.id).subscribe((cliente) => {
       this.cliente = cliente;
-    }); */
-    // alterar ´pra pegar o cliente do banco de dados
-    this.cliente.cpf="11111111111";
-    this.cliente.nome="douglas";
-    this.cliente.sobrenome="novaki";
-    this.cliente.id=1;
+    });
   }
 
   public getAllProdutos() {
@@ -132,13 +127,13 @@ this.getAllProdutos();
   }
 
 
-    addItem() {
-    if(this.quantidade <= 0){
+  addItem() {
+    if (this.quantidade <= 0) {
       alert("Quantidade deve ser maior que 0")
-    }else{
+    } else {
       this.items.push(
         new ItemDoPedido(this.quantidade, this.produto, this.cliente)
-      ); 
+      );
     }
   }
 }

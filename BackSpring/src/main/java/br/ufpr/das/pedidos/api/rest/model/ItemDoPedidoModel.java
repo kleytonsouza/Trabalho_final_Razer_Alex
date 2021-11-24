@@ -3,7 +3,7 @@ package br.ufpr.das.pedidos.api.rest.model;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "item_do_pedido")
 @Table(name = "item_do_pedido")
 public class ItemDoPedidoModel{
 
