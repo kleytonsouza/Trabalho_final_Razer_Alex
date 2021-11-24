@@ -1,5 +1,6 @@
 package br.ufpr.das.pedidos.api.rest.controller;
 import br.ufpr.das.pedidos.api.event.ResourceCreatedEvent;
+import br.ufpr.das.pedidos.api.rest.model.ClienteModel;
 import br.ufpr.das.pedidos.api.rest.model.PedidoModel;
 import br.ufpr.das.pedidos.api.rest.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -53,7 +55,7 @@ public class PedidoController {
     
     @GetMapping("/cliente/{id}")
     public List<PedidoModel> getPedidoByCliente(@PathVariable Integer id) {
-    	 return repository.findByCliente(id);
+    	return repository.findByCliente(id);
         
     }
 

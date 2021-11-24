@@ -60,7 +60,7 @@ export class ListarPedidoComponent implements OnInit {
 
   getPedidos(): void{
     this.pedidoService.getPedidoByCliente(1).subscribe(
-      (response: Pedido[])      => { this.pedidos = response, console.log(this.pedidos) },
+      (response: Pedido[])      => { this.pedidos = response, console.log(response) },
       (error: HttpErrorResponse) => { alert(error.message)}
     );
   }

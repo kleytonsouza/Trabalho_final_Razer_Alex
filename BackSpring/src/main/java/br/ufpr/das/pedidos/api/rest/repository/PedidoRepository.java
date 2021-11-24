@@ -1,8 +1,8 @@
 package br.ufpr.das.pedidos.api.rest.repository;
-//import br.ufpr.das.pedidos.api.rest.model.ClienteModel;
-import br.ufpr.das.pedidos.api.rest.model.PedidoModel;
 
+import br.ufpr.das.pedidos.api.rest.model.PedidoModel;
 import java.util.List;
+
 
 import org.springframework.data.jpa.repository.JpaRepository;
 //import org.springframework.data.jpa.repository.Query;
