@@ -32,11 +32,19 @@ export class EditarClienteComponent implements OnInit {
   }
   
   update(): void{
-    if (this.formCliente.valid){
-      this.clienteService.updateCliente(this.formCliente.value).subscribe();
-      this.dialogRef.close();
-      this.formCliente.reset();      
-    }  
+     
+    this.clienteService.getClienteByCpf(this.formCliente.value['cpf']).subscribe((ite) => {
+      if(ite == null){
+        if (this.formCliente.valid){
+          this.clienteService.updateCliente(this.formCliente.value).subscribe();
+          this.dialogRef.close();
+          this.formCliente.reset();      
+        } 
+      }
+      else {
+        alert("Ja possui cliente cadastrado com este CPF")
+      }
+    })
   }
 
   cancel(): void{
