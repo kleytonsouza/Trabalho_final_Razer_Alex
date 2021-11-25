@@ -6,7 +6,7 @@ export interface ItemDoPedido{
   quantidade: number;
   produto: Produto;
   pedido: Pedido,
-  id: number;
+  id?: number;
 
 }
 
@@ -15,7 +15,7 @@ export class ItemDoPedido {
     public quantidade: number,
     public produto: Produto,
     public pedido: Pedido,
-    public id: number,
+    public id?: number,
   ){}
 
 }
