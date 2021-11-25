@@ -15,4 +15,8 @@ export class ItemdopedidoService {
   public getPedidoByCliente(pedido_id: number): Observable<ItemDoPedido[]> {
     return this.http.get<ItemDoPedido[]>(`${this.apiServerUrl}/itemdopedido/pedido/${pedido_id}`);
   }
+
+
+
+  
 }

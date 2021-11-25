@@ -42,14 +42,18 @@ describe('ClienteService', () => {
 
   it('getCliente() deve retornar o cliente de id número 3', (done: DoneFn) => {
   
-    httpMock.get.and.returnValue(of(CLIENTESLISTA));
+    let id_cliente = 2;
 
-    let cliente = new Cliente(3, '02468024680', 'Meliodas', 'Pecado da Fúria');
-    console.log(cliente.id, "merda");
+    let clienteEncontrado = CLIENTESLISTA.find(function(elemento,index){
+            if(elemento.id === id_cliente) return true;
+            return false;
+          })
 
-    service.getCliente(3).subscribe(
+    httpMock.get.and.returnValue(of(clienteEncontrado));
+
+    service.getCliente(id_cliente).subscribe(
       clientes => {
-        expect(clientes.id == 3);
+        expect(clientes.id).toEqual(id_cliente, 'id esperado');;
         done();
       }, done.fail
     );
@@ -57,12 +61,19 @@ describe('ClienteService', () => {
   });
 
   it('getClienteByCpf() deve retornar o cliente de cpf número 02456852695', (done: DoneFn) => {
-  
-    httpMock.get.and.returnValue(of(CLIENTESLISTA));
+    
+    let cpf = "02456852695";
 
-    service.getClienteByCpf(+'02456852695').subscribe(
+    let cpfEncontrado = CLIENTESLISTA.find(function(elemento,index){
+            if(elemento.cpf === cpf ) return true;
+            return false;
+          })
+
+    httpMock.get.and.returnValue(of(cpfEncontrado));
+
+    service.getClienteByCpf(cpf).subscribe(
       cliente => {
-        expect(cliente.cpf == '02456852695');
+        expect(cliente.cpf).toEqual(cpf, 'cpf esperado');
         done();
       }, done.fail
     );
@@ -94,21 +105,29 @@ describe('ClienteService', () => {
     expect(httpMock.post.calls.count()).toBe(1, 'uma chamada realizada!!');
   });
 
-  // it(`deleteCliente() deve deletar o cliente de id 2 da lista`, (done: DoneFn) => {
 
-  //   let deleteCliente = CLIENTESLISTA[1];
-  //   delete CLIENTESLISTA[1];
+  it(`deleteCliente() deve deletar o cliente de id 2 da lista`, (done: DoneFn) => {
 
-  //   httpMock.post.and.returnValue(of(deleteCliente));
+    let cliente_id = 2
+
+    CLIENTESLISTA.find(function(elemento,index){
+      if(elemento.id === cliente_id) {
+        let deleteCliente = CLIENTESLISTA[index];
+        delete CLIENTESLISTA[index];
+        httpMock.delete.and.returnValue(of(deleteCliente));
+        return true;
+      }  
+      return false;
+    })
+
+    service.deleteCliente(cliente_id).subscribe(
+      cliente => {
+        expect(CLIENTESLISTA).not.toContain(cliente);
+        done();
+      }, done.fail
+    );
     
-  //   service.deleteCliente(2).subscribe(
-  //     cliente => {
-  //       expect(CLIENTESLISTA).not.toContain(cliente);
-  //       done();
-  //     }, done.fail
-  //   );
-    
-  // });
+  });
 
 
 });
