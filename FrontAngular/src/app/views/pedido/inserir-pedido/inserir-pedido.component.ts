@@ -70,20 +70,19 @@ export class InserirPedidoComponent implements OnInit {
         cliente: [this.cliente],
         itens: [this.items],
       });
-      this.pedido = this.addPedido(this.formPedido.value);
+      this.addPedido(this.formPedido.value);
       this.dialogRef.close();
       this.formPedido.reset();
       window.location.reload();
     }
   }
 
-  public addPedido(pedido: Pedido): Pedido {
+  public addPedido(pedido: Pedido) {
     this.pedidoService
       .adicionarPedido(pedido)
       .subscribe((result) => {
         this.addItemDoPedido(result)
       });
-    return pedido
   }
 
   addItemDoPedido(pedido: Pedido) {
