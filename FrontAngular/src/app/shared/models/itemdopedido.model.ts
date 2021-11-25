@@ -1,4 +1,3 @@
-import { Cliente } from "./cliente.model";
 import { Pedido } from "./pedido.model";
 import { Produto } from "./produto.model";
 

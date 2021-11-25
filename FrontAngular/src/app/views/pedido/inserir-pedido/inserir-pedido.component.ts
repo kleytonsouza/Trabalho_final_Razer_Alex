@@ -63,14 +63,18 @@ export class InserirPedidoComponent implements OnInit {
 
   inserir(): void {
     if (this.formPedido.valid) {
-      this.pedidoService
-        .adicionarPedido(this.formPedido.value)
-        .subscribe((result) => { });
+      this.formPedido = this.fb.group({
+        id: [''],
+        data: [formatDate(this.date, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", "en-US")],
+        cliente: [this.cliente],
+        itens: [this.items],
+      });
+      const pedido = this.addPedido(this.formPedido.value);
       this.items.forEach((element) => {
         this.formItemPedido = this.fb.group({
           quantidade: [element.quantidade],
           produto: [element.produto],
-          pedido: [element.pedido],
+          pedido: pedido,
         });
         this.pedidoService
           .adicionarItemDoPedido(this.formItemPedido.value)
@@ -82,6 +86,14 @@ export class InserirPedidoComponent implements OnInit {
       window.location.reload(); */
     }
   }
+
+  public addPedido(pedido: Pedido): Pedido{
+    this.pedidoService
+        .adicionarPedido(pedido)
+        .subscribe((result) => { });
+    return pedido   
+  }
+
 
   public onAddPedido(addForm: NgForm): void {
     document.getElementById('formPedido')?.click();
@@ -119,7 +131,6 @@ export class InserirPedidoComponent implements OnInit {
   changeValue(event: any) {
     this.quantidade = event.target.value;
   }
-
 
   addItem() {
     if (this.quantidade <= 0) {
