@@ -23,6 +23,7 @@ import { ListarClienteComponent } from './views/cliente/listar-cliente/listar-cl
 import { PedidoModule } from './views/pedido/pedido.module';
 import { MatOptionModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
+import { ItemdopedidoModule } from './views/itemdopedido/itemdopedido.module';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { MatListModule } from '@angular/material/list';
   [
     AppComponent,
     HomeComponent,
-    ListarClienteComponent
+    ListarClienteComponent,
   ],
   imports: 
   [
@@ -39,6 +40,7 @@ import { MatListModule } from '@angular/material/list';
     ClienteModule,
     ProdutoModule,
     PedidoModule,
+    ItemdopedidoModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,

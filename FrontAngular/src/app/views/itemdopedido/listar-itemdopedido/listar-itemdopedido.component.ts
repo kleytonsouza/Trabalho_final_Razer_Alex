@@ -10,6 +10,7 @@ import { ItemdopedidoService } from '../services/itemdopedido.service';
   styleUrls: ['./listar-itemdopedido.component.css']
 })
 export class ListarItemdopedidoComponent implements OnInit {
+  displayedColumns: string[] = ['Item', 'Quantidade'];
   items!: ItemDoPedido[];
   idPedido: any;
   constructor(
@@ -25,7 +26,10 @@ export class ListarItemdopedidoComponent implements OnInit {
   public getItems() {
     this.itemdopedidoService.getPedidoByCliente(this.data.id).subscribe((ite) => {
       this.items = ite;
-      console.log(this.items)
+      this.items.forEach(element => {
+        
+      console.log(element.produto['descricao'])
+      });
     }
     );
 
