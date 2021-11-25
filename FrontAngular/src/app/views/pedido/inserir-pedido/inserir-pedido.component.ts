@@ -71,17 +71,6 @@ export class InserirPedidoComponent implements OnInit {
         itens: [this.items],
       });
       this.pedido = this.addPedido(this.formPedido.value);
-      this.items.forEach((element) => {
-        this.formItemPedido = this.fb.group({
-          id: [''],
-          quantidade: [element.quantidade],
-          produto: [element.produto],
-          pedido: [element.pedido],
-        });
-        this.pedidoService
-          .adicionarItemDoPedido(this.formItemPedido.value)
-          .subscribe();
-      });
 
 /*       this.dialogRef.close();
       this.formPedido.reset();
@@ -92,8 +81,24 @@ export class InserirPedidoComponent implements OnInit {
   public addPedido(pedido: Pedido): Pedido{
     this.pedidoService
         .adicionarPedido(pedido)
-        .subscribe((result) => { });
+        .subscribe((result) => { 
+          this.addItemDoPedido(result)
+        });
     return pedido   
+  }
+
+  addItemDoPedido(pedido: Pedido){
+    this.items.forEach((element) => {
+      this.formItemPedido = this.fb.group({
+        id: [''],
+        quantidade: [element.quantidade],
+        produto: [element.produto],
+        pedido: pedido,
+      });
+      this.pedidoService
+        .adicionarItemDoPedido(this.formItemPedido.value)
+        .subscribe();
+    });
   }
 
 
@@ -134,7 +139,7 @@ export class InserirPedidoComponent implements OnInit {
     this.quantidade = event.target.value;
   }
 
-  addItem() {
+  addItemInList() {
     if (this.quantidade <= 0) {
       alert("Quantidade deve ser maior que 0")
     } else {
