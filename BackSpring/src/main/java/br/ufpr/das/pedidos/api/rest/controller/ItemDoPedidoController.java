@@ -43,6 +43,11 @@ public class ItemDoPedidoController {
     	return repository.findAllById(id);
     }
 
+    @GetMapping("/produto/{id}")
+    public Iterable<ItemDoPedidoModel> getPedidoByProduto(@PathVariable Integer id) {
+    	return repository.findAllByProduto(id);
+    }
+
 //    @DeleteMapping(path = "/itemDoPedido/delete/{itemDoPedidoId}")
 //    public ResponseEntity<?> deletar(@PathVariable Integer itemDoPedidoId) {
 //        repository.deleteById(itemDoPedidoId);

@@ -33,17 +33,17 @@ export class RemoverClienteComponent implements OnInit {
   }
 
   delete(): void {
-    //this.pedidoService.getAllItemDoPedido(this.data.id).subscribe((ite) => {
-      //if (ite.length == 0) {
+    this.pedidoService.getPedidoByCliente(this.data.id).subscribe((ite) => {
+      if (ite.length == 0) {
         if (this.formCliente.valid) {
           this.clienteService.deleteCliente(this.formCliente.value["id"]).subscribe();
           this.dialogRef.close();
           this.formCliente.reset();
         }
-     // } else {
-        //alert('Cliente possui pedidos');
-     // }
-    //});
+      } else {
+        alert('Cliente possui pedidos');
+      }
+    });
   }
 
   cancel(): void {

@@ -16,5 +16,11 @@ export class ItemdopedidoService {
     return this.http.get<ItemDoPedido[]>(`${this.apiServerUrl}/itemdopedido/pedido/${pedido_id}`);
   }
 
-  
+  public getItemByProduto(produtoID: number): Observable<ItemDoPedido[]> {
+    return this.http.get<ItemDoPedido[]>(`${this.apiServerUrl}/itemdopedido/produto/${produtoID}`);
+  }
+
+  public getItemByPedido(produtoID: number): Observable<ItemDoPedido[]> {
+    return this.http.get<ItemDoPedido[]>(`${this.apiServerUrl}/itemdopedido/pedido/${produtoID}`);
+  }
 }
