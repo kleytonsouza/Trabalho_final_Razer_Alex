@@ -29,6 +29,7 @@ export class InserirPedidoComponent implements OnInit {
   cliente: Cliente = new Cliente(0, '', '', '');
   produtos: Produto[] = [];
   items: ItemDoPedido[] = [];
+  pedido!: Pedido;
   //pedido = new Pedido(new Date(), this.cliente,);
   date: Date = new Date()
 
@@ -69,12 +70,13 @@ export class InserirPedidoComponent implements OnInit {
         cliente: [this.cliente],
         itens: [this.items],
       });
-      const pedido = this.addPedido(this.formPedido.value);
+      this.pedido = this.addPedido(this.formPedido.value);
       this.items.forEach((element) => {
         this.formItemPedido = this.fb.group({
+          id: [''],
           quantidade: [element.quantidade],
           produto: [element.produto],
-          pedido: pedido,
+          pedido: [element.pedido],
         });
         this.pedidoService
           .adicionarItemDoPedido(this.formItemPedido.value)

@@ -25,6 +25,7 @@ export class ClienteService {
 
   addCliente(cliente: Cliente): Observable<Cliente>{
     return this.http.post<Cliente>(`${this.apiServerUrl}/clientes`, cliente);
+    
   }
 
   updateCliente(cliente: Cliente): Observable<Cliente>{
