@@ -71,23 +71,22 @@ export class InserirPedidoComponent implements OnInit {
         itens: [this.items],
       });
       this.pedido = this.addPedido(this.formPedido.value);
-
-/*       this.dialogRef.close();
+      this.dialogRef.close();
       this.formPedido.reset();
-      window.location.reload(); */
+      window.location.reload();
     }
   }
 
-  public addPedido(pedido: Pedido): Pedido{
+  public addPedido(pedido: Pedido): Pedido {
     this.pedidoService
-        .adicionarPedido(pedido)
-        .subscribe((result) => { 
-          this.addItemDoPedido(result)
-        });
-    return pedido   
+      .adicionarPedido(pedido)
+      .subscribe((result) => {
+        this.addItemDoPedido(result)
+      });
+    return pedido
   }
 
-  addItemDoPedido(pedido: Pedido){
+  addItemDoPedido(pedido: Pedido) {
     this.items.forEach((element) => {
       this.formItemPedido = this.fb.group({
         id: [''],
@@ -144,7 +143,7 @@ export class InserirPedidoComponent implements OnInit {
       alert("Quantidade deve ser maior que 0")
     } else {
       this.items.push(
-        new ItemDoPedido(this.quantidade, this.produto,new Pedido(1,new Date,this.cliente))
+        new ItemDoPedido(this.quantidade, this.produto, new Pedido(1, new Date, this.cliente))
       );
     }
   }
