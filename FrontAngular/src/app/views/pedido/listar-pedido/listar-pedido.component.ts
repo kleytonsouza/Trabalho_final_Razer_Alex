@@ -11,6 +11,7 @@ import { InserirPedidoComponent } from '../inserir-pedido/inserir-pedido.compone
 import { PedidoService } from '../services/pedido.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ListarItemdopedidoComponent } from '../../itemdopedido/listar-itemdopedido/listar-itemdopedido.component';
+import { ItemdopedidoService } from '../../itemdopedido/services/itemdopedido.service';
 
 
 
@@ -35,6 +36,7 @@ export class ListarPedidoComponent implements OnInit {
   constructor(
     private pedidoService: PedidoService,
     private clienteService: ClienteService,
+    private itemdopedidoService: ItemdopedidoService,
     public dialog: MatDialog,
     public route: ActivatedRoute
   ) {
@@ -88,8 +90,14 @@ export class ListarPedidoComponent implements OnInit {
 
   deletarPedido(pedido: Pedido) {
     if (window.confirm('Tem certeza que voce quer deletar este produto ?')) {
-      this.pedidoService.deletarPedido(pedido.id).subscribe((result) => {
-        this.getPedidos();
+      this.itemdopedidoService.getItemByPedido(pedido.id).subscribe((ite) => {
+        if (ite.length == 0) {
+          this.pedidoService.deletarPedido(pedido.id).subscribe((result) => {
+            this.getPedidos();
+          });
+        } else {
+          alert('Possui itens neste pedido');
+        }
       });
     }
   }

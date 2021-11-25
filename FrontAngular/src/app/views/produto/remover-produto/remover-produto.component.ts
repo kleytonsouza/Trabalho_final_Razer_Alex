@@ -3,6 +3,8 @@ import { ProdutoService } from '../services/produto.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Produto } from '../../../shared/models/produto.model';
 import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { PedidoService } from '../../pedido/services/pedido.service';
+import { ItemdopedidoService } from '../../itemdopedido/services/itemdopedido.service';
 
 
 @Component({
@@ -20,7 +22,8 @@ export class RemoverProdutoComponent implements OnInit {
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: Produto,
     public dialogRef: MatDialogRef<RemoverProdutoComponent>,
-    private produtoService: ProdutoService
+    private produtoService: ProdutoService,
+    private itemdopedidoService: ItemdopedidoService
   ) { }
 
   ngOnInit(): void {
@@ -31,11 +34,17 @@ export class RemoverProdutoComponent implements OnInit {
   }
 
   delete(): void{
-    if (this.formProduto.valid){
-      this.produtoService.deleteProduto(this.formProduto.value).subscribe();
-      this.dialogRef.close();
-      this.formProduto.reset();      
-    }  
+    this.itemdopedidoService.getItemByProduto(this.formProduto.value['id']).subscribe((ite) => {
+       if (ite.length == 0) {
+        if (this.formProduto.valid){
+          this.produtoService.deleteProduto(this.formProduto.value).subscribe();
+          this.dialogRef.close();
+          this.formProduto.reset();      
+        }  
+      } else {
+        alert('Possui pedidos com este produto');
+      } 
+    });
   }
 
   cancel(): void{

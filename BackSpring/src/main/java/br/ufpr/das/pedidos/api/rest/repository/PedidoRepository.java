@@ -14,6 +14,7 @@ public interface PedidoRepository extends JpaRepository<PedidoModel, Integer> {
 
 
 	@Query("SELECT t FROM pedido t WHERE cliente_id = ?1")
-	Iterable<PedidoModel> findAllById(Integer id);
+	Iterable<PedidoModel> findAllByCliente(Integer id);
+
 
 }

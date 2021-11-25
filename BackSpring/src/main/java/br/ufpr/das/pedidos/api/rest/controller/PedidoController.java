@@ -56,8 +56,7 @@ public class PedidoController {
     
     @GetMapping("/cliente/{id}")
     public Iterable<PedidoModel> getPedidoByCliente(@PathVariable Integer id) {
-    	return repository.findAllById(id);
-        
+    	return repository.findAllByCliente(id);
     }
 
     

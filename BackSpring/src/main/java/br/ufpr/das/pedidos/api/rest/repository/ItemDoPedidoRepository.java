@@ -10,4 +10,8 @@ public interface ItemDoPedidoRepository extends JpaRepository<ItemDoPedidoModel,
     @Query("SELECT t FROM item_do_pedido t WHERE pedido_id = ?1")
 	Iterable<ItemDoPedidoModel> findAllById(Integer id);
 
+    
+	@Query("SELECT t FROM item_do_pedido t WHERE produto_id = ?1")
+	Iterable<ItemDoPedidoModel> findAllByProduto(Integer id);
+
 }
