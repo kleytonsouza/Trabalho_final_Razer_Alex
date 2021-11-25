@@ -64,6 +64,10 @@ export class InserirPedidoComponent implements OnInit {
 
   inserir(): void {
     if (this.formPedido.valid) {
+      if(this.items.length == 0){
+        alert("Não é possivel salvar pedido sem itens")
+      }
+      else{     
       this.formPedido = this.fb.group({
         id: [''],
         data: [formatDate(this.date, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", "en-US")],
@@ -74,6 +78,7 @@ export class InserirPedidoComponent implements OnInit {
       this.dialogRef.close();
       this.formPedido.reset();
       window.location.reload();
+      }
     }
   }
 
