@@ -13,7 +13,7 @@ imports: [HttpClientModule, HttpClient];
 export class PedidoService {
   private apiServerUrl = environment.apiBaseUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   public getPedidos(): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(`${this.apiServerUrl}/pedidos`);
@@ -28,15 +28,15 @@ export class PedidoService {
   }
 
   public adicionarPedido(pedido: Pedido): Observable<Pedido> {
-    return this.http.post<Pedido>(`${this.apiServerUrl}/pedidos`,  pedido);
+    return this.http.post<Pedido>(`${this.apiServerUrl}/pedidos`, pedido);
   }
 
   public adicionarItemDoPedido(item: ItemDoPedido): Observable<ItemDoPedido> {
-    return this.http.post<ItemDoPedido>(`${this.apiServerUrl}/itemdopedido`, item );
+    return this.http.post<ItemDoPedido>(`${this.apiServerUrl}/itemdopedido`, item);
   }
 
   public deletarPedido(pedidoID: number): Observable<Pedido> {
-    return this.http.delete<Pedido>(`${this.apiServerUrl}/pedidos/${pedidoID}` );
+    return this.http.delete<Pedido>(`${this.apiServerUrl}/pedidos/${pedidoID}`);
   }
-  
+
 }

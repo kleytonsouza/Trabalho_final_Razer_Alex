@@ -14,7 +14,7 @@ import { InserirProdutoComponent } from '../inserir-produto/inserir-produto.comp
   styleUrls: ['./listar-produto.component.css']
 })
 
-export class ListarProdutoComponent  {
+export class ListarProdutoComponent {
 
   ELEMENT_DATA!: Produto[];
   displayedColumns = ['id', 'descricao', 'op'];
@@ -22,19 +22,19 @@ export class ListarProdutoComponent  {
   produtos!: Produto[];
 
   constructor(
-    private produtoService : ProdutoService, 
+    private produtoService: ProdutoService,
     public dialog: MatDialog
   ) { }
 
   ngOnInit(): void { this.getAllProdutos() }
 
-  update(produto : Produto) {
+  update(produto: Produto) {
     const dialogRef = this.dialog.open(
-      EditarProdutoComponent,{
-        minWidth: '300px',
-        minHeight: '300px',
-        data: produto
-      }
+      EditarProdutoComponent, {
+      minWidth: '300px',
+      minHeight: '300px',
+      data: produto
+    }
     );
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -44,10 +44,10 @@ export class ListarProdutoComponent  {
 
   add() {
     const dialogRef = this.dialog.open(
-      InserirProdutoComponent,{
-        minWidth: '300px',
-        minHeight: '300px' 
-      }
+      InserirProdutoComponent, {
+      minWidth: '300px',
+      minHeight: '300px'
+    }
     )
     dialogRef.afterClosed().subscribe(
       result => {
@@ -56,21 +56,22 @@ export class ListarProdutoComponent  {
     );
   }
 
-  delete(produto: Produto){
+  delete(produto: Produto) {
     const dialogRef = this.dialog.open(RemoverProdutoComponent, {
       minWidth: '300px',
       minHeight: '300px',
-      data: produto});
+      data: produto
+    });
 
-    dialogRef.afterClosed().subscribe(() =>{
+    dialogRef.afterClosed().subscribe(() => {
       console.log('Dialog result: ${result}');
       this.getAllProdutos();
-    })  
+    })
   }
 
-  listAll(){
+  listAll() {
     this.produtoService.getProdutos().subscribe(
-      (response: Produto[]) =>{
+      (response: Produto[]) => {
         this.produtos = response;
       },
       (error: HttpErrorResponse) => {
@@ -79,15 +80,15 @@ export class ListarProdutoComponent  {
     );
   }
 
-  public getAllProdutos(){
+  public getAllProdutos() {
     this.produtoService.getProdutos().subscribe(
       produtos => {
         this.produtos = produtos,
-        this.dataSource.data = produtos
+          this.dataSource.data = produtos
       }
     )
   }
- 
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

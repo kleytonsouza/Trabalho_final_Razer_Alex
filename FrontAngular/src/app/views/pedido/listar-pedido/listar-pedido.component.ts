@@ -13,9 +13,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ListarItemdopedidoComponent } from '../../itemdopedido/listar-itemdopedido/listar-itemdopedido.component';
 import { ItemdopedidoService } from '../../itemdopedido/services/itemdopedido.service';
 
-
-
-
 @Component({
   selector: 'app-pedido',
   templateUrl: './listar-pedido.component.html',
@@ -31,7 +28,6 @@ export class ListarPedidoComponent implements OnInit {
   pedidos!: Pedido[];
 
   displayedColumns = ['produto', 'quantidade', 'op'];
-  //dataSource = new MatTableDataSource<ItemDoPedido>(this.ELEMENT_DATA);
 
   constructor(
     private pedidoService: PedidoService,
@@ -55,7 +51,6 @@ export class ListarPedidoComponent implements OnInit {
       (error: HttpErrorResponse) => { alert(error.message) }
     );
   }
-
 
   public getCliente() {
     this.clienteService.getCliente(this.clienteId).subscribe((ite) => {

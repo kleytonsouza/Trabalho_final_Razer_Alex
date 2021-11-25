@@ -8,31 +8,31 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class ProdutoService {
 
   private apiServerUrl = environment.apiBaseUrl;
-  
+
   constructor(private http: HttpClient) { }
-  
-  
-  getProdutos(): Observable<Produto[]>{
+
+
+  getProdutos(): Observable<Produto[]> {
     return this.http.get<Produto[]>(`${this.apiServerUrl}/produtos`);
   }
-   
-  addProduto(produto: Produto): Observable<Produto>{
+
+  addProduto(produto: Produto): Observable<Produto> {
     return this.http.post<Produto>(`${this.apiServerUrl}/produtos`, produto);
   }
 
-  findById(id: number): Observable<Produto>{
+  findById(id: number): Observable<Produto> {
     return this.http.get<Produto>(`${this.apiServerUrl}/produtos/${id}`);
   }
 
-  updateProduto(produto: Produto): Observable<Produto>{
+  updateProduto(produto: Produto): Observable<Produto> {
     return this.http.put<Produto>(`${this.apiServerUrl}/produtos/${produto.id}`, produto);
   }
 
-  deleteProduto(produto: Produto): Observable<Produto>{
+  deleteProduto(produto: Produto): Observable<Produto> {
     return this.http.delete<Produto>(`${this.apiServerUrl}/produtos/${produto.id}`);
   }
 

@@ -21,7 +21,7 @@ export class RemoverClienteComponent implements OnInit {
     public dialogRef: MatDialogRef<RemoverClienteComponent>,
     private clienteService: ClienteService,
     private pedidoService: PedidoService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.formCliente = this.formBuilder.group({

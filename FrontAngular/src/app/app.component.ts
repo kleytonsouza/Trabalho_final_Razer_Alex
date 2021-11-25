@@ -9,19 +9,19 @@ import { Cliente } from "src/app/shared/models/cliente.model";
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent  implements OnInit{
+export class AppComponent implements OnInit {
   title = 'Clientes Pedidos';
 
   public clientes: Cliente[] = [];
 
-  constructor(private clientesService: ClienteService){}
+  constructor(private clientesService: ClienteService) { }
   ngOnInit(): void {
     this.getClientes();
   }
 
-  public getClientes(): void{
+  public getClientes(): void {
     this.clientesService.getClientes().subscribe(
-      (response: Cliente[]) =>{
+      (response: Cliente[]) => {
         this.clientes = response;
       },
       (error: HttpErrorResponse) => {

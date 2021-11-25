@@ -1,9 +1,8 @@
 package br.ufpr.das.pedidos.api.rest.controller;
+
 import java.util.List;
 import java.util.Optional;
-
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -11,7 +10,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import br.ufpr.das.pedidos.api.event.ResourceCreatedEvent;
 import br.ufpr.das.pedidos.api.rest.model.ProdutoModel;
 import br.ufpr.das.pedidos.api.rest.repository.ProdutoRepository;

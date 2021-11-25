@@ -11,34 +11,34 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 
 export class InserirClienteComponent implements OnInit {
-  
-  public formCliente! : FormGroup;
+
+  public formCliente!: FormGroup;
   public cliente!: Cliente;
-  
+
   constructor(
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<InserirClienteComponent>, 
+    public dialogRef: MatDialogRef<InserirClienteComponent>,
     private clienteService: ClienteService
-  ){ }
+  ) { }
 
   ngOnInit(): void {
     this.formCliente = this.formBuilder.group({
-      id: ['', ],
+      id: ['',],
       cpf: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       nome: ['', [Validators.required]],
       sobrenome: ['', [Validators.required]]
     })
   }
 
-  cancel(): void{
+  cancel(): void {
     this.dialogRef.close();
     this.formCliente.reset();
   }
 
-  add(): void{
+  add(): void {
     this.clienteService.getClienteByCpf(this.formCliente.value['cpf']).subscribe((cliente) => {
-      if(cliente == null){
-       if (this.formCliente.valid){
+      if (cliente == null) {
+        if (this.formCliente.valid) {
           this.clienteService.addCliente(this.formCliente.value).subscribe();
           this.dialogRef.close();
           this.formCliente.reset();
@@ -49,6 +49,4 @@ export class InserirClienteComponent implements OnInit {
       }
     })
   }
-  
-  
 }

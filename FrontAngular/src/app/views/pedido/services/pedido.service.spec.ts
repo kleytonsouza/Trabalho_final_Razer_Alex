@@ -12,7 +12,7 @@ describe('PedidoService', () => {
   let httpMock: jasmine.SpyObj<HttpClient>;
 
   beforeEach(() => {
-    const spy = jasmine.createSpyObj('HttpClient', ['get','post', 'put', 'delete']);
+    const spy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put', 'delete']);
     TestBed.configureTestingModule({
       providers: [
         PedidoService,
@@ -28,7 +28,7 @@ describe('PedidoService', () => {
   });
 
   it('getPedidos() deve retornar lista de Pedidos', (done: DoneFn) => {
-  
+
     httpMock.get.and.returnValue(of(PEDIDOSLISTA));
 
     service.getPedidos().subscribe(
@@ -41,13 +41,13 @@ describe('PedidoService', () => {
   });
 
   it('getPedido() pesquisa um pedido pelo id numero 2', (done: DoneFn) => {
-  
+
     let id_pedido = 2;
 
-    let pedidoEncontrado = PEDIDOSLISTA.find(function(elemento,index){
-            if(elemento.id === id_pedido) return true;
-            return false;
-          })
+    let pedidoEncontrado = PEDIDOSLISTA.find(function (elemento, index) {
+      if (elemento.id === id_pedido) return true;
+      return false;
+    })
 
     httpMock.get.and.returnValue(of(pedidoEncontrado));
 
@@ -62,15 +62,15 @@ describe('PedidoService', () => {
 
 
   it(`adicionarPedido() deve adicionar um novo pedido à lista`, (done: DoneFn) => {
-    console.log(PEDIDOSLISTA[PEDIDOSLISTA.length-2]);
-    
-    const pedido: Pedido = {id:66, data: new Date(), cliente:  CLIENTESLISTA[CLIENTESLISTA.length-1]};
-    
+    console.log(PEDIDOSLISTA[PEDIDOSLISTA.length - 2]);
+
+    const pedido: Pedido = { id: 66, data: new Date(), cliente: CLIENTESLISTA[CLIENTESLISTA.length - 1] };
+
     PEDIDOSLISTA.push(pedido);
 
     httpMock.post.and.returnValue(of(
-      PEDIDOSLISTA.find(function(elemento,index){
-        if(elemento.id===66) return true;
+      PEDIDOSLISTA.find(function (elemento, index) {
+        if (elemento.id === 66) return true;
         return false;
       })
     ));
@@ -86,43 +86,44 @@ describe('PedidoService', () => {
   });
 
   it(`deletePedido() deve deletar um pedido da lista`, (done: DoneFn) => {
-    
-    let pedido_id = PEDIDOSLISTA.length-2;
+
+    let pedido_id = PEDIDOSLISTA.length - 2;
     let pedido_deleted = PEDIDOSLISTA[pedido_id];
     let PEDIDOS_DELETED_LISTA = PEDIDOSLISTA.filter(obj => obj !== pedido_deleted);
-  
+
     httpMock.delete.and.returnValue(of(pedido_deleted));
 
     service.deletarPedido(pedido_deleted.id).subscribe(
-        pedido => { console.log(pedido, "asdf")
+      pedido => {
+        console.log(pedido, "asdf")
         expect(PEDIDOS_DELETED_LISTA).not.toContain(pedido_deleted);
-        expect(pedido.id).toEqual(pedido_id+1, "produto passado como parametro foi o mesmo deletado")
+        expect(pedido.id).toEqual(pedido_id + 1, "produto passado como parametro foi o mesmo deletado")
         done();
       }, done.fail
     );
-    
+
   });
 
   it(`updatePedido() deve atualizar um pedido da lista`, (done: DoneFn) => {
-    
-    let atualizarPedido = PEDIDOSLISTA[PEDIDOSLISTA.length-1];
-    
+
+    let atualizarPedido = PEDIDOSLISTA[PEDIDOSLISTA.length - 1];
+
     atualizarPedido.cliente = CLIENTESLISTA[Math.floor(Math.random() * CLIENTESLISTA.length)];
     PEDIDOSLISTA[3].cliente = atualizarPedido.cliente;
-    
+
     httpMock.put.and.returnValue(of(
-      PEDIDOSLISTA.find(function(elemento,index){
-        if(elemento.id===atualizarPedido.id) return true;
+      PEDIDOSLISTA.find(function (elemento, index) {
+        if (elemento.id === atualizarPedido.id) return true;
         return false;
       })
     ));
 
     //service.updatePedido(atualizarProduto).subscribe(
-      //produto => {
-        expect("para implementar").toEqual("para implementar", 'descrição esperada do novo produto');
-        done();
-      //}, 
-      done.fail
+    //produto => {
+    expect("para implementar").toEqual("para implementar", 'descrição esperada do novo produto');
+    done();
+    //}, 
+    done.fail
     //);
   });
 

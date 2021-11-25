@@ -2,8 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { ProdutoService } from '../services/produto.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Produto } from '../../../shared/models/produto.model';
-import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { PedidoService } from '../../pedido/services/pedido.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ItemdopedidoService } from '../../itemdopedido/services/itemdopedido.service';
 
 
@@ -33,21 +32,21 @@ export class RemoverProdutoComponent implements OnInit {
     })
   }
 
-  delete(): void{
+  delete(): void {
     this.itemdopedidoService.getItemByProduto(this.formProduto.value['id']).subscribe((ite) => {
-       if (ite.length == 0) {
-        if (this.formProduto.valid){
+      if (ite.length == 0) {
+        if (this.formProduto.valid) {
           this.produtoService.deleteProduto(this.formProduto.value).subscribe();
           this.dialogRef.close();
-          this.formProduto.reset();      
-        }  
+          this.formProduto.reset();
+        }
       } else {
         alert('Possui pedidos com este produto');
-      } 
+      }
     });
   }
 
-  cancel(): void{
+  cancel(): void {
     this.dialogRef.close();
     this.formProduto.reset();
   }

@@ -4,7 +4,7 @@
   </div>
   <h1>Lista de Clientes</h1>
   <mat-label>Pesquisar</mat-label>
-    <input matInput (keyup)="applyFilter($event)" class="box_search" #input>
+  <input matInput (keyup)="applyFilter($event)" class="box_search" #input>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> <b>ID</b> </th>
@@ -25,13 +25,14 @@
     <ng-container matColumnDef="op">
       <th id="options" mat-header-cell *matHeaderCellDef> <b>Opções</b> </th>
       <td class="mat-cell-btns" id="options_buttons" mat-cell *matCellDef="let row">
-        <button mat-mini-fab (click)="delete(row)" color="primary" aria-label="Example icon button with a delete icon" >
+        <button mat-mini-fab (click)="delete(row)" color="primary" aria-label="Example icon button with a delete icon">
           <mat-icon>delete</mat-icon>
         </button>
-        <button  mat-mini-fab  (click)="update(row)" color="primary" aria-label="Example icon button with a delete icon">
+        <button mat-mini-fab (click)="update(row)" color="primary" aria-label="Example icon button with a delete icon">
           <mat-icon>edit</mat-icon>
         </button>
-        <button  mat-mini-fab   (click)="listOrdens(row)" color="primary" aria-label="Example icon button with a delete icon">
+        <button mat-mini-fab (click)="listOrdens(row)" color="primary"
+          aria-label="Example icon button with a delete icon">
           <mat-icon>list</mat-icon>
         </button>
       </td>

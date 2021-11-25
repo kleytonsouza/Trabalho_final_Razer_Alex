@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProdutoService } from '../services/produto.service';
-import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Produto } from 'src/app/shared/models/produto.model';
 
 @Component({
@@ -11,8 +11,8 @@ import { Produto } from 'src/app/shared/models/produto.model';
 })
 
 export class EditarProdutoComponent implements OnInit {
-  
-  public formProduto! : FormGroup;
+
+  public formProduto!: FormGroup;
   public produto!: Produto;
 
   constructor(
@@ -21,7 +21,7 @@ export class EditarProdutoComponent implements OnInit {
     public dialogRef: MatDialogRef<EditarProdutoComponent>,
     private produtoService: ProdutoService
   ) { }
-    
+
   ngOnInit(): void {
     this.formProduto = this.formBuilder.group({
       id: [this.data.id, [Validators.required]],
@@ -29,15 +29,15 @@ export class EditarProdutoComponent implements OnInit {
     })
   }
 
-  update(): void{
-    if (this.formProduto.valid){
-        this.produtoService.updateProduto(this.formProduto.value).subscribe();
-        this.dialogRef.close();
-        this.formProduto.reset();      
-    }  
+  update(): void {
+    if (this.formProduto.valid) {
+      this.produtoService.updateProduto(this.formProduto.value).subscribe();
+      this.dialogRef.close();
+      this.formProduto.reset();
+    }
   }
 
-  cancel(): void{
+  cancel(): void {
     this.dialogRef.close();
     this.formProduto.reset();
   }

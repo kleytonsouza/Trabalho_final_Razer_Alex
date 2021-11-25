@@ -10,13 +10,13 @@ describe('RemoverClienteComponent', () => {
   let fixture: ComponentFixture<RemoverClienteComponent>;
 
   beforeEach(async () => {
-    const spy = jasmine.createSpyObj('HttpClient', ['get','post']);
+    const spy = jasmine.createSpyObj('HttpClient', ['get', 'post']);
     await TestBed.configureTestingModule({
-      declarations: [ RemoverClienteComponent ],
+      declarations: [RemoverClienteComponent],
       providers: [FormBuilder, { provide: MAT_DIALOG_DATA, useValue: {} }, { provide: MatDialogRef, useValue: {} },
-                    ClienteService,  { provide: HttpClient, useValue: spy }]
+        ClienteService, { provide: HttpClient, useValue: spy }]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
