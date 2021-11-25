@@ -1,20 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 import { ClienteService } from './cliente.service'
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { ClienteModule } from '../cliente.module';
+import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
-// import { CLIENTESLISTA } from 'src/app/server/db-data-clientes';
+import { CLIENTESLISTA } from 'src/app/tests/table_clients';
 import { Cliente } from 'src/app/shared/models/cliente.model';
 
 describe('ClienteService', () => {
   let service: ClienteService;
   let httpMock: jasmine.SpyObj<HttpClient>;
+  
 
   beforeEach(() => {
     const spy = jasmine.createSpyObj('HttpClient', ['get','post']);
     TestBed.configureTestingModule({
-      providers: [
+      providers: [ 
         ClienteService,
         { provide: HttpClient, useValue: spy }
       ]
@@ -23,29 +22,97 @@ describe('ClienteService', () => {
     service = TestBed.inject(ClienteService);
   });
 
-  it('should be created', () => {
-    console.log(service);
+  it('ClienteService should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('getClientes() deve retornar lista de Clientes', (done: DoneFn) => {
+  
+    httpMock.get.and.returnValue(of(CLIENTESLISTA));
+
+    service.getClientes().subscribe(
+      clientes => {
+        expect(clientes).toBeTruthy();
+        done();
+      }, done.fail
+    );
+    expect(httpMock.get.calls.count()).toBe(1, 'uma chamada realizada!!');
+  });
+
+
+  it('getCliente() deve retornar o cliente de id número 3', (done: DoneFn) => {
+  
+    httpMock.get.and.returnValue(of(CLIENTESLISTA));
+
+    let cliente = new Cliente(3, '02468024680', 'Meliodas', 'Pecado da Fúria');
+    console.log(cliente.id, "merda");
+
+    service.getCliente(3).subscribe(
+      clientes => {
+        expect(clientes.id == 3);
+        done();
+      }, done.fail
+    );
+    expect(httpMock.get.calls.count()).toBe(1, 'uma chamada realizada!!');
+  });
+
+  it('getClienteByCpf() deve retornar o cliente de cpf número 02456852695', (done: DoneFn) => {
+  
+    httpMock.get.and.returnValue(of(CLIENTESLISTA));
+
+    service.getClienteByCpf(+'02456852695').subscribe(
+      cliente => {
+        expect(cliente.cpf == '02456852695');
+        done();
+      }, done.fail
+    );
+    expect(httpMock.get.calls.count()).toBe(1, 'uma chamada realizada!!');
+  });
+
+
+  it(`addCliente() deve adicionar um novo cliente à lista`, (done: DoneFn) => {
+    const cliente: Cliente = {id: 66, cpf: '00000000000', nome: 'Saci', sobrenome: 'De Caloi 10'};
+
+    CLIENTESLISTA.push(cliente);
+
+    httpMock.post.and.returnValue(of(
+      CLIENTESLISTA.find(function(elemento,index){
+        if(elemento.id===66) return true;
+        return false;
+      })
+    ));
+
+    service.addCliente(cliente).subscribe(
+      cliente => {
+        expect(cliente.id).toEqual(66, 'id esperado do novo cliente');
+        expect(cliente.cpf).toEqual(cliente.cpf, 'cpf esperado do novo cliente');
+        expect(cliente.nome).toEqual(cliente.nome, 'nome esperado do novo cliente');
+        expect(cliente.sobrenome).toEqual(cliente.sobrenome, 'sobrenome esperado do novo cliente');
+        done();
+      }, done.fail
+    );
+    expect(httpMock.post.calls.count()).toBe(1, 'uma chamada realizada!!');
+  });
+
+  // it(`deleteCliente() deve deletar o cliente de id 2 da lista`, (done: DoneFn) => {
+
+  //   let deleteCliente = CLIENTESLISTA[1];
+  //   delete CLIENTESLISTA[1];
+
+  //   httpMock.post.and.returnValue(of(deleteCliente));
+    
+  //   service.deleteCliente(2).subscribe(
+  //     cliente => {
+  //       expect(CLIENTESLISTA).not.toContain(cliente);
+  //       done();
+  //     }, done.fail
+  //   );
+    
+  // });
+
+
 });
 
-
-// describe('ClientService', () => {
-//   let httpClientSpy: jasmine.SpyObj<HttpClient>;
-//   let clienteService: ClienteService;
-
-//   beforeEach(() => {
-//     const spy = jasmine.createSpyObj('HttpClient', ['get','post']);
-//     TestBed.configureTestingModule({
-//       providers: [
-//         ClienteService,
-//         { provide: HttpClient, useValue: spy }
-//       ]
-//     });
-//     httpClientSpy = TestBed.inject(HttpClient) as jasmine.SpyObj<HttpClient>;
-//     clienteService = TestBed.inject(ClienteService);
-//   });
-// });
 
 
 //   it('getClientes() deve retornar lista de Clientes', (done: DoneFn) => {
