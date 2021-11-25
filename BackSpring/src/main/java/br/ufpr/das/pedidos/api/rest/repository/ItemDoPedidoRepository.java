@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface ItemDoPedidoRepository extends JpaRepository<ItemDoPedidoModel, Integer> {
 
-    @Query("SELECT t FROM item_do_pedido t WHERE produto_id = ?1")
+    @Query("SELECT t FROM item_do_pedido t WHERE pedido_id = ?1")
 	Iterable<ItemDoPedidoModel> findAllById(Integer id);
 
 }

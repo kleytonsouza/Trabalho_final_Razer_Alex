@@ -26,14 +26,8 @@ export class ListarPedidoComponent implements OnInit {
   produto!: Produto;
   cliente: Cliente = new Cliente(0, '', '', '');
   clienteId!: number;
-  items: ItemDoPedido[] = [];
   dataSource = new MatTableDataSource<Pedido>(this.ELEMENT_DATA);
   pedidos!: Pedido[];
-  itens = [
-    {id: 1, name: 'banana,', quantidade:2},
-    {id: 2, name: 'cafe',  quantidade:2},
-    {id: 3, name: 'suco',  quantidade:5}
-  ];
 
   displayedColumns = ['produto', 'quantidade', 'op'];
   //dataSource = new MatTableDataSource<ItemDoPedido>(this.ELEMENT_DATA);
@@ -53,19 +47,19 @@ export class ListarPedidoComponent implements OnInit {
   }
 
 
-  getPedidos(): void{
+  getPedidos(): void {
     this.pedidoService.getPedidoByCliente(1).subscribe(
-      (response: Pedido[])      => { this.pedidos = response},
-      (error: HttpErrorResponse) => { alert(error.message)}
+      (response: Pedido[]) => { this.pedidos = response },
+      (error: HttpErrorResponse) => { alert(error.message) }
     );
   }
 
 
-  public getCliente(){
-     this.clienteService.getCliente(this.clienteId).subscribe((ite) => {
+  public getCliente() {
+    this.clienteService.getCliente(this.clienteId).subscribe((ite) => {
       this.cliente = ite;
 
-    }) 
+    })
 
   }
 
@@ -74,7 +68,7 @@ export class ListarPedidoComponent implements OnInit {
       minWidth: '300px',
       minHeight: '300px',
       panelClass: 'custom-dialog',
-      data: {id: this.cliente.id},
+      data: { id: this.cliente.id },
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
@@ -82,13 +76,12 @@ export class ListarPedidoComponent implements OnInit {
     });
   }
 
-  listarItemsDoPedido(){
-    
+  listarItemsDoPedido(pedido: any) {
     const dialogRef = this.dialog.open(ListarItemdopedidoComponent, {
       minWidth: '300px',
       minHeight: '300px',
       panelClass: 'custom-dialog',
-      data: {id: this.cliente.id},
+      data: { id: pedido.id },
     });
   }
 
