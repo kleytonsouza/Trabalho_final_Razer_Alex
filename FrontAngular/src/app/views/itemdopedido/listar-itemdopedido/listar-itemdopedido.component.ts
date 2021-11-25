@@ -26,10 +26,6 @@ export class ListarItemdopedidoComponent implements OnInit {
   public getItems() {
     this.itemdopedidoService.getPedidoByCliente(this.data.id).subscribe((ite) => {
       this.items = ite;
-      this.items.forEach(element => {
-        
-      console.log(element.produto['descricao'])
-      });
     }
     );
 

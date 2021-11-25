@@ -63,12 +63,6 @@ export class InserirPedidoComponent implements OnInit {
 
   inserir(): void {
     if (this.formPedido.valid) {
-      this.formPedido = this.fb.group({
-        id: [''],
-        data: [formatDate(this.date, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", "en-US")],
-        cliente: [this.cliente],
-        itens: [this.items],
-      });
       this.pedidoService
         .adicionarPedido(this.formPedido.value)
         .subscribe((result) => { });
@@ -76,7 +70,7 @@ export class InserirPedidoComponent implements OnInit {
         this.formItemPedido = this.fb.group({
           quantidade: [element.quantidade],
           produto: [element.produto],
-          pedido: [new Pedido(1,this.date,this.cliente)],
+          pedido: [element.pedido],
         });
         this.pedidoService
           .adicionarItemDoPedido(this.formItemPedido.value)
