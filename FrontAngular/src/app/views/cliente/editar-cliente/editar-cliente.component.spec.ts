@@ -6,7 +6,7 @@ import { ClienteService } from '../services/cliente.service';
 
 import { EditarClienteComponent } from './editar-cliente.component';
 
-describe('EditarPessoaComponent', () => {
+describe('EditarClienteComponent', () => {
   let component: EditarClienteComponent;
   let fixture: ComponentFixture<EditarClienteComponent>;
   let httpMock: jasmine.SpyObj<HttpClient>;

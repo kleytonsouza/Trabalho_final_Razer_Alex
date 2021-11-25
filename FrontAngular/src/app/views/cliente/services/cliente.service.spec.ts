@@ -60,20 +60,20 @@ describe('ClienteService', () => {
     expect(httpMock.get.calls.count()).toBe(1, 'uma chamada realizada!!');
   });
 
-  it('getClienteByCpf() deve retornar o cliente de cpf número 02456852695', (done: DoneFn) => {
+  it('getClienteByCpf() busca um cliente pelo CPF', (done: DoneFn) => {
     
-    let cpf = "02456852695";
+    let cliente_by_cpf = CLIENTESLISTA[Math.floor(Math.random() * CLIENTESLISTA.length)];
 
     let cpfEncontrado = CLIENTESLISTA.find(function(elemento,index){
-            if(elemento.cpf === cpf ) return true;
+            if(elemento.cpf === cliente_by_cpf.cpf ) return true;
             return false;
           })
 
     httpMock.get.and.returnValue(of(cpfEncontrado));
 
-    service.getClienteByCpf(cpf).subscribe(
+    service.getClienteByCpf(cliente_by_cpf.cpf).subscribe(
       cliente => {
-        expect(cliente.cpf).toEqual(cpf, 'cpf esperado');
+        expect(cliente.cpf).toEqual(cliente_by_cpf.cpf, 'cpf esperado');
         done();
       }, done.fail
     );
@@ -103,59 +103,54 @@ describe('ClienteService', () => {
     );
     expect(httpMock.post.calls.count()).toBe(1, 'uma chamada realizada!!');
   });
-});
 
-  // it(`deleteCliente() deve deletar o cliente de id 2 da lista`, (done: DoneFn) => {
+  it(`deleteCliente() deve deletar um cliente da lista`, (done: DoneFn) => {
 
-  //   let cliente_id = 2;
-  //   let deleteCliente: Cliente = {id: 2, cpf: '01987654321', nome: 'Seya', sobrenome: 'de Pegasus'};
+    let cliente_id = CLIENTESLISTA.length-2;
+    let cliente_deleted = CLIENTESLISTA[cliente_id];
+    let CLIENTE_DELETED_LISTA = CLIENTESLISTA.filter(obj => obj !== cliente_deleted);
 
-  //   CLIENTESLISTA.find(function(elemento,index){
-  //     if(elemento.id === cliente_id) {
-  //       let deleteCliente = CLIENTESLISTA[index];
-  //       delete CLIENTESLISTA[index];
-  //       httpMock.delete.and.returnValue(of(deleteCliente));
-  //       return true;
-  //     }  
-  //     return false;
-  //   })
+    httpMock.delete.and.returnValue(of(cliente_deleted));
 
-  //   service.deleteCliente(deleteCliente).subscribe(
-  //     cliente => {
-  //       expect(CLIENTESLISTA).not.toContain(cliente);
-  //       done();
-  //     }, done.fail
-  //   );
+    service.deleteCliente(cliente_deleted).subscribe(
+      cliente => {
+        expect(CLIENTE_DELETED_LISTA).not.toContain(cliente);
+        done();
+      }, done.fail
+    );
     
-  // });
+  });
 
-
-  // it(`updateCliente() deve atualizar um cliente da lista`, (done: DoneFn) => {
+  it(`updateCliente() deve atualizar um cliente da lista`, (done: DoneFn) => {
   
-  //   let atualizarCliente = CLIENTESLISTA[3];
-  //   atualizarCliente.cpf = "98765432198";
-  //   atualizarCliente.nome = "Scooby";
-  //   atualizarCliente.sobrenome = "Doo";
-  //   CLIENTESLISTA[3].cpf=atualizarCliente.cpf;
-  //   CLIENTESLISTA[3].nome=atualizarCliente.nome;
-  //   CLIENTESLISTA[3].sobrenome=atualizarCliente.sobrenome;
+    let cliente_id = CLIENTESLISTA.length-1
+    let cliente_atualizado = CLIENTESLISTA[cliente_id];
+
+
+    cliente_atualizado.cpf = "98765432198";
+    cliente_atualizado.nome = "Scooby";
+    cliente_atualizado.sobrenome = "Doo";
+    CLIENTESLISTA[3].cpf=cliente_atualizado.cpf;
+    CLIENTESLISTA[3].nome=cliente_atualizado.nome;
+    CLIENTESLISTA[3].sobrenome=cliente_atualizado.sobrenome;
     
 
-  //   httpMock.put.and.returnValue(of(
-  //     CLIENTESLISTA.find(function(elemento,index){
-  //       if(elemento.id===atualizarCliente.id) return true;
-  //       return false;
-  //     })
-  //   ));
+    httpMock.put.and.returnValue(of(
+      CLIENTESLISTA.find(function(elemento,index){
+        if(elemento.id===cliente_atualizado.id) return true;
+        return false;
+      })
+    ));
 
-  //   service.updateCliente(atualizarCliente).subscribe(
-  //     cliente => {
-  //       expect(cliente.id).toEqual(atualizarCliente.id, 'id esperada do novo cliente');
-  //       expect(cliente.cpf).toEqual(atualizarCliente.cpf, 'cpf esperado do novo cliente');
-  //       expect(cliente.nome).toEqual(atualizarCliente.nome, 'nome esperado do novo cliente');
-  //       expect(cliente.sobrenome).toEqual(atualizarCliente.sobrenome, 'nome esperado do novo cliente');
-  //       done();
-  //     }, done.fail
-  //   );
+    service.updateCliente(cliente_atualizado).subscribe(
+      cliente => {
+        expect(cliente.id).toEqual(cliente_atualizado.id, 'id esperada do novo cliente');
+        expect(cliente.cpf).toEqual(cliente_atualizado.cpf, 'cpf esperado do novo cliente');
+        expect(cliente.nome).toEqual(cliente_atualizado.nome, 'nome esperado do novo cliente');
+        expect(cliente.sobrenome).toEqual(cliente_atualizado.sobrenome, 'nome esperado do novo cliente');
+        done();
+      }, done.fail
+    );
             
-  // });  
+  });
+});    

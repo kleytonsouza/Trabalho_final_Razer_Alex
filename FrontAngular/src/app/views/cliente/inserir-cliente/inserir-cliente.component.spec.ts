@@ -5,7 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ClienteService } from '../services/cliente.service';
 import { InserirClienteComponent } from './inserir-cliente.component';
 
-describe('InserirPessoaComponent', () => {
+describe('InserirClienteComponent', () => {
   let component: InserirClienteComponent;
   let fixture: ComponentFixture<InserirClienteComponent>;
 
