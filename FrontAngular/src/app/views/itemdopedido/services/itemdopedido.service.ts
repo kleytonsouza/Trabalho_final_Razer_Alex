@@ -16,7 +16,5 @@ export class ItemdopedidoService {
     return this.http.get<ItemDoPedido[]>(`${this.apiServerUrl}/itemdopedido/pedido/${pedido_id}`);
   }
 
-
-
   
 }

@@ -106,28 +106,28 @@ describe('ClienteService', () => {
   });
 
 
-  it(`deleteCliente() deve deletar o cliente de id 2 da lista`, (done: DoneFn) => {
+  // it(`deleteCliente() deve deletar o cliente de id 2 da lista`, (done: DoneFn) => {
 
-    let cliente_id = 2
+  //   let cliente_id = 2
 
-    CLIENTESLISTA.find(function(elemento,index){
-      if(elemento.id === cliente_id) {
-        let deleteCliente = CLIENTESLISTA[index];
-        delete CLIENTESLISTA[index];
-        httpMock.delete.and.returnValue(of(deleteCliente));
-        return true;
-      }  
-      return false;
-    })
+    // CLIENTESLISTA.find(function(elemento,index){
+    //   if(elemento.id === cliente_id) {
+    //     let deleteCliente = CLIENTESLISTA[index];
+    //     delete CLIENTESLISTA[index];
+    //     httpMock.delete.and.returnValue(of(deleteCliente));
+    //     return true;
+    //   }  
+    //   return false;
+    // })
 
-    service.deleteCliente(cliente_id).subscribe(
-      cliente => {
-        expect(CLIENTESLISTA).not.toContain(cliente);
-        done();
-      }, done.fail
-    );
+  //   service.deleteCliente(cliente_id).subscribe(
+  //     cliente => {
+  //       expect(CLIENTESLISTA).not.toContain(cliente);
+  //       done();
+  //     }, done.fail
+  //   );
     
-  });
+  // });
 
 
 });
