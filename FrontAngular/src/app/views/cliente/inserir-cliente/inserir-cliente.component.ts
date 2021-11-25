@@ -36,8 +36,8 @@ export class InserirClienteComponent implements OnInit {
   }
 
   add(): void{
-    this.clienteService.getClienteByCpf(this.formCliente.value['cpf']).subscribe((ite) => {
-      if(ite == null){
+    this.clienteService.getClienteByCpf(this.formCliente.value['cpf']).subscribe((cliente) => {
+      if(cliente == null){
        if (this.formCliente.valid){
           this.clienteService.addCliente(this.formCliente.value).subscribe();
           this.dialogRef.close();

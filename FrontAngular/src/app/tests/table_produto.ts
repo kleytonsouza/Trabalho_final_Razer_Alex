@@ -55,7 +55,7 @@ export const PRODUTOSLISTA: Produto[] = [
     },
     {
         id: 6,
-        descricao: 'Nouse Razer 20 botões 20000 DPI'
+        descricao: 'Mouse Razer 20 botões 20000 DPI'
     },
     {
         id: 7,

@@ -36,7 +36,7 @@ export class RemoverClienteComponent implements OnInit {
     this.pedidoService.getPedidoByCliente(this.data.id).subscribe((ite) => {
       if (ite.length == 0) {
         if (this.formCliente.valid) {
-          this.clienteService.deleteCliente(this.formCliente.value["id"]).subscribe();
+          this.clienteService.deleteCliente(this.formCliente.value).subscribe();
           this.dialogRef.close();
           this.formCliente.reset();
         }

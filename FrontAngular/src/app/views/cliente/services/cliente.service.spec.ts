@@ -11,7 +11,7 @@ describe('ClienteService', () => {
   
 
   beforeEach(() => {
-    const spy = jasmine.createSpyObj('HttpClient', ['get','post']);
+    const spy = jasmine.createSpyObj('HttpClient', ['get','post','delete','put']);
     TestBed.configureTestingModule({
       providers: [ 
         ClienteService,
@@ -80,7 +80,6 @@ describe('ClienteService', () => {
     expect(httpMock.get.calls.count()).toBe(1, 'uma chamada realizada!!');
   });
 
-
   it(`addCliente() deve adicionar um novo cliente à lista`, (done: DoneFn) => {
     const cliente: Cliente = {id: 66, cpf: '00000000000', nome: 'Saci', sobrenome: 'De Caloi 10'};
 
@@ -104,23 +103,24 @@ describe('ClienteService', () => {
     );
     expect(httpMock.post.calls.count()).toBe(1, 'uma chamada realizada!!');
   });
-
+});
 
   // it(`deleteCliente() deve deletar o cliente de id 2 da lista`, (done: DoneFn) => {
 
-  //   let cliente_id = 2
+  //   let cliente_id = 2;
+  //   let deleteCliente: Cliente = {id: 2, cpf: '01987654321', nome: 'Seya', sobrenome: 'de Pegasus'};
 
-    // CLIENTESLISTA.find(function(elemento,index){
-    //   if(elemento.id === cliente_id) {
-    //     let deleteCliente = CLIENTESLISTA[index];
-    //     delete CLIENTESLISTA[index];
-    //     httpMock.delete.and.returnValue(of(deleteCliente));
-    //     return true;
-    //   }  
-    //   return false;
-    // })
+  //   CLIENTESLISTA.find(function(elemento,index){
+  //     if(elemento.id === cliente_id) {
+  //       let deleteCliente = CLIENTESLISTA[index];
+  //       delete CLIENTESLISTA[index];
+  //       httpMock.delete.and.returnValue(of(deleteCliente));
+  //       return true;
+  //     }  
+  //     return false;
+  //   })
 
-  //   service.deleteCliente(cliente_id).subscribe(
+  //   service.deleteCliente(deleteCliente).subscribe(
   //     cliente => {
   //       expect(CLIENTESLISTA).not.toContain(cliente);
   //       done();
@@ -130,114 +130,32 @@ describe('ClienteService', () => {
   // });
 
 
-});
-
-
-
-//   it('getClientes() deve retornar lista de Clientes', (done: DoneFn) => {
-
-//     //httpClientSpy.get.and.returnValue(of(CLIENTESLISTA));
-
-//     clienteService.getClientes().subscribe(
-//       clientes => {
-//         expect(clientes).toBe([]);
-//         done();
-//       }, done.fail
-//     );
-//     expect(httpClientSpy.get.calls.count()).toBe(1, 'uma requisição');
-//   });
-
-//   let encontrarClienteID = 2;
-//   it(`getCliente(${encontrarClienteID}) deve retornar o cliente de ID ${encontrarClienteID}`, (done: DoneFn) => {
-
-//     let clienteEncontrado = CLIENTESLISTA.find(function(elemento,index){
-//       if(elemento.id===encontrarClienteID) return true;
-//       return false;
-//     })
-
-//     httpClientSpy.get.and.returnValue(of(clienteEncontrado));
-
-
-//     clienteService.getCliente(encontrarClienteID).subscribe(
-//       cliente => {
-//         expect(cliente.id).toEqual(encontrarClienteID, 'cliente esperado');
-//         done();
-//       }, done.fail
-//     );
-    
-//   });
-
-//   it(`addCliente() deve adicionar um novo cliente à lista`, (done: DoneFn) => {
-//     const novoCliente: Cliente = {id:4,cpf: "99999999999",nome: "João",sobrenome:"Sem-braço"};
-    
-//     CLIENTESLISTA.push(novoCliente);
-
-//     httpClientSpy.post.and.returnValue(of(
-//       CLIENTESLISTA.find(function(elemento,index){
-//         if(elemento.id===4) return true;
-//         return false;
-//       })
-//     ));
-
-
-//     clienteService.addCliente(novoCliente).subscribe(
-//       cliente => {
-//         expect(cliente.id).toEqual(4, 'id esperada do novo cliente');
-//         expect(cliente.cpf).toEqual(novoCliente.cpf, 'cpf esperado do novo cliente');
-//         expect(cliente.nome).toEqual(novoCliente.nome, 'nome esperado do novo cliente');
-//         expect(cliente.sobrenome).toEqual(novoCliente.sobrenome, 'sobrenome esperado do novo cliente');
-//         done();
-//       }, done.fail
-//     );
-    
-//   });
-
-//   it(`updateCliente() deve atualizar um cliente da lista`, (done: DoneFn) => {
-    
-//     // fazer a atualização do ultimo cliente da lista
-//     let atualizarCliente = CLIENTESLISTA[CLIENTESLISTA.length-1];
-//     // trocando os dados
-//     atualizarCliente.cpf = "98765432198";
-//     atualizarCliente.nome = "Maria";
-//     atualizarCliente.sobrenome = "das Dores";
-//     CLIENTESLISTA[CLIENTESLISTA.length-1].cpf=atualizarCliente.cpf;
-//     CLIENTESLISTA[CLIENTESLISTA.length-1].nome=atualizarCliente.nome;
-//     CLIENTESLISTA[CLIENTESLISTA.length-1].sobrenome=atualizarCliente.sobrenome;
+  // it(`updateCliente() deve atualizar um cliente da lista`, (done: DoneFn) => {
+  
+  //   let atualizarCliente = CLIENTESLISTA[3];
+  //   atualizarCliente.cpf = "98765432198";
+  //   atualizarCliente.nome = "Scooby";
+  //   atualizarCliente.sobrenome = "Doo";
+  //   CLIENTESLISTA[3].cpf=atualizarCliente.cpf;
+  //   CLIENTESLISTA[3].nome=atualizarCliente.nome;
+  //   CLIENTESLISTA[3].sobrenome=atualizarCliente.sobrenome;
     
 
-//     httpClientSpy.post.and.returnValue(of(
-//       CLIENTESLISTA.find(function(elemento,index){
-//         if(elemento.id===atualizarCliente.id) return true;
-//         return false;
-//       })
-//     ));
+  //   httpMock.put.and.returnValue(of(
+  //     CLIENTESLISTA.find(function(elemento,index){
+  //       if(elemento.id===atualizarCliente.id) return true;
+  //       return false;
+  //     })
+  //   ));
 
-
-//     clienteService.updateCliente(atualizarCliente).subscribe(
-//       cliente => {
-//         expect(cliente.id).toEqual(atualizarCliente.id, 'id esperada do novo cliente');
-//         expect(cliente.cpf).toEqual(atualizarCliente.cpf, 'cpf esperado do novo cliente');
-//         expect(cliente.nome).toEqual(atualizarCliente.nome, 'nome esperado do novo cliente');
-//         expect(cliente.sobrenome).toEqual(atualizarCliente.sobrenome, 'nome esperado do novo cliente');
-//         done();
-//       }, done.fail
-//     );
-    
-//   });
-
-//   it(`deleteCliente() deve remover um cliente`, (done: DoneFn) => {
-//     let deleteCliente = CLIENTESLISTA[CLIENTESLISTA.length-1];
-//     CLIENTESLISTA.pop();
-
-//     httpClientSpy.post.and.returnValue(of(deleteCliente));
-    
-//     clienteService.deleteCliente(deleteCliente).subscribe(
-//       cliente => {
-//         expect(CLIENTESLISTA).not.toContain(cliente);
-//         done();
-//       }, done.fail
-//     );
-    
-//   });
-
-// });
+  //   service.updateCliente(atualizarCliente).subscribe(
+  //     cliente => {
+  //       expect(cliente.id).toEqual(atualizarCliente.id, 'id esperada do novo cliente');
+  //       expect(cliente.cpf).toEqual(atualizarCliente.cpf, 'cpf esperado do novo cliente');
+  //       expect(cliente.nome).toEqual(atualizarCliente.nome, 'nome esperado do novo cliente');
+  //       expect(cliente.sobrenome).toEqual(atualizarCliente.sobrenome, 'nome esperado do novo cliente');
+  //       done();
+  //     }, done.fail
+  //   );
+            
+  // });  
