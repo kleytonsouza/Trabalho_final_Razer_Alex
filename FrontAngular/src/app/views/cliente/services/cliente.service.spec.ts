@@ -1,8 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { ClienteService } from './cliente.service'
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { ClienteModule } from '../cliente.module';
+import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
 import { CLIENTESLISTA } from 'src/app/tests/table_clients';
 import { Cliente } from 'src/app/shared/models/cliente.model';
@@ -34,7 +32,24 @@ describe('ClienteService', () => {
 
     service.getClientes().subscribe(
       clientes => {
-        expect(clientes).toBe([]);
+        expect(clientes).toBeTruthy();
+        done();
+      }, done.fail
+    );
+    expect(httpMock.get.calls.count()).toBe(1, 'uma chamada realizada!!');
+  });
+
+
+  it('getCliente() deve retornar o cliente de id número 3', (done: DoneFn) => {
+  
+    httpMock.get.and.returnValue(of(CLIENTESLISTA));
+
+    let cliente = new Cliente(3, '02468024680', 'Meliodas', 'Pecado da Fúria');
+    console.log(cliente.id, "merda");
+
+    service.getCliente(3).subscribe(
+      clientes => {
+        expect(clientes.id == 3);
         done();
       }, done.fail
     );
