@@ -4,17 +4,18 @@ import { HttpTestingController, HttpClientTestingModule } from '@angular/common/
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ClienteModule } from '../cliente.module';
 import { of } from 'rxjs';
-// import { CLIENTESLISTA } from 'src/app/server/db-data-clientes';
+import { CLIENTESLISTA } from 'src/app/tests/table_clients';
 import { Cliente } from 'src/app/shared/models/cliente.model';
 
 describe('ClienteService', () => {
   let service: ClienteService;
   let httpMock: jasmine.SpyObj<HttpClient>;
+  
 
   beforeEach(() => {
     const spy = jasmine.createSpyObj('HttpClient', ['get','post']);
     TestBed.configureTestingModule({
-      providers: [
+      providers: [ 
         ClienteService,
         { provide: HttpClient, useValue: spy }
       ]
@@ -24,28 +25,25 @@ describe('ClienteService', () => {
   });
 
   it('should be created', () => {
-    console.log(service);
     expect(service).toBeTruthy();
   });
+
+  it('getClientes() deve retornar lista de Clientes', (done: DoneFn) => {
+  
+    httpMock.get.and.returnValue(of(CLIENTESLISTA));
+
+    service.getClientes().subscribe(
+      clientes => {
+        expect(clientes).toBe([]);
+        done();
+      }, done.fail
+    );
+    expect(httpMock.get.calls.count()).toBe(1, 'uma chamada realizada!!');
+  });
+
+
 });
 
-
-// describe('ClientService', () => {
-//   let httpClientSpy: jasmine.SpyObj<HttpClient>;
-//   let clienteService: ClienteService;
-
-//   beforeEach(() => {
-//     const spy = jasmine.createSpyObj('HttpClient', ['get','post']);
-//     TestBed.configureTestingModule({
-//       providers: [
-//         ClienteService,
-//         { provide: HttpClient, useValue: spy }
-//       ]
-//     });
-//     httpClientSpy = TestBed.inject(HttpClient) as jasmine.SpyObj<HttpClient>;
-//     clienteService = TestBed.inject(ClienteService);
-//   });
-// });
 
 
 //   it('getClientes() deve retornar lista de Clientes', (done: DoneFn) => {
