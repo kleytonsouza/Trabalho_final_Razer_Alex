@@ -11,7 +11,7 @@ describe('ProdutoService', () => {
   let httpMock: jasmine.SpyObj<HttpClient>;
 
   beforeEach(() => {
-    const spy = jasmine.createSpyObj('HttpClient', ['get','post', 'put', 'delete']);
+    const spy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put', 'delete']);
     TestBed.configureTestingModule({
       providers: [
         ProdutoService,
@@ -28,7 +28,7 @@ describe('ProdutoService', () => {
   });
 
   it('getProdutos() deve retornar lista de Produtos', (done: DoneFn) => {
-  
+
     httpMock.get.and.returnValue(of(PRODUTOSLISTA));
 
     service.getProdutos().subscribe(
@@ -41,13 +41,13 @@ describe('ProdutoService', () => {
   });
 
   it('findById() deve retornar o produto de id número 2', (done: DoneFn) => {
-  
+
     let id_produto = 2;
 
-    let produtoEncontrado = PRODUTOSLISTA.find(function(elemento,index){
-            if(elemento.id === id_produto) return true;
-            return false;
-          })
+    let produtoEncontrado = PRODUTOSLISTA.find(function (elemento, index) {
+      if (elemento.id === id_produto) return true;
+      return false;
+    })
 
     httpMock.get.and.returnValue(of(produtoEncontrado));
 
@@ -62,15 +62,15 @@ describe('ProdutoService', () => {
 
 
   it(`addProduto() deve adicionar um novo produto à lista`, (done: DoneFn) => {
-    console.log(PRODUTOSLISTA[PRODUTOSLISTA.length-2]);
-    
-    const produto: Produto = {id:66, descricao: 'banata da terra'};
-    
+    console.log(PRODUTOSLISTA[PRODUTOSLISTA.length - 2]);
+
+    const produto: Produto = { id: 66, descricao: 'banata da terra' };
+
     PRODUTOSLISTA.push(produto);
 
     httpMock.post.and.returnValue(of(
-      PRODUTOSLISTA.find(function(elemento,index){
-        if(elemento.id===66) return true;
+      PRODUTOSLISTA.find(function (elemento, index) {
+        if (elemento.id === 66) return true;
         return false;
       })
     ));
@@ -86,33 +86,34 @@ describe('ProdutoService', () => {
   });
 
   it(`deleteProduto() deve deletar um produto da lista`, (done: DoneFn) => {
-    
-    let produto_id = PRODUTOSLISTA.length-2;
+
+    let produto_id = PRODUTOSLISTA.length - 2;
     let produto_deleted = PRODUTOSLISTA[produto_id];
     let PRODUTO_DELETED_LISTA = PRODUTOSLISTA.filter(obj => obj !== produto_deleted);
-  
+
     httpMock.delete.and.returnValue(of(produto_deleted));
 
     service.deleteProduto(produto_deleted).subscribe(
-        produto => { console.log(produto, "asdf")
+      produto => {
+        console.log(produto, "asdf")
         expect(PRODUTO_DELETED_LISTA).not.toContain(produto_deleted);
-        expect(produto.id).toEqual(produto_id+1, "produto passado como parametro foi o mesmo deletado")
+        expect(produto.id).toEqual(produto_id + 1, "produto passado como parametro foi o mesmo deletado")
         done();
       }, done.fail
     );
-    
+
   });
 
   it(`updateProduto() deve atualizar um produto da lista`, (done: DoneFn) => {
-    
-    let atualizarProduto = PRODUTOSLISTA[PRODUTOSLISTA.length-1];
-    
+
+    let atualizarProduto = PRODUTOSLISTA[PRODUTOSLISTA.length - 1];
+
     atualizarProduto.descricao = "Coca da Boa!";
-    PRODUTOSLISTA[PRODUTOSLISTA.length-1].descricao=atualizarProduto.descricao;
-    
+    PRODUTOSLISTA[PRODUTOSLISTA.length - 1].descricao = atualizarProduto.descricao;
+
     httpMock.put.and.returnValue(of(
-      PRODUTOSLISTA.find(function(elemento,index){
-        if(elemento.id===atualizarProduto.id) return true;
+      PRODUTOSLISTA.find(function (elemento, index) {
+        if (elemento.id === atualizarProduto.id) return true;
         return false;
       })
     ));

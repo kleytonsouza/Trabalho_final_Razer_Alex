@@ -8,12 +8,12 @@ import { Cliente } from 'src/app/shared/models/cliente.model';
 describe('ClienteService', () => {
   let service: ClienteService;
   let httpMock: jasmine.SpyObj<HttpClient>;
-  
+
 
   beforeEach(() => {
-    const spy = jasmine.createSpyObj('HttpClient', ['get','post','delete','put']);
+    const spy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'delete', 'put']);
     TestBed.configureTestingModule({
-      providers: [ 
+      providers: [
         ClienteService,
         { provide: HttpClient, useValue: spy }
       ]
@@ -27,7 +27,7 @@ describe('ClienteService', () => {
   });
 
   it('getClientes() deve retornar lista de Clientes', (done: DoneFn) => {
-  
+
     httpMock.get.and.returnValue(of(CLIENTESLISTA));
 
     service.getClientes().subscribe(
@@ -41,13 +41,13 @@ describe('ClienteService', () => {
 
 
   it('getCliente() deve retornar o cliente de id número 3', (done: DoneFn) => {
-  
+
     let id_cliente = 2;
 
-    let clienteEncontrado = CLIENTESLISTA.find(function(elemento,index){
-            if(elemento.id === id_cliente) return true;
-            return false;
-          })
+    let clienteEncontrado = CLIENTESLISTA.find(function (elemento, index) {
+      if (elemento.id === id_cliente) return true;
+      return false;
+    })
 
     httpMock.get.and.returnValue(of(clienteEncontrado));
 
@@ -61,13 +61,13 @@ describe('ClienteService', () => {
   });
 
   it('getClienteByCpf() busca um cliente pelo CPF', (done: DoneFn) => {
-    
+
     let cliente_by_cpf = CLIENTESLISTA[Math.floor(Math.random() * CLIENTESLISTA.length)];
 
-    let cpfEncontrado = CLIENTESLISTA.find(function(elemento,index){
-            if(elemento.cpf === cliente_by_cpf.cpf ) return true;
-            return false;
-          })
+    let cpfEncontrado = CLIENTESLISTA.find(function (elemento, index) {
+      if (elemento.cpf === cliente_by_cpf.cpf) return true;
+      return false;
+    })
 
     httpMock.get.and.returnValue(of(cpfEncontrado));
 
@@ -81,13 +81,13 @@ describe('ClienteService', () => {
   });
 
   it(`addCliente() deve adicionar um novo cliente à lista`, (done: DoneFn) => {
-    const cliente: Cliente = {id: 66, cpf: '00000000000', nome: 'Saci', sobrenome: 'De Caloi 10'};
+    const cliente: Cliente = { id: 66, cpf: '00000000000', nome: 'Saci', sobrenome: 'De Caloi 10' };
 
     CLIENTESLISTA.push(cliente);
 
     httpMock.post.and.returnValue(of(
-      CLIENTESLISTA.find(function(elemento,index){
-        if(elemento.id===66) return true;
+      CLIENTESLISTA.find(function (elemento, index) {
+        if (elemento.id === 66) return true;
         return false;
       })
     ));
@@ -106,7 +106,7 @@ describe('ClienteService', () => {
 
   it(`deleteCliente() deve deletar um cliente da lista`, (done: DoneFn) => {
 
-    let cliente_id = CLIENTESLISTA.length-2;
+    let cliente_id = CLIENTESLISTA.length - 2;
     let cliente_deleted = CLIENTESLISTA[cliente_id];
     let CLIENTE_DELETED_LISTA = CLIENTESLISTA.filter(obj => obj !== cliente_deleted);
 
@@ -118,26 +118,26 @@ describe('ClienteService', () => {
         done();
       }, done.fail
     );
-    
+
   });
 
   it(`updateCliente() deve atualizar um cliente da lista`, (done: DoneFn) => {
-  
-    let cliente_id = CLIENTESLISTA.length-1
+
+    let cliente_id = CLIENTESLISTA.length - 1
     let cliente_atualizado = CLIENTESLISTA[cliente_id];
 
 
     cliente_atualizado.cpf = "98765432198";
     cliente_atualizado.nome = "Scooby";
     cliente_atualizado.sobrenome = "Doo";
-    CLIENTESLISTA[3].cpf=cliente_atualizado.cpf;
-    CLIENTESLISTA[3].nome=cliente_atualizado.nome;
-    CLIENTESLISTA[3].sobrenome=cliente_atualizado.sobrenome;
-    
+    CLIENTESLISTA[3].cpf = cliente_atualizado.cpf;
+    CLIENTESLISTA[3].nome = cliente_atualizado.nome;
+    CLIENTESLISTA[3].sobrenome = cliente_atualizado.sobrenome;
+
 
     httpMock.put.and.returnValue(of(
-      CLIENTESLISTA.find(function(elemento,index){
-        if(elemento.id===cliente_atualizado.id) return true;
+      CLIENTESLISTA.find(function (elemento, index) {
+        if (elemento.id === cliente_atualizado.id) return true;
         return false;
       })
     ));
@@ -151,6 +151,6 @@ describe('ClienteService', () => {
         done();
       }, done.fail
     );
-            
+
   });
-});    
+});

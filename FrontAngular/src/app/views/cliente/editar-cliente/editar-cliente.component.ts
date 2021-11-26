@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { ClienteService } from '../services/cliente.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Cliente } from '../../../shared/models/cliente.model';
-import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-client',
@@ -12,7 +12,7 @@ import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export class EditarClienteComponent implements OnInit {
 
-  public formCliente! : FormGroup;
+  public formCliente!: FormGroup;
   public cliente!: Cliente;
 
   constructor(
@@ -30,16 +30,16 @@ export class EditarClienteComponent implements OnInit {
       sobrenome: [this.data.sobrenome, [Validators.required]]
     })
   }
-  
-  update(): void{
-     
+
+  update(): void {
+
     this.clienteService.getClienteByCpf(this.formCliente.value['cpf']).subscribe((ite) => {
-      if(ite == null){
-        if (this.formCliente.valid){
+      if (ite == null) {
+        if (this.formCliente.valid) {
           this.clienteService.updateCliente(this.formCliente.value).subscribe();
           this.dialogRef.close();
-          this.formCliente.reset();      
-        } 
+          this.formCliente.reset();
+        }
       }
       else {
         alert("Ja possui cliente cadastrado com este CPF")
@@ -47,7 +47,7 @@ export class EditarClienteComponent implements OnInit {
     })
   }
 
-  cancel(): void{
+  cancel(): void {
     this.dialogRef.close();
     this.formCliente.reset();
   }

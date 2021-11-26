@@ -10,14 +10,14 @@ describe('InserirClienteComponent', () => {
   let fixture: ComponentFixture<InserirClienteComponent>;
 
   beforeEach(async () => {
-    const spy = jasmine.createSpyObj('HttpClient', ['get','post']);
+    const spy = jasmine.createSpyObj('HttpClient', ['get', 'post']);
     await TestBed.configureTestingModule({
-        declarations: [ InserirClienteComponent ],
-        providers: [FormBuilder, { provide: MAT_DIALOG_DATA, useValue: {} }, { provide: MatDialogRef, useValue: {} },
-                      ClienteService,  { provide: HttpClient, useValue: spy }]
-      })
+      declarations: [InserirClienteComponent],
+      providers: [FormBuilder, { provide: MAT_DIALOG_DATA, useValue: {} }, { provide: MatDialogRef, useValue: {} },
+        ClienteService, { provide: HttpClient, useValue: spy }]
+    })
       .compileComponents();
-    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(InserirClienteComponent);

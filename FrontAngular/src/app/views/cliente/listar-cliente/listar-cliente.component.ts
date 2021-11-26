@@ -15,28 +15,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./listar-cliente.component.css']
 })
 
-export class ListarClienteComponent  {
+export class ListarClienteComponent {
 
   ELEMENT_DATA!: Cliente[];
-  displayedColumns = ['id', 'cpf','nome', 'sobrenome', 'op'];
+  displayedColumns = ['id', 'cpf', 'nome', 'sobrenome', 'op'];
   dataSource = new MatTableDataSource<Cliente>(this.ELEMENT_DATA);
   clientes!: Cliente[];
-  
+
   constructor(
     private clientesService: ClienteService,
     public dialog: MatDialog,
     public router: Router
-  ){}
+  ) { }
 
   ngOnInit(): void { this.getAllClientes() }
 
-  update(cliente : Cliente) {
+  update(cliente: Cliente) {
     const dialogRef = this.dialog.open(
-      EditarClienteComponent,{
-        minWidth: '300px',
-        minHeight: '300px',
-        data: cliente 
-      }
+      EditarClienteComponent, {
+      minWidth: '300px',
+      minHeight: '300px',
+      data: cliente
+    }
     );
     dialogRef.afterClosed().subscribe(
       result => {
@@ -45,16 +45,16 @@ export class ListarClienteComponent  {
     );
   }
 
-  listOrdens(cliente: Cliente){
-    this.router.navigate(['/pedidos/cliente/',cliente.id]);
+  listOrdens(cliente: Cliente) {
+    this.router.navigate(['/pedidos/cliente/', cliente.id]);
   }
 
   add() {
     const dialogRef = this.dialog.open(
-      InserirClienteComponent,{
-        minWidth: '300px',
-        minHeight: '300px' 
-      }
+      InserirClienteComponent, {
+      minWidth: '300px',
+      minHeight: '300px'
+    }
     )
     dialogRef.afterClosed().subscribe(
       result => {
@@ -64,13 +64,13 @@ export class ListarClienteComponent  {
     )
   }
 
-  delete(cliente : Cliente) {
+  delete(cliente: Cliente) {
     const dialogRef = this.dialog.open(
-      RemoverClienteComponent,{
-        minWidth: '300px',
-        minHeight: '300px',
-        data: cliente 
-      }
+      RemoverClienteComponent, {
+      minWidth: '300px',
+      minHeight: '300px',
+      data: cliente
+    }
     );
     dialogRef.afterClosed().subscribe(
       result => {
@@ -80,14 +80,14 @@ export class ListarClienteComponent  {
     )
   }
 
-  getClientes(): void{
+  getClientes(): void {
     this.clientesService.getClientes().subscribe(
-      (response: Cliente[])      => { this.clientes = response },
-      (error: HttpErrorResponse) => { alert(error.message)}
+      (response: Cliente[]) => { this.clientes = response },
+      (error: HttpErrorResponse) => { alert(error.message) }
     );
   }
 
-  getAllClientes(){
+  getAllClientes() {
     this.clientesService.getClientes().subscribe(
       clientes => {
         this.clientes = clientes

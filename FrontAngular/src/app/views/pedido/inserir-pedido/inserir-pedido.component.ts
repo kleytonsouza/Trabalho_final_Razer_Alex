@@ -2,7 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { Pedido } from 'src/app/shared/models/pedido.model';
 import { Cliente } from 'src/app/shared/models/cliente.model';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -30,7 +29,6 @@ export class InserirPedidoComponent implements OnInit {
   produtos: Produto[] = [];
   items: ItemDoPedido[] = [];
   pedido!: Pedido;
-  //pedido = new Pedido(new Date(), this.cliente,);
   date: Date = new Date()
 
 
@@ -39,7 +37,6 @@ export class InserirPedidoComponent implements OnInit {
     public dialogRef: MatDialogRef<InserirClienteComponent>,
     private pedidoService: PedidoService,
     private produtoService: ProdutoService,
-    //private router: Router,
     private clientesService: ClienteService,
     public route: ActivatedRoute,
     @Inject(MAT_DIALOG_DATA) public data: {
@@ -64,20 +61,20 @@ export class InserirPedidoComponent implements OnInit {
 
   inserir(): void {
     if (this.formPedido.valid) {
-      if(this.items.length == 0){
+      if (this.items.length == 0) {
         alert("Não é possivel salvar pedido sem itens")
       }
-      else{     
-      this.formPedido = this.fb.group({
-        id: [''],
-        data: [formatDate(this.date, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", "en-US")],
-        cliente: [this.cliente],
-        itens: [this.items],
-      });
-      this.addPedido(this.formPedido.value);
-      this.dialogRef.close();
-      this.formPedido.reset();
-      window.location.reload();
+      else {
+        this.formPedido = this.fb.group({
+          id: [''],
+          data: [formatDate(this.date, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", "en-US")],
+          cliente: [this.cliente],
+          itens: [this.items],
+        });
+        this.addPedido(this.formPedido.value);
+        this.dialogRef.close();
+        this.formPedido.reset();
+        window.location.reload();
       }
     }
   }
@@ -103,7 +100,6 @@ export class InserirPedidoComponent implements OnInit {
         .subscribe();
     });
   }
-
 
   public onAddPedido(addForm: NgForm): void {
     document.getElementById('formPedido')?.click();

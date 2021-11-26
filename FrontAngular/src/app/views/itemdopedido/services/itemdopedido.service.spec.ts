@@ -12,7 +12,7 @@ describe('ItemdopedidoService', () => {
     const spy = jasmine.createSpyObj('HttpClient', ['get', 'post']);
     TestBed.configureTestingModule({
       providers: [
-        ClienteService, { provide: HttpClient, useValue: spy}
+        ClienteService, { provide: HttpClient, useValue: spy }
       ]
     });
     httpMock = TestBed.inject(HttpClient) as jasmine.SpyObj<HttpClient>;

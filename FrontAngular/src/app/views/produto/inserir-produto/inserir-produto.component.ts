@@ -11,9 +11,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 
 export class InserirProdutoComponent implements OnInit {
-  public formProduto! : FormGroup;
-  public produto! : Produto;
-  
+  public formProduto!: FormGroup;
+  public produto!: Produto;
+
   constructor(
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<InserirProdutoComponent>,
@@ -26,16 +26,16 @@ export class InserirProdutoComponent implements OnInit {
     })
   }
 
-  cancel(): void{
+  cancel(): void {
     this.dialogRef.close();
     this.formProduto.reset();
   }
 
-  add(): void{
-    if (this.formProduto.valid){
+  add(): void {
+    if (this.formProduto.valid) {
       this.produtoService.addProduto(this.formProduto.value).subscribe();
       this.dialogRef.close();
       this.formProduto.reset();
-    }  
+    }
   }
 }

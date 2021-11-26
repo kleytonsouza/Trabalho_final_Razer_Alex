@@ -10,13 +10,13 @@ describe('EditarProdutoComponent', () => {
   let fixture: ComponentFixture<EditarProdutoComponent>;
 
   beforeEach(async () => {
-    const spy = jasmine.createSpyObj('HttpClient', ['get','post']);
+    const spy = jasmine.createSpyObj('HttpClient', ['get', 'post']);
     await TestBed.configureTestingModule({
-      declarations: [ EditarProdutoComponent ],
+      declarations: [EditarProdutoComponent],
       providers: [FormBuilder, { provide: MAT_DIALOG_DATA, useValue: {} }, { provide: MatDialogRef, useValue: {} },
-                    ProdutoService,  { provide: HttpClient, useValue: spy }]
+        ProdutoService, { provide: HttpClient, useValue: spy }]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

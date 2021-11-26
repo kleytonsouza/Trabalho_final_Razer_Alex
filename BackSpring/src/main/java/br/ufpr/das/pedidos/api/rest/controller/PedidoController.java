@@ -1,6 +1,5 @@
 package br.ufpr.das.pedidos.api.rest.controller;
 import br.ufpr.das.pedidos.api.event.ResourceCreatedEvent;
-import br.ufpr.das.pedidos.api.rest.model.ClienteModel;
 import br.ufpr.das.pedidos.api.rest.model.PedidoModel;
 import br.ufpr.das.pedidos.api.rest.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +7,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -58,20 +54,5 @@ public class PedidoController {
     public Iterable<PedidoModel> getPedidoByCliente(@PathVariable Integer id) {
     	return repository.findAllByCliente(id);
     }
-
-    
-//  @PostMapping(path = "/v1/public/pedido/remover")
-//  public ResponseEntity<?> deletarPost(@RequestBody PedidoModel pedidoModel) {
-//      repository.delete(pedidoModel);
-//      return new ResponseEntity<>(HttpStatus.OK);
-//  }
-    
-//    @PostMapping(path = "/v1/public/pedido/atualizar")
-//    public ResponseEntity<PedidoModel> atualizar(@RequestBody PedidoModel pedidoModel) {
-//        PedidoModel novoPedido = repository.save(pedidoModel);
-//        return new ResponseEntity<>(novoPedido, HttpStatus.OK);
-//    }
-
-
 
 }

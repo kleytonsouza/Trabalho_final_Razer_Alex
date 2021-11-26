@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Table(name = "cliente", uniqueConstraints=@UniqueConstraint(name = "unic_cpf", columnNames = {"cpf"}))
 public class ClienteModel {
 
-
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;

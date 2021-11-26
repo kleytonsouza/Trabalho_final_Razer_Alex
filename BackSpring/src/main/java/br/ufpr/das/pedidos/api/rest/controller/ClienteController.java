@@ -1,6 +1,5 @@
 package br.ufpr.das.pedidos.api.rest.controller;
 
-
 import br.ufpr.das.pedidos.api.event.ResourceCreatedEvent;
 import br.ufpr.das.pedidos.api.rest.model.ClienteModel;
 import br.ufpr.das.pedidos.api.rest.repository.ClienteRepository;
@@ -16,7 +15,6 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
-
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
@@ -24,38 +22,23 @@ public class ClienteController {
     @Autowired
     private ClienteRepository repository;
 
-    //@Autowired
-    //private PedidoRepository repositoryPedidos;
-    
     @Autowired
     private ApplicationEventPublisher publisher;
 
-    
     @GetMapping("/{id}")
     public Optional<ClienteModel> consultar(@PathVariable Integer id) {
-    	return repository.findById(id);
+        return repository.findById(id);
     }
 
-       
     @GetMapping("/cpf/{cpf}")
     public ClienteModel consultarCpf(@PathVariable String cpf) {
-    	 return repository.findByCpf(cpf);
-        
+        return repository.findByCpf(cpf);
     }
-
-
-//    @GetMapping("/{clienteId}/pedidos")
-//    public ResponseEntity<Optional<PedidoModel>> consultarPedidos(@PathVariable Integer clienteId) {
-//        Optional<PedidoModel> cliente = repositoryPedidos.findAllByCliente(clienteId);
-//        return new ResponseEntity<>(cliente, HttpStatus.OK);
-//    }
-
 
     @DeleteMapping("/{clienteId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remover(@PathVariable("clienteId") Integer clienteId) {
         repository.deleteById(clienteId);
-        
     }
 
     @GetMapping
@@ -65,10 +48,10 @@ public class ClienteController {
 
     @PostMapping
     public ResponseEntity<ClienteModel> salvar(@RequestBody ClienteModel clienteModel, HttpServletResponse response) {
-    	ClienteModel  clienteSalvo =  repository.save(clienteModel);
-        
+        ClienteModel clienteSalvo = repository.save(clienteModel);
+
         publisher.publishEvent(new ResourceCreatedEvent(this, response, clienteSalvo.getId()));
-        
+
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteSalvo);
     }
 
@@ -76,12 +59,11 @@ public class ClienteController {
     public ResponseEntity<ClienteModel> atualizar(@PathVariable Integer clienteId, @RequestBody ClienteModel cliente) {
         ClienteModel clienteUpdate = repository.getById(clienteId);
         if (clienteUpdate == null) {
-        	throw new EmptyResultDataAccessException(1);
+            throw new EmptyResultDataAccessException(1);
         }
         BeanUtils.copyProperties(cliente, clienteUpdate, "id");
         repository.save(clienteUpdate);
         return ResponseEntity.ok(clienteUpdate);
     }
-
 
 }
