@@ -14,6 +14,7 @@ export class EditarClienteComponent implements OnInit {
 
   public formCliente!: FormGroup;
   public cliente!: Cliente;
+  public cpfCliente!: number;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,22 +30,30 @@ export class EditarClienteComponent implements OnInit {
       nome: [this.data.nome, [Validators.required]],
       sobrenome: [this.data.sobrenome, [Validators.required]]
     })
+    this.cpfCliente = this.formCliente.value['cpf'];
   }
 
   update(): void {
 
     this.clienteService.getClienteByCpf(this.formCliente.value['cpf']).subscribe((ite) => {
-      if (ite == null || this.formCliente.value['cpf'] == ite.cpf) {
-        if (this.formCliente.valid) {
-          this.clienteService.updateCliente(this.formCliente.value).subscribe();
-          this.dialogRef.close();
-          this.formCliente.reset();
-        }
+       if (ite == null) {
+        this.sendUpdate();
       }
       else {
+        if(this.formCliente.value['cpf'] == this.cpfCliente){
+          this.sendUpdate();
+        }else
         alert("Ja possui cliente cadastrado com este CPF")
-      }
+      } 
     })
+  }
+
+  sendUpdate(){
+    if (this.formCliente.valid) {
+      this.clienteService.updateCliente(this.formCliente.value).subscribe();
+      this.dialogRef.close();
+      this.formCliente.reset();
+    }
   }
 
   cancel(): void {
