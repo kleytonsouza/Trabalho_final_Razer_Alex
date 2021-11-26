@@ -19,7 +19,7 @@ describe('ItemdopedidoService', () => {
     service = TestBed.inject(ItemdopedidoService);
   });
 
-  it('should be created', () => {
+  it('ItemdopedidoService should be created', () => {
     expect(service).toBeTruthy();
   });
 });
