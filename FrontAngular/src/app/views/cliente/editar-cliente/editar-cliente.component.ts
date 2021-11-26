@@ -34,7 +34,7 @@ export class EditarClienteComponent implements OnInit {
   update(): void {
 
     this.clienteService.getClienteByCpf(this.formCliente.value['cpf']).subscribe((ite) => {
-      if (ite == null) {
+      if (ite == null || this.formCliente.value['cpf'] == ite.cpf) {
         if (this.formCliente.valid) {
           this.clienteService.updateCliente(this.formCliente.value).subscribe();
           this.dialogRef.close();
